@@ -13,5 +13,6 @@ public class AutomationTravelApp
         SpringApplication.run(AutomationTravelApp.class, args);
         System.out.print("Gourav Check");
         System.out.print("Ritika Checked");
+        System.out.println("sai checked");
     }
 }
