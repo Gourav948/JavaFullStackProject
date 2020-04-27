@@ -14,6 +14,6 @@ public class AutomationTravelApp
         System.out.print("Gourav Check");
         System.out.print("Ritika Checked");
         System.out.println("sai checked");
-        System.out.print("Gourav Checked Again");
+        System.out.print("Gourav Checked 1st");
     }
 }
