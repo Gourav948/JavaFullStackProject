@@ -1,0 +1,8 @@
+com\spring\service\UserService.class
+com\spring\service\UserServiceImpl.class
+com\spring\UserApp.class
+com\spring\json\User.class
+com\spring\controller\UserController.class
+com\spring\rest\repository\UserRepository.class
+com\spring\utils\UserUtils.class
+com\spring\entity\UserEntity.class
