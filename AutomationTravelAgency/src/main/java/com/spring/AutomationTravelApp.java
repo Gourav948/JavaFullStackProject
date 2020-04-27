@@ -11,5 +11,6 @@ public class AutomationTravelApp
     public static void main( String[] args )
     {
         SpringApplication.run(AutomationTravelApp.class, args);
+        System.out.print("Gourav Check");
     }
 }
