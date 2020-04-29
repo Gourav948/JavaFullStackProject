@@ -10,7 +10,6 @@ import com.spring.utils.UserCredentialsUtils;
 
 import com.spring.entity.UserProfileEntity;
 import com.spring.json.UserProfile;
-import com.spring.rest.repository.UserCredentialsRepository;
 import com.spring.rest.repository.UserProfileRepository;
 import com.spring.utils.UserProfileUtils;
 
@@ -66,8 +65,6 @@ public String autoLogin(UserCredentials usercredentials) {
 
 
 
-@Autowired
-private UserProfileRepository userRepository;
 @Override
 public UserProfile save(UserProfile userProfile) {
 	UserProfileEntity userProfileEntity = userRepository.save(UserProfileUtils.convertUserProfileToUserProfileEntity(userProfile));
