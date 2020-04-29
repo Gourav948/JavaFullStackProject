@@ -1,9 +1,9 @@
 spring:
     datasource:
         driverClassName: com.mysql.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/db1
+        url: jdbc:mysql://localhost:3306/ata_tbl
         username: root
-        password: anurag
+        password: S@ismaran98
 
     jpa:
         generate-ddl: true
