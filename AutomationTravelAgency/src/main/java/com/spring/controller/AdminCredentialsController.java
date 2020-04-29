@@ -10,11 +10,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.entity.VehicleEntity;
-
 import com.spring.json.Route;
-
 import com.spring.json.UserProfile;
-
 import com.spring.json.Vehicle;
 import com.spring.service.AdminCredentialsService;
 import com.spring.service.UserCredentialsService;
