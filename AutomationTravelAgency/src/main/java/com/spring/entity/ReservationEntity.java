@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,13 +28,13 @@ public class ReservationEntity
 	@JoinColumn(name = "USERID")
 	private UserCredentialsEntity userCredentialsEntity;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "VEHICLEID")
-	private List<VehicleEntity> vehicleEntity;
+	private VehicleEntity vehicleEntity;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "ROUTEID")
-	private List<RouteEntity> routeEntity;
+	private RouteEntity routeEntity;
 	
 	@Column(name="BOOKINGDATE")
 	private LocalDate  bookingDate;
@@ -41,9 +42,9 @@ public class ReservationEntity
 	@Column(name="JOURNEYDATE")
 	private LocalDate journeyDate;
 	
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name = "DRIVERID")
-	private List<DriverEntity> driverEntity;
+	@OneToOne(cascade={CascadeType.PERSIST, CascadeType.REMOVE}, fetch=FetchType.LAZY)
+	@JoinColumn(name="profile_id")
+	private DriverEntity driverEntity;
 	
 	@Column(name="BOOKINGSTATUS")
 	private String bookingStatus;
@@ -63,9 +64,9 @@ public class ReservationEntity
 	}
 	
 
-	public ReservationEntity(UserCredentialsEntity userCredentialsEntity, List<VehicleEntity> vehicleEntity,
-			List<RouteEntity> routeEntity, LocalDate bookingDate, LocalDate journeyDate,
-			List<DriverEntity> driverEntity, String bookingStatus, int totalFare, String boardingPoint,
+	public ReservationEntity(UserCredentialsEntity userCredentialsEntity, VehicleEntity vehicleEntity,
+			RouteEntity routeEntity, LocalDate bookingDate, LocalDate journeyDate,
+			DriverEntity driverEntity, String bookingStatus, int totalFare, String boardingPoint,
 			String dropPoint) {
 		super();
 		this.userCredentialsEntity = userCredentialsEntity;
@@ -97,19 +98,19 @@ public class ReservationEntity
 		this.userCredentialsEntity = userCredentialsEntity;
 	}
 
-	public List<VehicleEntity> getVehicleEntity() {
+	public VehicleEntity getVehicleEntity() {
 		return vehicleEntity;
 	}
 
-	public void setVehicleEntity(List<VehicleEntity> vehicleEntity) {
+	public void setVehicleEntity(VehicleEntity vehicleEntity) {
 		this.vehicleEntity = vehicleEntity;
 	}
 
-	public List<RouteEntity> getRouteEntity() {
+	public RouteEntity getRouteEntity() {
 		return routeEntity;
 	}
 
-	public void setRouteEntity(List<RouteEntity> routeEntity) {
+	public void setRouteEntity(RouteEntity routeEntity) {
 		this.routeEntity = routeEntity;
 	}
 
@@ -129,11 +130,11 @@ public class ReservationEntity
 		this.journeyDate = journeyDate;
 	}
 
-	public List<DriverEntity> getDriverEntity() {
+	public DriverEntity getDriverEntity() {
 		return driverEntity;
 	}
 
-	public void setDriverEntity(List<DriverEntity> driverEntity) {
+	public void setDriverEntity(DriverEntity driverEntity) {
 		this.driverEntity = driverEntity;
 	}
 

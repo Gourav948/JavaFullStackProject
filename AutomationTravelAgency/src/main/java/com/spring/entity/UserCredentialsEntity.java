@@ -28,6 +28,7 @@ public class UserCredentialsEntity
 	@Column(name="USERTYPE")
 	private String userType;
 	
+	
 	@Column(name="LOGINSTATUS")
 	private int loginStatus;
 	
@@ -57,7 +58,16 @@ public class UserCredentialsEntity
 		this.userType = userType;
 		this.loginStatus = loginStatus;
 	}
-	
+	public UserCredentialsEntity(long userId, String password, String userType, int loginStatus,
+			Set<CreditCardEntity> creditCards, Set<ReservationEntity> reservationList) {
+		super();
+		this.userId = userId;
+		this.password = password;
+		this.userType = userType;
+		this.loginStatus = loginStatus;
+		this.creditCards = creditCards;
+		this.reservationList = reservationList;
+	}
 	public long getUserId() {
 		return userId;
 	}
@@ -79,10 +89,24 @@ public class UserCredentialsEntity
 	public void setLoginStatus(int loginStatus) {
 		this.loginStatus = loginStatus;
 	}
+	
+	public Set<CreditCardEntity> getCreditCards() {
+		return creditCards;
+	}
+	public void setCreditCards(Set<CreditCardEntity> creditCards) {
+		this.creditCards = creditCards;
+	}
+	public Set<ReservationEntity> getReservationList() {
+		return reservationList;
+	}
+	public void setReservationList(Set<ReservationEntity> reservationList) {
+		this.reservationList = reservationList;
+	}
 	@Override
 	public String toString() {
 		return "UserCredentialsEntity [userId=" + userId + ", password=" + password + ", userType=" + userType
-				+ ", loginStatus=" + loginStatus + "]";
+				+ ", loginStatus=" + loginStatus + ", creditCards=" + creditCards + ", reservationList="
+				+ reservationList + "]";
 	}
 
 	

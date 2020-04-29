@@ -1,6 +1,7 @@
 package com.spring.entity;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -33,7 +34,10 @@ public class RouteEntity
 	@Column(name="TRAVELDURATION")
 	private int travelDuration;
 	
-
+	@OneToMany(cascade={CascadeType.PERSIST}, 
+			fetch=FetchType.EAGER, mappedBy = "userCredentialsEntity")
+	private Set<ReservationEntity> reservationList;
+	
 	public RouteEntity() {
 		super();
 	 
@@ -46,6 +50,18 @@ public class RouteEntity
 		this.destination = destination;
 		this.distance = distance;
 		this.travelDuration = travelDuration;
+	}
+
+
+	public RouteEntity(long routeId, String source, String destination, int distance, int travelDuration,
+			Set<ReservationEntity> reservationList) {
+		super();
+		this.routeId = routeId;
+		this.source = source;
+		this.destination = destination;
+		this.distance = distance;
+		this.travelDuration = travelDuration;
+		this.reservationList = reservationList;
 	}
 
 
@@ -94,10 +110,20 @@ public class RouteEntity
 	}
 
 
+	public Set<ReservationEntity> getReservationList() {
+		return reservationList;
+	}
+
+
+	public void setReservationList(Set<ReservationEntity> reservationList) {
+		this.reservationList = reservationList;
+	}
+
+
 	@Override
 	public String toString() {
 		return "RouteEntity [routeId=" + routeId + ", source=" + source + ", destination=" + destination + ", distance="
-				+ distance + ", travelDuration=" + travelDuration + "]";
+				+ distance + ", travelDuration=" + travelDuration + ", reservationList=" + reservationList + "]";
 	} 
 	
 	

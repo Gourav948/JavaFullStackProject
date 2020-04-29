@@ -1,6 +1,7 @@
 package com.spring.entity;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -35,6 +36,10 @@ public class VehicleEntity
 	
 	@Column(name="FAREPERKM")
 	private int farePerKm;
+	
+	@OneToMany(cascade={CascadeType.PERSIST}, 
+			fetch=FetchType.EAGER, mappedBy = "userCredentialsEntity")
+	private Set<ReservationEntity> reservationList;
 
 	public VehicleEntity() {
 		super(); 
@@ -59,6 +64,18 @@ public class VehicleEntity
 		this.registrationNumber = registrationNumber;
 		this.seatingCapacity = seatingCapacity;
 		this.farePerKm = farePerKm;
+	}
+
+	public VehicleEntity(long vehicleId, String name, String type, String registrationNumber, int seatingCapacity,
+			int farePerKm, Set<ReservationEntity> reservationList) {
+		super();
+		this.vehicleId = vehicleId;
+		this.name = name;
+		this.type = type;
+		this.registrationNumber = registrationNumber;
+		this.seatingCapacity = seatingCapacity;
+		this.farePerKm = farePerKm;
+		this.reservationList = reservationList;
 	}
 
 	public long getVehicleId() {
@@ -105,10 +122,19 @@ public class VehicleEntity
 		this.farePerKm = farePerKm;
 	}
 
+	public Set<ReservationEntity> getReservationList() {
+		return reservationList;
+	}
+
+	public void setReservationList(Set<ReservationEntity> reservationList) {
+		this.reservationList = reservationList;
+	}
+
 	@Override
 	public String toString() {
 		return "VehicleEntity [vehicleId=" + vehicleId + ", name=" + name + ", type=" + type + ", registrationNumber="
-				+ registrationNumber + ", seatingCapacity=" + seatingCapacity + ", farePerKm=" + farePerKm + "]";
+				+ registrationNumber + ", seatingCapacity=" + seatingCapacity + ", farePerKm=" + farePerKm
+				+ ", reservationList=" + reservationList + "]";
 	}
 	
 	
