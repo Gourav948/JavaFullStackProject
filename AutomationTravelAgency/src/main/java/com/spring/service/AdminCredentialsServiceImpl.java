@@ -12,10 +12,10 @@ import com.spring.utils.VehicleUtils;
 public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 	
 	@Autowired
-	private VehicleEntityRepository admincredentialsrepository;
+	private VehicleEntityRepository vehicleentityrepository;
 	@Override
 	public void save(Vehicle vehicle){
 	VehicleEntity vehicletopersist=VehicleUtils.convertVehicleToVehicleEntity(vehicle);
-	admincredentialsrepository.save(vehicletopersist);
+	vehicleentityrepository.save(vehicletopersist);
 	}
 }
