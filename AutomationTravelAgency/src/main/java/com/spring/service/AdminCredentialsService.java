@@ -10,6 +10,6 @@ public interface AdminCredentialsService {
 
 	public void saveRouteDetails(Route route);
 
-	public String deleteByVehicleid(Long vehicleid);
+	 public String deleteByVehicleid(Long vehicleid);
 
 }

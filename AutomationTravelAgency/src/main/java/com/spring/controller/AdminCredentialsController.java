@@ -42,8 +42,8 @@ public @ResponseBody UserProfile registerUserProfile(@RequestBody UserProfile us
 }
 
 
-@RequestMapping(value="vehicle/{vehicleid}",method=RequestMethod.DELETE, produces=MediaType.APPLICATION_JSON_VALUE)
-public String DeleteByVehicleid(@PathVariable(name ="vehicleid") Long vehicleid) {
+	@RequestMapping(value="vehicle/{vehicleid}",method=RequestMethod.DELETE, produces=MediaType.APPLICATION_JSON_VALUE)
+	public String DeleteByVehicleid(@PathVariable(name ="vehicleid") Long vehicleid) {
 	 return admincredentialsservice.deleteByVehicleid(vehicleid);
 }
 
