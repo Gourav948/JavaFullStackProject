@@ -22,8 +22,32 @@ public class AdminCredentialsController {
 	
 	@Autowired
 	private AdminCredentialsService admincredentialsservice;
+	@Autowired
 	private UserCredentialsService userCredentialsService;
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+	
 	@RequestMapping(value="/vehicle",method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public void addVehicleDetails(@RequestBody Vehicle vehicle) {
 		admincredentialsservice.saveVehicleDetails(vehicle);

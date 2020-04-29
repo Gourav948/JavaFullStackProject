@@ -7,8 +7,8 @@ import com.spring.entity.RouteEntity;
 import com.spring.entity.VehicleEntity;
 import com.spring.json.Route;
 import com.spring.json.Vehicle;
-import com.spring.rest.repository.RouteEntityRepository;
-import com.spring.rest.repository.VehicleEntityRepository;
+import com.spring.rest.repository.RouteRepository;
+import com.spring.rest.repository.VehicleRepository;
 import com.spring.utils.RouteUtils;
 import com.spring.utils.VehicleUtils;
 
@@ -16,18 +16,18 @@ import com.spring.utils.VehicleUtils;
 public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 	
 	@Autowired
-	private VehicleEntityRepository vehicleentityrepository;
-	@Autowired
-	private RouteEntityRepository routeentityrepository;
+	VehicleRepository vehicleRepository;
+	
+	RouteRepository routeRepository;
 	
 	@Override
 	public void saveVehicleDetails(Vehicle vehicle){
 	VehicleEntity vehicletopersist=VehicleUtils.convertVehicleToVehicleEntity(vehicle);
-	vehicleentityrepository.save(vehicletopersist);
+	vehicleRepository.save(vehicletopersist);
 	}
 	public void saveRouteDetails(Route route) {
 	RouteEntity routeetopersist=RouteUtils.convertRouteToRouteEntity(route);
-	routeentityrepository.save(routeetopersist);
+	routeRepository.save(routeetopersist);
 	}
 
 }
