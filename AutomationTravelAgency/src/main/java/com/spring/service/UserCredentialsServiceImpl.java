@@ -1,26 +1,29 @@
 package com.spring.service;
 
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Random;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import com.spring.json.UserCredentials;
 import com.spring.rest.repository.UserCredentialsRepository;
 import com.spring.utils.UserCredentialsUtils;
+
+import com.spring.entity.UserProfileEntity;
+import com.spring.json.UserProfile;
+import com.spring.rest.repository.UserCredentialsRepository;
+import com.spring.rest.repository.UserProfileRepository;
+import com.spring.utils.UserProfileUtils;
+
 
  
 @Service
 public class UserCredentialsServiceImpl implements UserCredentialsService  
 {
 
-private UserCredentialsRepository userRepository;
 
 private UserCredentialsRepository userRepository;
+
+
 
 @Override
 public UserCredentials save(UserCredentials usercredentials) {
@@ -50,7 +53,16 @@ public String autoLogin(UserCredentials usercredentials) {
 			return "invalid password";
 		}
 	}
-	
+
+	@Autowired
+	private UserProfileRepository userRepository;
+	@Override
+	public UserProfile save(UserProfile userProfile) {
+		UserProfileEntity userProfileEntity = userRepository.save(UserProfileUtils.convertUserProfileToUserProfileEntity(userProfile));
+		return UserProfileUtils.convertUserProfileEntityToUserProfile(userProfileEntity);
+	}
+	 
+
 	else {
 		return "invalid username";
 	}	
@@ -63,6 +75,13 @@ public UserCredentials autoLogout(String apiKey) {
 	user1.setSessionId(null);
 	com.spring.entity.UserCredentialsEntity userEntity=userRepository.save(user1);	
 	return UserCredentialsUtils.convertUserEntityToUser(userEntity);
+}
+
+
+@Override
+public UserProfile save(UserProfile userProfile) {
+	// TODO Auto-generated method stub
+	return null;
 }
 	
 	

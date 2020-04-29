@@ -1,11 +1,17 @@
 package com.spring.service;
 
 import com.spring.entity.VehicleEntity;
+import com.spring.json.Route;
+import com.spring.json.Vehicle;
 
 
 public interface AdminCredentialsService {
 
-	public	void save(VehicleEntity vehicleentity);
+	public	void saveVehicleDetails(Vehicle vehicle);
+
+	public void saveRouteDetails(Route route);
+
+	public String deleteByVehicleid(Long vehicleid);
 
 	public AdminCredentialsServiceImpl autoLogout(String authToken);
 
