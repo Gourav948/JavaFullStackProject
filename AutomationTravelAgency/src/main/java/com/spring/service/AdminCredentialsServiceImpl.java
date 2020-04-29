@@ -1,5 +1,7 @@
 package com.spring.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +30,23 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 	public void saveRouteDetails(Route route) {
 	RouteEntity routeetopersist=RouteUtils.convertRouteToRouteEntity(route);
 	routeRepository.save(routeetopersist);
+	}
+	
+	
+	@Override
+	public String deleteByVehicleid(Long vehicleid) {
+		Optional<VehicleEntity> vehicletodelete=vehicleRepository.findById(vehicleid);
+		if (vehicletodelete.isPresent() || vehicleid!=null)
+			
+		{
+			vehicleRepository.deleteById(vehicleid);
+			return "Vehicle Deleted";
+		}
+		else 
+			
+		{
+			return "Vehicleid is invalid";
+		}
 	}
 
 }

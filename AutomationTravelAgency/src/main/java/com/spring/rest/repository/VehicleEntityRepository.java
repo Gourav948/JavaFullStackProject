@@ -7,4 +7,7 @@ import com.spring.entity.VehicleEntity;
 @Component
 public interface VehicleEntityRepository extends JpaRepository<VehicleEntity,Long>{
 
+	
+	void deleteByVehicleId(Long vehicleid);
+
 }

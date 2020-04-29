@@ -15,6 +15,8 @@ import com.spring.json.UserCredentials;
 @Component
 public interface VehicleRepository extends JpaRepository<VehicleEntity, Long> 
 {
+
+	void deleteById(Long vehicleid);
  
 
 }
