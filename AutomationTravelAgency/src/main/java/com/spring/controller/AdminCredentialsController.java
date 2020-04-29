@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.entity.VehicleEntity;
+import com.spring.json.Vehicle;
 import com.spring.service.AdminCredentialsService;
 
 @RestController
@@ -18,8 +19,8 @@ public class AdminCredentialsController {
 	private AdminCredentialsService admincredentialsservice;
 
 	@RequestMapping(value="/vehicle",method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public void addVehicleDetails(@RequestBody VehicleEntity vehicleentity) {
-		admincredentialsservice.save(vehicleentity);
+	public void addVehicleDetails(@RequestBody Vehicle vehicle) {
+		admincredentialsservice.save(vehicle);
 	}
 }
 

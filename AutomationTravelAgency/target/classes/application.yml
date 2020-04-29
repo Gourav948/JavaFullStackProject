@@ -3,7 +3,7 @@ spring:
         driverClassName: com.mysql.jdbc.Driver
         url: jdbc:mysql://localhost:3306/db1
         username: root
-        password: mysql
+        password: anurag
 
     jpa:
         generate-ddl: true
