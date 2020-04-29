@@ -83,11 +83,7 @@ public UserCredentials autoLogout(String apiKey) {
 }
 
 
-@Override
-public UserProfile save(UserProfile userProfile) {
-	// TODO Auto-generated method stub
-	return null;
-}
+
 	
 	
 	}
