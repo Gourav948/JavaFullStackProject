@@ -52,14 +52,8 @@ public String autoLogin(UserCredentials usercredentials) {
 		else {
 			return "invalid password";
 		}
-	}
+	
 
-	@Autowired
-	private UserProfileRepository userRepository;
-	@Override
-	public UserProfile save(UserProfile userProfile) {
-		UserProfileEntity userProfileEntity = userRepository.save(UserProfileUtils.convertUserProfileToUserProfileEntity(userProfile));
-		return UserProfileUtils.convertUserProfileEntityToUserProfile(userProfileEntity);
 	}
 	 
 
@@ -67,6 +61,17 @@ public String autoLogin(UserCredentials usercredentials) {
 		return "invalid username";
 	}	
 	
+}
+
+
+
+
+@Autowired
+private UserProfileRepository userRepository;
+@Override
+public UserProfile save(UserProfile userProfile) {
+	UserProfileEntity userProfileEntity = userRepository.save(UserProfileUtils.convertUserProfileToUserProfileEntity(userProfile));
+	return UserProfileUtils.convertUserProfileEntityToUserProfile(userProfileEntity);
 }
 
 @Override
