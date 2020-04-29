@@ -36,7 +36,7 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 	@Override
 	public String deleteByVehicleid(Long vehicleid) {
 		Optional<VehicleEntity> vehicletodelete=vehicleentityrepository.findById(vehicleid);
-		if (vehicletodelete.isPresent() || vehicleid!=null)
+		if (vehicletodelete.isPresent())
 			
 		{
 			vehicleentityrepository.deleteByVehicleId(vehicleid);
