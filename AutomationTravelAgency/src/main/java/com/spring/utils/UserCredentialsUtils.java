@@ -24,4 +24,16 @@ public class UserCredentialsUtils
 	public static UserCredentialsEntity convertUserCredentialsToUserCredentialsEntity(UserCredentials userCredentials) {
 		return new UserCredentialsEntity(userCredentials.getPassword(),userCredentials.getUserType(),userCredentials.getLoginStatus());
 		}
+
+	public static UserCredentials convertUserEntityToUser(UserCredentialsEntity userEntity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static Object convertUserToUserEntity(UserCredentials usercredentials) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 }

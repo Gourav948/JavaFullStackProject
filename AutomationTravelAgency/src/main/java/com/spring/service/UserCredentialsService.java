@@ -1,13 +1,18 @@
 package com.spring.service;
 
-import java.time.LocalDate;
-import java.util.List;
+
+
+
+import com.spring.json.UserCredentials;
+
 
  
 
 public interface UserCredentialsService {
 
-	 
+	public String autoLogin(UserCredentials usercredentials);
+	public UserCredentials autoLogout(String apiKey);
+
 	 
 
 }
