@@ -1,3 +1,4 @@
+
 package com.spring.service;
 
 import java.util.Optional;
@@ -14,12 +15,7 @@ import com.spring.rest.repository.VehicleEntityRepository;
 import com.spring.utils.RouteUtils;
 import com.spring.utils.VehicleUtils;
 
-@Service
 
-public abstract class AdminCredentialsServiceImpl implements AdminCredentialsService {
-
-	@Override
-	public void save(VehicleEntity vehicleentity){
 
 public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 
@@ -54,4 +50,14 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 		}
 	}
 
-}}}
+	
+
+	
+
+}
+
+
+	
+	
+
+}
