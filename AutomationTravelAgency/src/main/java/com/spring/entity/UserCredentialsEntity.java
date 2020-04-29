@@ -1,6 +1,7 @@
 package com.spring.entity;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -30,7 +31,13 @@ public class UserCredentialsEntity
 	@Column(name="LOGINSTATUS")
 	private int loginStatus;
 	
+	@OneToMany(cascade={CascadeType.PERSIST}, 
+			fetch=FetchType.EAGER, mappedBy = "userCredentialsEntity")
+	private Set<CreditCardEntity> creditCards;
 	
+	@OneToMany(cascade={CascadeType.PERSIST}, 
+			fetch=FetchType.EAGER, mappedBy = "userCredentialsEntity")
+	private Set<ReservationEntity> reservationList;
 
 	public UserCredentialsEntity() {
 		super();

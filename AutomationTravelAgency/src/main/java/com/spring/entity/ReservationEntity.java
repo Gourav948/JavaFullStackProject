@@ -23,9 +23,9 @@ public class ReservationEntity
 	@Column(name="RESERVATIONID")
 	private long reservationId;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "USERID")
-	private List<UserCredentialsEntity> userCredentialsEntity;
+	private UserCredentialsEntity userCredentialsEntity;
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name = "VEHICLEID")
@@ -63,7 +63,7 @@ public class ReservationEntity
 	}
 	
 
-	public ReservationEntity(List<UserCredentialsEntity> userCredentialsEntity, List<VehicleEntity> vehicleEntity,
+	public ReservationEntity(UserCredentialsEntity userCredentialsEntity, List<VehicleEntity> vehicleEntity,
 			List<RouteEntity> routeEntity, LocalDate bookingDate, LocalDate journeyDate,
 			List<DriverEntity> driverEntity, String bookingStatus, int totalFare, String boardingPoint,
 			String dropPoint) {
@@ -89,11 +89,11 @@ public class ReservationEntity
 		this.reservationId = reservationId;
 	}
 
-	public List<UserCredentialsEntity> getUserCredentialsEntity() {
+	public UserCredentialsEntity getUserCredentialsEntity() {
 		return userCredentialsEntity;
 	}
 
-	public void setUserCredentialsEntity(List<UserCredentialsEntity> userCredentialsEntity) {
+	public void setUserCredentialsEntity(UserCredentialsEntity userCredentialsEntity) {
 		this.userCredentialsEntity = userCredentialsEntity;
 	}
 
