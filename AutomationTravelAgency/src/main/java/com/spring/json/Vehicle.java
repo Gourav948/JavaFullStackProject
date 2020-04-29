@@ -1,12 +1,17 @@
 package com.spring.json;
 
 import java.time.LocalDate;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+ 
  
 public class Vehicle 
 { 
@@ -16,7 +21,10 @@ public class Vehicle
 	private String registrationNumber; 
 	private int seatingCapacity; 
 	private int farePerKm;
-
+	@OneToMany(cascade={CascadeType.PERSIST}, 
+			fetch=FetchType.EAGER, mappedBy = "userCredentialsEntity")
+	private Set<Reservation> reservationList;
+	
 	public Vehicle() {
 		super(); 
 	}
@@ -40,6 +48,18 @@ public class Vehicle
 		this.registrationNumber = registrationNumber;
 		this.seatingCapacity = seatingCapacity;
 		this.farePerKm = farePerKm;
+	}
+
+	public Vehicle(long vehicleId, String name, String type, String registrationNumber, int seatingCapacity,
+			int farePerKm, Set<Reservation> reservationList) {
+		super();
+		this.vehicleId = vehicleId;
+		this.name = name;
+		this.type = type;
+		this.registrationNumber = registrationNumber;
+		this.seatingCapacity = seatingCapacity;
+		this.farePerKm = farePerKm;
+		this.reservationList = reservationList;
 	}
 
 	public long getVehicleId() {
@@ -90,10 +110,19 @@ public class Vehicle
 		this.farePerKm = farePerKm;
 	}
 
+	public Set<Reservation> getReservationList() {
+		return reservationList;
+	}
+
+	public void setReservationList(Set<Reservation> reservationList) {
+		this.reservationList = reservationList;
+	}
+
 	@Override
 	public String toString() {
 		return "Vehicle [vehicleId=" + vehicleId + ", name=" + name + ", type=" + type + ", registrationNumber="
-				+ registrationNumber + ", seatingCapacity=" + seatingCapacity + ", farePerKm=" + farePerKm + "]";
+				+ registrationNumber + ", seatingCapacity=" + seatingCapacity + ", farePerKm=" + farePerKm
+				+ ", reservationList=" + reservationList + "]";
 	}
 	
 	

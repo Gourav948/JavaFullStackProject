@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
  
 
@@ -17,21 +18,21 @@ public class Reservation
 { 
 	private long reservationId;
 	
-	@OneToMany(cascade=CascadeType.ALL)
-	private List<UserCredentials>  userCredentialsEntity;
+	@ManyToOne(cascade=CascadeType.ALL)
+	private UserCredentials  userCredentialsEntity;
 	
-	@OneToMany(cascade=CascadeType.ALL) 
-	private List<Vehicle>  vehicleEntity;
+	@ManyToOne(cascade=CascadeType.ALL) 
+	private Vehicle  vehicleEntity;
 	
-	@OneToMany(cascade=CascadeType.ALL) 
-	private List<Route>  routeEntity; 
+	@ManyToOne(cascade=CascadeType.ALL) 
+	private Route  routeEntity; 
 	
 	private LocalDate  bookingDate; 
 	
 	private LocalDate journeyDate;
 	
-	@OneToMany(cascade=CascadeType.ALL) 
-	private List<Driver> driverEntity; 
+	@OneToOne(cascade=CascadeType.ALL) 
+	private Driver driverEntity; 
 	
 	private String bookingStatus;
  
@@ -50,8 +51,8 @@ public class Reservation
 
 	
 
-	public Reservation(long reservationId, List<UserCredentials> userCredentialsEntity, List<Vehicle> vehicleEntity,
-			List<Route> routeEntity, LocalDate bookingDate, LocalDate journeyDate, List<Driver> driverEntity,
+	public Reservation(long reservationId, UserCredentials userCredentialsEntity, Vehicle vehicleEntity,
+			Route routeEntity, LocalDate bookingDate, LocalDate journeyDate, Driver driverEntity,
 			String bookingStatus, int totalFare, String boardingPoint, String dropPoint) {
 		super();
 		this.reservationId = reservationId;
@@ -81,37 +82,37 @@ public class Reservation
 
 
 
-	public List<UserCredentials> getUserCredentialsEntity() {
+	public UserCredentials getUserCredentialsEntity() {
 		return userCredentialsEntity;
 	}
 
 
 
-	public void setUserCredentialsEntity(List<UserCredentials> userCredentialsEntity) {
+	public void setUserCredentialsEntity(UserCredentials userCredentialsEntity) {
 		this.userCredentialsEntity = userCredentialsEntity;
 	}
 
 
 
-	public List<Vehicle> getVehicleEntity() {
+	public Vehicle getVehicleEntity() {
 		return vehicleEntity;
 	}
 
 
 
-	public void setVehicleEntity(List<Vehicle> vehicleEntity) {
+	public void setVehicleEntity(Vehicle vehicleEntity) {
 		this.vehicleEntity = vehicleEntity;
 	}
 
 
 
-	public List<Route> getRouteEntity() {
+	public Route getRouteEntity() {
 		return routeEntity;
 	}
 
 
 
-	public void setRouteEntity(List<Route> routeEntity) {
+	public void setRouteEntity(Route routeEntity) {
 		this.routeEntity = routeEntity;
 	}
 
@@ -141,13 +142,13 @@ public class Reservation
 
 
 
-	public List<Driver> getDriverEntity() {
+	public Driver getDriverEntity() {
 		return driverEntity;
 	}
 
 
 
-	public void setDriverEntity(List<Driver> driverEntity) {
+	public void setDriverEntity(Driver driverEntity) {
 		this.driverEntity = driverEntity;
 	}
 
