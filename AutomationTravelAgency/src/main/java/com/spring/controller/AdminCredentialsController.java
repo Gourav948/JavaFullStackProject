@@ -2,8 +2,10 @@ package com.spring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -38,5 +40,13 @@ public class AdminCredentialsController {
 public @ResponseBody UserProfile registerUserProfile(@RequestBody UserProfile userProfile) {
 	return userCredentialsService.save(userProfile);
 }
+
+
+@RequestMapping(value="vehicle/{vehicleid}",method=RequestMethod.DELETE, produces=MediaType.APPLICATION_JSON_VALUE)
+public String DeleteByVehicleid(@PathVariable(name ="vehicleid") Long vehicleid) {
+	 return admincredentialsservice.deleteByVehicleid(vehicleid);
+}
+
+
 
 }
