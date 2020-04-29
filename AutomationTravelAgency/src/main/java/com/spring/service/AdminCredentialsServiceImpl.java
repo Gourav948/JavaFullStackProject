@@ -32,21 +32,13 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 	routeRepository.save(routeetopersist);
 	}
 	
-	
 	@Override
 	public String deleteByVehicleid(Long vehicleid) {
-		Optional<VehicleEntity> vehicletodelete=vehicleRepository.findById(vehicleid);
-		if (vehicletodelete.isPresent() || vehicleid!=null)
-			
-		{
-			vehicleRepository.deleteById(vehicleid);
-			return "Vehicle Deleted";
-		}
-		else 
-			
-		{
-			return "Vehicleid is invalid";
-		}
+		// TODO Auto-generated method stub
+		return null;
 	}
+	
+	
+	
 
 }
