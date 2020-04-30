@@ -27,8 +27,8 @@ private UserCredentialsRepository userRepository;
 @Override
 public UserCredentials save(UserCredentials usercredentials) {
 	com.spring.entity.UserCredentialsEntity userCredentialsEntity = 
-			userRepository.save(UserCredentialsUtils.convertUserToUserEntity(usercredentials));
-	return UserCredentialsUtils.convertUserEntityToUser(userCredentialsEntity);
+			userRepository.save(UserCredentialsUtils.convertUserCredentialsToUserCredentialsEntity(usercredentials));
+	return UserCredentialsUtils.convertUserCredentialsEntityToUserCredentials(userCredentialsEntity);
 }
 
 
@@ -76,7 +76,7 @@ public UserCredentials autoLogout(String apiKey) {
 	com.spring.entity.UserCredentialsEntity user1=userRepository.findBySessionId(apiKey).get(0);
 	user1.setSessionId(null);
 	com.spring.entity.UserCredentialsEntity userEntity=userRepository.save(user1);	
-	return UserCredentialsUtils.convertUserEntityToUser(userEntity);
+	return UserCredentialsUtils.convertUserCredentialsEntityToUserCredentials(userEntity);
 }
 
 
