@@ -16,7 +16,11 @@ import com.spring.json.UserCredentials;
 public interface UserCredentialsRepository extends JpaRepository<UserCredentialsEntity, Long> 
 {
 
+<<<<<<< HEAD
 	List<UserCredentialsEntity> findById(long userId);
+=======
+	UserCredentialsEntity findById(long userId);
+>>>>>>> branch 'master' of https://github.com/Gourav948/JavaFullStackProject.git
 	List<UserCredentialsEntity> findBySessionId(String sessionId);
 
 }

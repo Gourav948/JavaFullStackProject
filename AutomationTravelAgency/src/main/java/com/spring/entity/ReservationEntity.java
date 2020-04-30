@@ -24,15 +24,15 @@ public class ReservationEntity
 	@Column(name="RESERVATIONID")
 	private long reservationId;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name = "USERID")
 	private UserCredentialsEntity userCredentialsEntity;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name = "VEHICLEID")
 	private VehicleEntity vehicleEntity;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name = "ROUTEID")
 	private RouteEntity routeEntity;
 	
@@ -42,7 +42,7 @@ public class ReservationEntity
 	@Column(name="JOURNEYDATE")
 	private LocalDate journeyDate;
 	
-	@OneToOne(cascade={CascadeType.PERSIST, CascadeType.REMOVE}, fetch=FetchType.LAZY)
+	@OneToOne(cascade={CascadeType.PERSIST}, fetch=FetchType.LAZY)
 	@JoinColumn(name="profile_id")
 	private DriverEntity driverEntity;
 	
