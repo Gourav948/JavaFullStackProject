@@ -31,12 +31,6 @@ private UserCredentialsRepository userCredentialRepository;
 
 
 
-@Override
-public UserCredentials save(UserCredentials usercredentials) {
-	com.spring.entity.UserCredentialsEntity userCredentialsEntity = 
-			userRepository.save(UserCredentialsUtils.convertUserCredentialsToUserCredentialsEntity(usercredentials));
-	return UserCredentialsUtils.convertUserCredentialsEntityToUserCredentials(userCredentialsEntity);
-}
 
 
 @Override
@@ -92,7 +86,7 @@ public UserCredentials autoLogout(String apiKey) {
 
 @Override
 public boolean requestPasswordReset(String password) {
-
+		
 return false;
 
 }
