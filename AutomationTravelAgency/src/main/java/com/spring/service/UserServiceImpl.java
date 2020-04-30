@@ -3,12 +3,15 @@ package com.spring.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.json.Reservation;
 import com.spring.json.Route;
 import com.spring.json.UserCredentials;
+import com.spring.rest.repository.ReservationRepository;
 import com.spring.rest.repository.RouteRepository;
 import com.spring.rest.repository.UserCredentialsRepository;
 import com.spring.utils.RouteUtils;
 import com.spring.utils.UserCredentialsUtils;
+import com.spring.entity.ReservationEntity;
 import com.spring.entity.RouteEntity;
 import com.spring.entity.UserProfileEntity;
 import com.spring.entity.VehicleEntity;
@@ -31,6 +34,9 @@ public class UserServiceImpl implements UserService
 	@Autowired
 	RouteRepository routeRepository;
 	
+	@Autowired
+	ReservationRepository reservationRepository;
+	
 	@Override
 	public Object getVehicleById(Long vehicleid) 
 	{
@@ -50,6 +56,14 @@ public class UserServiceImpl implements UserService
 		return RouteUtils.convertRouteEntityToRoute(routeEntity);
 		else
 			return "Invalid RouteId please Check ID";
+	}
+
+	@Override
+	public Object bookReservation(Reservation reservation) 
+	{
+		ReservationEntity reservationEntity=null;
+		reservationRepository.save(reservationEntity);
+		return null;
 	}
  
 
