@@ -37,25 +37,13 @@ public class AdminCredentialsController {
 	private RouteRepository routeRepository;
 	private ReservationEntity reservationEntity; 
 	private ReservationRepository reservationRepository;
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	public UserProfile updateUserProfile(UserProfile userProfile, String id) {
 		UserProfileEntity userProfileEntity = userProfileRepository.findById(Long.valueOf(id)).get();
 		if(userProfileEntity != null) {
 			userProfileEntity.setCity(userProfile.getCity());
-		//	userProfileEntity.setCreditCards(userProfile.getCreditCardList());
+			userProfileEntity.setCreditCards(userProfile.getCreditCardList());
 			userProfileEntity.setDateOfBirth(userProfile.getDateOfBirth());
 			userProfileEntity.setEmailId(userProfile.getEmailId());
 			userProfileEntity.setFirstName(userProfile.getFirstName());
