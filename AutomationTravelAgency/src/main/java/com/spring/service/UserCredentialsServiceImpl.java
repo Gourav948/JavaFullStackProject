@@ -37,18 +37,13 @@ public UserCredentials save(UserCredentials usercredentials) {
 }
 
 
-
 @Override
 public String autoLogin(UserCredentials usercredentials) {
 
 	com.spring.entity.UserCredentialsEntity user1=userRepository.findById(usercredentials.getUserId()).get(0);
 	if(user1!=null) {
-
 		if(user1.getPassword().equals((usercredentials.getPassword()))) {
-			
 
-		if(user1.getPassword().equals((usercredentials.getPassword()))) 
-		{
 			String sessionId = new java.rmi.server.UID().toString().substring(0, 10);
 			user1.setSessionId(sessionId);
 			userCredentialRepository.save(user1);
@@ -63,7 +58,6 @@ public String autoLogin(UserCredentials usercredentials) {
 		{
 			return "invalid password";
 		}
-	
 
 	}
 	 
@@ -75,7 +69,6 @@ public String autoLogin(UserCredentials usercredentials) {
 }
 
 
-//this
 
 
 public UserProfile save(UserProfile userProfile) 
@@ -83,6 +76,7 @@ public UserProfile save(UserProfile userProfile)
 	UserProfileEntity userProfileEntity = userRepository.save(UserProfileUtils.convertUserProfileToUserProfileEntity(userProfile));
 	return UserProfileUtils.convertUserProfileEntityToUserProfile(userProfileEntity);
 }
+
 
 @Override
 public UserCredentials autoLogout(String apiKey) {
@@ -97,10 +91,7 @@ public UserCredentials autoLogout(String apiKey) {
 @Override
 public boolean requestPasswordReset(String password) {
 
-	return false;
-
-	com.spring.entity.UserCredentialsEntity userEntity=userCredentialRepository.save(user1);	
-	return UserCredentialsUtils.convertUserCredentialsEntityToUserCredentials(userEntity);
+return false;
 
 }
 
