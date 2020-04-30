@@ -16,7 +16,7 @@ import com.spring.json.UserCredentials;
 public interface UserCredentialsRepository extends JpaRepository<UserCredentialsEntity, Long> 
 {
 
-	List<UserCredentials> findById(long userId);
-	List<UserCredentials> findBySessionId(String sessionId);
+	List<UserCredentialsEntity> findById(long userId);
+	List<UserCredentialsEntity> findBySessionId(String sessionId);
 
 }

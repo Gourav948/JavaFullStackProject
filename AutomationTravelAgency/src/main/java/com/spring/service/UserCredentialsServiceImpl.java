@@ -34,13 +34,11 @@ public UserCredentials save(UserCredentials usercredentials) {
 
 @Override
 public String autoLogin(UserCredentials usercredentials) {
-	com.spring.entity.UserCredentialsEntity user1=userRepository.findById(usercredentials.getUserId());
+	com.spring.entity.UserCredentialsEntity user1=userRepository.findById(usercredentials.getUserId()).get(0);
 	if(user1!=null) {
 		if(user1.getPassword().equals((usercredentials.getPassword()))) {
-			String sessionId = new java.rmi.server.UID().toString().substring(0, 10);
-			user1.setSessionId(sessionId);
-			userRepository.save(user1);
-			return sessionId;
+			
+			
 			String userType = new java.rmi.server.UID().toString().substring(0, 10);
 			user1.setUserType(userType);
 			userRepository.save(user1);
@@ -63,7 +61,7 @@ public String autoLogin(UserCredentials usercredentials) {
 }
 
 
-
+//this
 
 @Override
 public UserProfile save(UserProfile userProfile) {
@@ -77,6 +75,13 @@ public UserCredentials autoLogout(String apiKey) {
 	user1.setSessionId(null);
 	com.spring.entity.UserCredentialsEntity userEntity=userRepository.save(user1);	
 	return UserCredentialsUtils.convertUserCredentialsEntityToUserCredentials(userEntity);
+}
+
+
+@Override
+public boolean requestPasswordReset(String password) {
+
+	return false;
 }
 
 

@@ -39,13 +39,17 @@ public class UserCredentialsEntity
 
 	public UserCredentialsEntity() {
 		super();
+		
+			this.sessionId="";
+		}
 	 
-	}
+	
 	public UserCredentialsEntity(String password, String userType, int loginStatus) {
 		super();
 		this.password = password;
 		this.userType = userType;
 		this.loginStatus = loginStatus;
+		
 	}
 
 	public UserCredentialsEntity(long userId, String password, String userType, int loginStatus) {
@@ -54,6 +58,7 @@ public class UserCredentialsEntity
 		this.password = password;
 		this.userType = userType;
 		this.loginStatus = loginStatus;
+		this.sessionId="";
 	}
 	 
 	public long getUserId() {

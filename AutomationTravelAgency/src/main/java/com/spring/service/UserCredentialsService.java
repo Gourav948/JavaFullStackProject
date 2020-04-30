@@ -18,6 +18,8 @@ public interface UserCredentialsService {
 
 
 	UserProfile save(UserProfile userProfile);
+	public boolean requestPasswordReset(String password);
+
 
 	 
 

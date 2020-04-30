@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.service.UserCredentialsService;
+import com.spring.entity.UserCredentialsEntity;
 import com.spring.json.UserCredentials;
 
 @RestController
@@ -32,5 +33,29 @@ public class UserCredentialsController {
 		
 		
 	}
+		
+		
+		@PostMapping(value="/changePassword",consumes=MediaType.APPLICATION_JSON_VALUE,produces=MediaType.APPLICATION_JSON_VALUE)
+		public UserCredentials changePassword(@RequestBody UserCredentialsEntity changepassword){
+			UserCredentials value=new UserCredentials();
+			boolean result=usercredentialsservice.requestPasswordReset(changepassword.getPassword());
+			return value;
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 }
 

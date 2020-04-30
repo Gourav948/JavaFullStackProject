@@ -8,6 +8,7 @@ import javax.persistence.Id;
 
 public class UserCredentials 
 {
+	
 	 
 	private long userId;
 	 
