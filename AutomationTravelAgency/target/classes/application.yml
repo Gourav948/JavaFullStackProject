@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 spring:
     datasource:
         driverClassName: com.mysql.jdbc.Driver
@@ -14,21 +14,3 @@ spring:
             ddl-auto: create
         properties:
             hibernate: 
-=======
-spring:
-    datasource:
-        driverClassName: com.mysql.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/ata_tbl
-        username: root
-        password: S@ismaran98
-
-    jpa:
-        generate-ddl: true
-        show-sql: true
-        
-        hibernate:
-            ddl-auto: create
-        properties:
-            hibernate: 
->>>>>>> branch 'master' of https://github.com/Gourav948/JavaFullStackProject.git
-                dialect: org.hibernate.dialect.MySQL5Dialect
