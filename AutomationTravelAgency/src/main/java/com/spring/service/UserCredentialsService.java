@@ -10,14 +10,15 @@ import com.spring.json.UserProfile;
 
  
 
-public interface UserCredentialsService {
+public interface UserCredentialsService 
+{
 
 
 	public String autoLogin(UserCredentials usercredentials);
 	public UserCredentials autoLogout(String apiKey);
 
 
-	UserProfile save(UserProfile userProfile);
+	public UserProfile save(UserProfile userProfile);
 
 	 
 
