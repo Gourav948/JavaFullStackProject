@@ -11,6 +11,7 @@ import com.spring.utils.UserCredentialsUtils;
 import com.spring.entity.UserProfileEntity;
 import com.spring.json.UserProfile;
 import com.spring.rest.repository.UserProfileRepository;
+import com.spring.rest.repository.UserCredentialsRepository;
 import com.spring.utils.UserProfileUtils;
 
 
@@ -18,37 +19,34 @@ import com.spring.utils.UserProfileUtils;
 @Service
 public class UserCredentialsServiceImpl implements UserCredentialsService  
 {
+@Autowired
+private UserProfileRepository userRepository;
+
+@Autowired
+private UserCredentialsRepository userCredentialRepository;
 
 
-private UserCredentialsRepository userRepository;
-
-
-
-@Override
-public UserCredentials save(UserCredentials usercredentials) {
-	com.spring.entity.UserCredentialsEntity userCredentialsEntity = 
-			userRepository.save(UserCredentialsUtils.convertUserToUserEntity(usercredentials));
-	return UserCredentialsUtils.convertUserEntityToUser(userCredentialsEntity);
-}
+ 
 
 
 @Override
 public String autoLogin(UserCredentials usercredentials) {
-	com.spring.entity.UserCredentialsEntity user1=userRepository.findById(usercredentials.getUserId());
+	com.spring.entity.UserCredentialsEntity user1=userCredentialRepository.findById(usercredentials.getUserId());
 	if(user1!=null) {
-		if(user1.getPassword().equals((usercredentials.getPassword()))) {
+		if(user1.getPassword().equals((usercredentials.getPassword()))) 
+		{
 			String sessionId = new java.rmi.server.UID().toString().substring(0, 10);
 			user1.setSessionId(sessionId);
-			userRepository.save(user1);
-			return sessionId;
+			userCredentialRepository.save(user1);
 			String userType = new java.rmi.server.UID().toString().substring(0, 10);
 			user1.setUserType(userType);
-			userRepository.save(user1);
-			return userType;
+			userCredentialRepository.save(user1);
+			return "userType="+userType+"session Id" +sessionId;
 			
 			
 		}
-		else {
+		else 
+		{
 			return "invalid password";
 		}
 	
@@ -65,18 +63,19 @@ public String autoLogin(UserCredentials usercredentials) {
 
 
 
-@Override
-public UserProfile save(UserProfile userProfile) {
+
+public UserProfile save(UserProfile userProfile) 
+{
 	UserProfileEntity userProfileEntity = userRepository.save(UserProfileUtils.convertUserProfileToUserProfileEntity(userProfile));
 	return UserProfileUtils.convertUserProfileEntityToUserProfile(userProfileEntity);
 }
 
 @Override
 public UserCredentials autoLogout(String apiKey) {
-	com.spring.entity.UserCredentialsEntity user1=userRepository.findBySessionId(apiKey).get(0);
+	com.spring.entity.UserCredentialsEntity user1=userCredentialRepository.findBySessionId(apiKey).get(0);
 	user1.setSessionId(null);
-	com.spring.entity.UserCredentialsEntity userEntity=userRepository.save(user1);	
-	return UserCredentialsUtils.convertUserEntityToUser(userEntity);
+	com.spring.entity.UserCredentialsEntity userEntity=userCredentialRepository.save(user1);	
+	return UserCredentialsUtils.convertUserCredentialsEntityToUserCredentials(userEntity);
 }
 
 
