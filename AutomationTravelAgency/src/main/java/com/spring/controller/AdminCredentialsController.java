@@ -43,7 +43,7 @@ public class AdminCredentialsController {
 		UserProfileEntity userProfileEntity = userProfileRepository.findById(Long.valueOf(id)).get();
 		if(userProfileEntity != null) {
 			userProfileEntity.setCity(userProfile.getCity());
-			userProfileEntity.setCreditCards(userProfile.getCreditCardList());
+		//	userProfileEntity.setCreditCards(userProfile.getCreditCardList());
 			userProfileEntity.setDateOfBirth(userProfile.getDateOfBirth());
 			userProfileEntity.setEmailId(userProfile.getEmailId());
 			userProfileEntity.setFirstName(userProfile.getFirstName());
@@ -54,7 +54,11 @@ public class AdminCredentialsController {
 			userProfileEntity.setPincode(userProfile.getPincode());
 			userProfileEntity.setStreet(userProfile.getStreet());
 			userProfileEntity.setState(userProfile.getState());
+<<<<<<< HEAD
 	//userProfileEntity.setReservationList(userProfile.getReservationList());
+=======
+		//userProfileEntity.setReservationList(userProfile.getReservationList());
+>>>>>>> useless commit 2
 	}
 		return UserProfileUtils.convertUserProfileEntityToUserProfile(userProfileEntity);
 	}
