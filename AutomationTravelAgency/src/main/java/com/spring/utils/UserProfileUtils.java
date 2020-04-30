@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
+import com.spring.entity.UserCredentialsEntity;
 import com.spring.entity.UserProfileEntity;
+import com.spring.json.UserCredentials;
 import com.spring.json.UserProfile;
  
 
@@ -26,4 +28,10 @@ public class UserProfileUtils
 		return new UserProfileEntity(userProfile.getFirstName(),userProfile.getLastName(),userProfile.getDateOfBirth(),userProfile.getGender(),userProfile.getStreet(),userProfile.getLocation()
 				,userProfile.getCity(),userProfile.getState(),userProfile.getPincode(),userProfile.getMobileNo(),userProfile.getEmailId());
 }
+
+	public static UserCredentials convertUserCredentialsEntityToUserCredentials(
+			UserCredentialsEntity userCredentialsEntity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

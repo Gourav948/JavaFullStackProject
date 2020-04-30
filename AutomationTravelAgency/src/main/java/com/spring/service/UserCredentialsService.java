@@ -20,7 +20,7 @@ public interface UserCredentialsService
 
 
 	
-	public boolean requestPasswordReset(String password);
+	public String requestPasswordReset(String password);
 
 	public UserProfile save(UserProfile userProfile);
 
@@ -30,5 +30,7 @@ public interface UserCredentialsService
 
 
 	public UserCredentials save(UserCredentials userProfile);
+	String requestPasswordRequest(UserCredentials usercredentials);
+	String requestPasswordReset(UserCredentials usercredentials);
 
 }

@@ -37,13 +37,9 @@ public class UserCredentialsController {
 		
 		
 		@PostMapping(value="/changePassword",consumes=MediaType.APPLICATION_JSON_VALUE,produces=MediaType.APPLICATION_JSON_VALUE)
-		public UserCredentials changePassword(@RequestBody PasswordResetEntity passwordresetentity){
+		public UserCredentials changePassword(@RequestBody String password,UserCredentialsEntity usercredentialsentity){
 			UserCredentials value=new UserCredentials();
-			boolean result=usercredentialsservice.requestPasswordReset(passwordresetentity.getPassword());
-					
-			
-			
-			
+			String result=usercredentialsservice.requestPasswordReset(usercredentialsentity.getPassword());
 			return value;
 		}
 		
