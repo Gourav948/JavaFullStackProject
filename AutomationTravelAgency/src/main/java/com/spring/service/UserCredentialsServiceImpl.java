@@ -34,7 +34,7 @@ private UserCredentialsRepository userCredentialRepository;
 @Override
 public UserCredentials save(UserCredentials usercredentials) {
 	com.spring.entity.UserCredentialsEntity userCredentialsEntity = 
-			userRepository.save(UserCredentialsUtils.convertUserCredentialsToUserCredentialsEntity(usercredentials));
+			userCredentialRepository.save(UserCredentialsUtils.convertUserCredentialsToUserCredentialsEntity(usercredentials));
 	return UserCredentialsUtils.convertUserCredentialsEntityToUserCredentials(userCredentialsEntity);
 }
 
@@ -42,7 +42,7 @@ public UserCredentials save(UserCredentials usercredentials) {
 @Override
 public String autoLogin(UserCredentials usercredentials) {
 
-	com.spring.entity.UserCredentialsEntity user1=userRepository.findById(usercredentials.getUserId()).get(0);
+	com.spring.entity.UserCredentialsEntity user1=userCredentialRepository.findById(usercredentials.getUserId()).get(0);
 	if(user1!=null) {
 		if(user1.getPassword().equals((usercredentials.getPassword()))) {
 
@@ -85,8 +85,8 @@ public UserCredentials autoLogout(String apiKey) {
 	com.spring.entity.UserCredentialsEntity user1=userCredentialRepository.findBySessionId(apiKey).get(0);
 	user1.setSessionId(null);
 
-	com.spring.entity.UserCredentialsEntity userEntity=userRepository.save(user1);	
-	return UserCredentialsUtils.convertUserCredentialsEntityToUserCredentials(userEntity);
+	com.spring.entity.UserCredentialsEntity userCredentialsEntity=userCredentialRepository.save(user1);	
+	return UserCredentialsUtils.convertUserCredentialsEntityToUserCredentials(userCredentialsEntity);
 }
 
 

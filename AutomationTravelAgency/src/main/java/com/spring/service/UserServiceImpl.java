@@ -9,6 +9,7 @@ import com.spring.json.UserCredentials;
 import com.spring.rest.repository.ReservationRepository;
 import com.spring.rest.repository.RouteRepository;
 import com.spring.rest.repository.UserCredentialsRepository;
+import com.spring.utils.ReservationUtils;
 import com.spring.utils.RouteUtils;
 import com.spring.utils.UserCredentialsUtils;
 import com.spring.entity.ReservationEntity;
@@ -61,9 +62,25 @@ public class UserServiceImpl implements UserService
 	@Override
 	public Object bookReservation(Reservation reservation) 
 	{
-		ReservationEntity reservationEntity=null;
-		reservationRepository.save(reservationEntity);
-		return null;
+		ReservationEntity reservationEntity=ReservationUtils.convertReservationToReservationEntity(reservation);
+		if(reservationEntity.getUserCredentialsEntity().getUserId()!=0)
+		{
+			if (reservationEntity.getUserCredentialsEntity().getSessionId()!=null)
+			{
+				ReservationEntity reservationEntitiy= reservationRepository.save(reservationEntity);
+				return "Booked !! with BookingId "+reservationEntitiy.getReservationId();
+			}
+			else
+			{
+				return "User Not Logged In: Please Login First";
+			}
+		}
+		else
+		{
+			return "User Not Registered";
+		}
+		
+		
 	}
  
 
