@@ -32,6 +32,9 @@ public class UserCredentialsEntity
 	@Column(name="LOGINSTATUS")
 	private int loginStatus;
 	
+	@Column(name="Session_ID")
+	private String sessionId;
+	
 	
 
 	public UserCredentialsEntity() {
@@ -73,6 +76,13 @@ public class UserCredentialsEntity
 	}
 	public void setLoginStatus(int loginStatus) {
 		this.loginStatus = loginStatus;
+	}
+	public String getSessionId() {
+		return sessionId;
+	}
+
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
 	}
 	
 	 

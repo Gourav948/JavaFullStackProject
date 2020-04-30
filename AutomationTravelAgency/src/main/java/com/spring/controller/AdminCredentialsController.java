@@ -2,16 +2,22 @@ package com.spring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.entity.VehicleEntity;
 import com.spring.json.Driver;
 import com.spring.json.Route;
+import com.spring.json.UserProfile;
 import com.spring.json.Vehicle;
 import com.spring.service.AdminCredentialsService;
+import com.spring.service.UserCredentialsService;
 
 @RestController
 @RequestMapping("/app/admin/")
@@ -19,7 +25,32 @@ public class AdminCredentialsController {
 	
 	@Autowired
 	private AdminCredentialsService admincredentialsservice;
+	@Autowired
+	private UserCredentialsService userCredentialsService;
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+	
 	@RequestMapping(value="/vehicle",method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public void addNewVehicleDetails(@RequestBody Vehicle vehicle) {
 		admincredentialsservice.saveVehicleDetails(vehicle);
@@ -28,9 +59,25 @@ public class AdminCredentialsController {
 	public void addNewRouteDetails(@RequestBody Route route) {
 		admincredentialsservice.saveRouteDetails(route);
 	}
+
 	@RequestMapping(value="/driver",method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public void addNewDriverDetails(@RequestBody Driver driver) {
 		admincredentialsservice.saveDriverDetails(driver);
 	}
+
+
+
+@PostMapping(value="/app/customer", produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
+public @ResponseBody UserProfile registerUserProfile(@RequestBody UserProfile userProfile) {
+	return userCredentialsService.save(userProfile);
 }
 
+
+	@RequestMapping(value="vehicle/{vehicleid}",method=RequestMethod.DELETE, produces=MediaType.APPLICATION_JSON_VALUE)
+	public String DeleteByVehicleid(@PathVariable(name ="vehicleid") Long vehicleid) {
+	 return admincredentialsservice.deleteByVehicleid(vehicleid);
+}
+
+
+
+}
