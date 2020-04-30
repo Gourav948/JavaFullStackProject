@@ -66,10 +66,22 @@ public @ResponseBody UserProfile registerUserProfile(@RequestBody UserProfile us
 }
 
 
-	@RequestMapping(value="vehicle/{vehicleid}",method=RequestMethod.DELETE, produces=MediaType.APPLICATION_JSON_VALUE)
-	public String DeleteByVehicleid(@PathVariable(name ="vehicleid") Long vehicleid) {
-	 return admincredentialsservice.deleteByVehicleid(vehicleid);
+@RequestMapping(value="vehicle/{vehicleid}",method=RequestMethod.DELETE, produces=MediaType.APPLICATION_JSON_VALUE)
+public String DeleteByVehicleid(@RequestHeader String authtoken,@PathVariable(name ="vehicleid") long vehicleid) {
+	 return admincredentialsservice.deleteByVehicleid(authtoken, vehicleid);
 }
+
+
+
+	@RequestMapping(value="route/{routeid}",method=RequestMethod.DELETE, produces=MediaType.APPLICATION_JSON_VALUE)
+	public String DeleteByRouteid(@RequestHeader String authtoken,@PathVariable(name ="routeid") long routeid) {
+	 return admincredentialsservice.deleteByRouteid(authtoken,routeid);
+	}
+	
+	@RequestMapping(value="driver/{driverId}",method=RequestMethod.DELETE, produces=MediaType.APPLICATION_JSON_VALUE)
+	public String DeleteByDriverid(@RequestHeader String authtoken,@PathVariable(name ="driverId") long driverId) {
+	 return admincredentialsservice.deleteByDriverid(authtoken,driverId);
+	}
 
 
 

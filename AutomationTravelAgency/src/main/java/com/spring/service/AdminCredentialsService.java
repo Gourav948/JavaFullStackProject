@@ -11,6 +11,12 @@ public interface AdminCredentialsService {
 
 	public void saveRouteDetails(Route route);
 
-	 public String deleteByVehicleid(Long vehicleid);
+	public String deleteByVehicleid(String authtoken, long vehicleid);
+
+	public String deleteByRouteid(String authtoken, long routeid);
+
+	public String deleteByDriverid(String authtoken, long driverId);
+
+	
 
 }
