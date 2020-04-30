@@ -15,6 +15,8 @@ public interface UserService
 
 	Object bookReservation(Reservation reservation);
 
+	Object getBookingStatus(Long reservationId);
+
 	 
 
 }

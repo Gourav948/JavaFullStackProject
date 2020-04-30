@@ -82,6 +82,22 @@ public class UserServiceImpl implements UserService
 		
 		
 	}
+
+	@Override
+	public Object getBookingStatus(Long reservationId) {
+		ReservationEntity reservationEntity = reservationRepository.findById(reservationId).get();
+		if(reservationEntity!=null)
+		{
+			if(reservationEntity.getBookingStatus()!=null)
+			{
+				return "Booking Status "+reservationEntity.getBookingStatus()+" Driver Details "+reservationEntity.getDriverEntity() +
+						" Boarding Point "+reservationEntity.getBoardingPoint()+" Drop Point "+reservationEntity.getDropPoint();
+			}
+		}
+		{
+			return "Invalid Booking Id ..Please Book Ticket !!";
+		}
+	}
  
 
 
