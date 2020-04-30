@@ -1,22 +1,29 @@
 package com.spring.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.spring.entity.VehicleEntity;
+import com.spring.entity.ReservationEntity;
+import com.spring.entity.RouteEntity;
+import com.spring.entity.UserCredentialsEntity;
+import com.spring.entity.UserProfileEntity;
 import com.spring.json.Route;
 import com.spring.json.UserProfile;
 import com.spring.json.Vehicle;
+import com.spring.rest.repository.ReservationRepository;
+import com.spring.rest.repository.RouteRepository;
+import com.spring.rest.repository.UserProfileRepository;
 import com.spring.service.AdminCredentialsService;
-import com.spring.service.UserCredentialsService;
+import com.spring.utils.UserProfileUtils;
 
 @RestController
 @RequestMapping("/app/admin/")
@@ -24,9 +31,10 @@ public class AdminCredentialsController {
 	
 	@Autowired
 	private AdminCredentialsService admincredentialsservice;
-	@Autowired
-	private UserCredentialsService userCredentialsService;
-
+	private UserProfileRepository userProfileRepository;
+	private RouteRepository routeRepository;
+	private ReservationEntity reservationEntity; 
+	private ReservationRepository reservationRepository;
 	
 	
 	
@@ -41,15 +49,47 @@ public class AdminCredentialsController {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
+	public UserProfile updateUserProfile(UserProfile userProfile, String id) {
+		UserProfileEntity userProfileEntity = userProfileRepository.findById(Long.valueOf(id)).get();
+		if(userProfileEntity != null) {
+			userProfileEntity.setCity(userProfile.getCity());
+		//	userProfileEntity.setCreditCards(userProfile.getCreditCardList());
+			userProfileEntity.setDateOfBirth(userProfile.getDateOfBirth());
+			userProfileEntity.setEmailId(userProfile.getEmailId());
+			userProfileEntity.setFirstName(userProfile.getFirstName());
+			userProfileEntity.setGender(userProfile.getGender());
+			userProfileEntity.setLastName(userProfile.getLastName());
+			userProfileEntity.setLocation(userProfile.getLocation());
+			userProfileEntity.setMobileNo(userProfile.getMobileNo());
+			userProfileEntity.setPincode(userProfile.getPincode());
+			userProfileEntity.setStreet(userProfile.getStreet());
+			userProfileEntity.setState(userProfile.getState());
+	//userProfileEntity.setReservationList(userProfile.getReservationList());
+	}
+		return UserProfileUtils.convertUserProfileEntityToUserProfile(userProfileEntity);
+	}
 		
-	
+//	public List<UserProfile> getUserProfilesByRoute(String route) {
+//		List<UserProfileEntity> userEntityList = userProfileRepository.getById(route);
+//		return UserProfileUtils.convertUserProfileEntityListToUserProfileList(userEntityList);
+//	}
+
+	public List<Long> getUserProfilesByRoute(Long routeId) {
+		RouteEntity routeEntity = routeRepository.getById(routeId);
+		if(routeEntity!=null) {
+			List<ReservationEntity> reservationEntityList= reservationRepository.findByRouteEntity(routeEntity);
+			List<UserCredentialsEntity> userCredentialEntity= reservationEntityList.stream().map((ele)->ele.getUserCredentialsEntity()).collect(Collectors.toList());
+			List<Long> userList = userCredentialEntity.stream().map(user->user.getUserId()).collect(Collectors.toList());
+			//Lists<UserProfile> = userProfileRepository.findAll().stream().filter((user)->user.get
+			return userList;
+			
+		}
+		else {
+			return null;
+		}
+		
+	}
+
 	@RequestMapping(value="/vehicle",method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public void addVehicleDetails(@RequestBody Vehicle vehicle) {
 		admincredentialsservice.saveVehicleDetails(vehicle);
@@ -60,10 +100,6 @@ public class AdminCredentialsController {
 	}
 
 
-@PostMapping(value="/app/customer", produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-public @ResponseBody UserProfile registerUserProfile(@RequestBody UserProfile userProfile) {
-	return userCredentialsService.save(userProfile);
-}
 
 
 @RequestMapping(value="vehicle/{vehicleid}",method=RequestMethod.DELETE, produces=MediaType.APPLICATION_JSON_VALUE)

@@ -39,6 +39,17 @@ public class UserController
 	{
 		return userService.bookReservation(reservation);
 	}
+	@GetMapping(value="/reservation/{reservationId}",produces=MediaType.APPLICATION_JSON_VALUE)
+	public Object getBookingStatus(@PathVariable(name="reservationId") Long reservationId)
+	{
+		return userService.getBookingStatus(reservationId);
+	}
+	@DeleteMapping("reservation/{reservationId}")
+	public Object cancelBooking(@PathVariable(name="reservationId") Long reservationId)
+	{
+		return userService.cancelBooking(reservationId);
+	}
+	
 	
 }
 
