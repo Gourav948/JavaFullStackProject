@@ -100,6 +100,7 @@ public UserCredentials save(UserCredentials usercredentials) {
 
 @Override
 public String requestPasswordReset(UserCredentials usercredentials) {
+	
 	com.spring.entity.UserCredentialsEntity usernew=userCredentialRepository.findById(usercredentials.getUserId()).get(0);
 	if(usernew==null) {
 		if(usernew.getPassword().equals((usercredentials.getPassword()))) 
