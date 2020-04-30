@@ -18,6 +18,7 @@ public interface UserCredentialsService
 	public UserCredentials autoLogout(String apiKey);
 
 
+
 	
 	public boolean requestPasswordReset(String password);
 
@@ -25,6 +26,9 @@ public interface UserCredentialsService
 
 	 
 
-	 
+
+
+
+	public UserCredentials save(UserCredentials userProfile);
 
 }
