@@ -1,5 +1,7 @@
 package com.spring.service;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -98,10 +100,34 @@ public class UserServiceImpl implements UserService
 			return "Invalid Booking Id ..Please Book Ticket !!";
 		}
 	}
- 
 
-
-
+	@Override
+	public Object cancelBooking(Long reservationId) 
+	{
+		
+		if(reservationRepository.existsById(Long.valueOf(reservationId))) 
+		{
+			
+		
+		ReservationEntity reservationEntity= reservationRepository.findById(reservationId).get();
+		LocalDate date=LocalDate.now();
+		LocalDate journeyDate=reservationEntity.getJourneyDate();
+		boolean isAfter = date.isAfter(journeyDate);
+		if(isAfter)
+		{
+			return "Cancel Denied --- Journey Date Expired";
+		}
+		else
+		{
+			reservationRepository.deleteById(Long.valueOf(reservationId));
+			return "Cancel Sucessful -- But Money Will not be Refunded";
+		}
+		
+		
+		}
+		else
+			return "Invalid BookingId";
+	}
 	
 }
 

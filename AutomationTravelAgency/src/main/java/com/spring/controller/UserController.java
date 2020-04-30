@@ -44,6 +44,11 @@ public class UserController
 	{
 		return userService.getBookingStatus(reservationId);
 	}
+	@DeleteMapping("reservation/{reservationId}")
+	public Object cancelBooking(@PathVariable(name="reservationId") Long reservationId)
+	{
+		return userService.cancelBooking(reservationId);
+	}
 	
 	
 }
