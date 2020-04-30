@@ -1,10 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: Mohit Agarwal
 Build-Jdk: 1.8.0_241
-=======
-Built-By: sanket
-Build-Jdk: 1.8.0_251
->>>>>>> 2d14d1744b4fc5cb2a66d57f82d8430a7b9dec39
 Created-By: Maven Integration for Eclipse
 
