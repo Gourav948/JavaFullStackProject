@@ -63,7 +63,7 @@ public String autoLogin(UserProfile userProfile)
 
 
 
-
+@Override
 public UserProfile save(UserProfile userProfile) 
 {
 	UserProfileEntity userProfileEntity = userProfileRepository.save(UserProfileUtils.convertUserProfileToUserProfileEntity(userProfile));
@@ -82,42 +82,6 @@ public UserProfile autoLogout(String apiKey)
 */
 	return null;
 }
-
-
-
-
- 
-
-/*
-@Override
-public String requestPasswordReset(UserCredentials usercredentials) {
-	
-	com.spring.entity.UserCredentialsEntity usernew=userCredentialRepository.findById(usercredentials.getUserId()).get(0);
-	if(usernew==null) {
-		if(usernew.getPassword().equals((usercredentials.getPassword()))) 
-		{
-		String newpassword=usernew.getPassword();
-		return newpassword;
-				
-		}
-		else 
-		{
-			return "invalid password";
-		}
-	
-	}
-	else 
-		return "invalid id";
-}*/
-
-
-
-
-
-
-
-
-
 
 
 

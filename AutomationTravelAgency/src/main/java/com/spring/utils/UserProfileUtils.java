@@ -6,7 +6,6 @@ import java.util.function.Consumer;
 
 import com.spring.entity.UserCredentialsEntity;
 import com.spring.entity.UserProfileEntity;
-import com.spring.json.UserCredentials;
 import com.spring.json.UserProfile;
  
 
@@ -27,17 +26,8 @@ public class UserProfileUtils
 
 	public static UserProfileEntity convertUserProfileToUserProfileEntity(UserProfile userProfile) {
 		return new UserProfileEntity(userProfile.getFirstName(),userProfile.getLastName(),userProfile.getDateOfBirth(),userProfile.getGender(),userProfile.getStreet(),userProfile.getLocation()
-<<<<<<< HEAD
 				,userProfile.getCity(),userProfile.getState(),userProfile.getPincode(),userProfile.getMobileNo(),userProfile.getEmailId());
 }
 
-	public static UserCredentials convertUserCredentialsEntityToUserCredentials(
-			UserCredentialsEntity userCredentialsEntity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-=======
-				,userProfile.getCity(),userProfile.getState(),userProfile.getPincode(),userProfile.getMobileNo(),userProfile.getEmailId(),userProfile.getPassword(),userProfile.getUserType(),
-				userProfile.getLoginStatus(),userProfile.getSessionId(),CreditCardUtils.convertCreditCardListToCreditCardEntityList(userProfile.getCreditCardList()),ReservationUtils.convertReservationListToReservationEntityList(userProfile.getReservationList()));}
->>>>>>> 19a8530d51832b69a554dc34690192b4438c2931
+	
 }
