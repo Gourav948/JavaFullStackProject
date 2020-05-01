@@ -55,18 +55,7 @@ public class UserProfileEntity
 	@Column(name="EMAILID")
 	private String emailId;
 	
-	@Id
-	@GeneratedValue
-	@JoinColumn(name = "ID")
-	private Long id;
-	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
+	 
 
 	public UserCredentialsEntity getUserCredentialsEntity() {
 		return userCredentialsEntity;
