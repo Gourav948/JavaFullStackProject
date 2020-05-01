@@ -125,7 +125,6 @@ public String DeleteByVehicleid(@RequestHeader String authtoken,@PathVariable(na
 }
 
 
-
 	@RequestMapping(value="route/{routeid}",method=RequestMethod.DELETE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public String DeleteByRouteid(@RequestHeader String authtoken,@PathVariable(name ="routeid") long routeid) {
 	 return admincredentialsservice.deleteByRouteid(authtoken,routeid);
