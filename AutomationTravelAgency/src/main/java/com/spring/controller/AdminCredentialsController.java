@@ -10,6 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,31 +41,18 @@ public class AdminCredentialsController {
 	
 
 	
-	public UserProfile updateUserProfile(UserProfile userProfile, String id) {
-		UserProfileEntity userProfileEntity = userProfileRepository.findById(Long.valueOf(id)).get();
-		if(userProfileEntity != null) {
-			userProfileEntity.setCity(userProfile.getCity());
-		    //userProfileEntity.setCreditCardList(userProfile.getCreditCardList());
-			userProfileEntity.setDateOfBirth(userProfile.getDateOfBirth());
-			userProfileEntity.setEmailId(userProfile.getEmailId());
-			userProfileEntity.setFirstName(userProfile.getFirstName());
-			userProfileEntity.setGender(userProfile.getGender());
-			userProfileEntity.setLastName(userProfile.getLastName());
-			userProfileEntity.setLocation(userProfile.getLocation());
-			userProfileEntity.setMobileNo(userProfile.getMobileNo());
-			userProfileEntity.setPincode(userProfile.getPincode());
-			userProfileEntity.setStreet(userProfile.getStreet());
-			userProfileEntity.setState(userProfile.getState());
-			//userProfileEntity.setReservationList(userProfile.getReservationList());
-
+	@PutMapping(value="/reservation/{reservationId}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE )
+	public List<UserProfile> allotDriver(@PathVariable(name ="reservationId") String reservationId)
+	{
+		return admincredentialsservice.allotDriver(reservationId);
 	}
-		return UserProfileUtils.convertUserProfileEntityToUserProfile(userProfileEntity);
-	}
+	
 		
 //	public List<UserProfile> getUserProfilesByRoute(String route) {
 //		List<UserProfileEntity> userEntityList = userProfileRepository.getById(route);
 //		return UserProfileUtils.convertUserProfileEntityListToUserProfileList(userEntityList);
 //	}
+	
 	@GetMapping(value="/user/onDate/{date}",produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<UserProfile> getUserProfilesOnDate(@PathVariable (value="date") @DateTimeFormat(iso=ISO.DATE) LocalDate date)
 	{

@@ -50,6 +50,9 @@ public interface AdminCredentialsService {
 
 	public List<UserProfile> getUserProfileBeforeDate(LocalDate date);
 
+
+	public List<UserProfile> allotDriver(String reservationId);
+
 	
 
 }
