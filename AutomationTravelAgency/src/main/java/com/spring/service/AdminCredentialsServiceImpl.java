@@ -6,7 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.entity.DriverEntity;
 import com.spring.entity.RouteEntity;
+import com.spring.entity.UserProfileEntity;
 import com.spring.entity.VehicleEntity;
 import com.spring.json.Driver;
 import com.spring.json.Route;
@@ -49,7 +51,7 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 	@Override
 	public String deleteByVehicleid(String authtoken,long vehicleid) 
 	{
-		/*
+		
 		UserProfileEntity checklogin=userProfileRepository.findBySessionId(authtoken).get(0);
 		
 	if(checklogin!=null  || authtoken!=null ) {	
@@ -71,14 +73,13 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 	
 	else {
 		return "invalid authtoken / login to perform the function";
-	}*/
-		return null;
+	}
 	}
 	
 	
 	@Override
 	public String deleteByRouteid(String authtoken,long routeid) {
-		/*
+		
 		UserProfileEntity checklogin=userProfileRepository.findBySessionId(authtoken).get(0);
 		
 		if(checklogin!=null || authtoken!=null ) {	
@@ -98,14 +99,13 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 
 		else {
 			return "invalid authtoken / login to perform the function";
-		}*/
-		return null;
+		}
 	}
 	
 	
 	@Override
 	public String deleteByDriverid(String authtoken,long driverId) {
-		/*
+		
 		
 UserProfileEntity checklogin=userProfileRepository.findBySessionId(authtoken).get(0);
 		
@@ -130,10 +130,9 @@ UserProfileEntity checklogin=userProfileRepository.findBySessionId(authtoken).ge
 		
 		
 
-	}	*/
-		return null;
+	}	
 
-}
+
 	@Override
 	public Vehicle updateByVehicleId(String authtoken, long vehicleId) {
 		// TODO Auto-generated method stub

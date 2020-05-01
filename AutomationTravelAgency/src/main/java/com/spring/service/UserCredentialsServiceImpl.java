@@ -28,68 +28,60 @@ private UserProfileRepository userProfileRepository;
 
 
 
-@Override
-public String autoLogin(UserProfile userProfile) 
-{
-	/*
-	com.spring.entity.UserProfileEntity user1=userProfileRepository.findById(userProfile.getUserId()).get(0);
-	if(user1!=null) {
-		if(user1.getPassword().equals((userProfile.getPassword()))) {
-
-			String sessionId = new java.rmi.server.UID().toString().substring(0, 10);
-			user1.setSessionId(sessionId);
-			userCredentialRepository.save(user1);
-			String userType = new java.rmi.server.UID().toString().substring(0, 10);
-			user1.setUserType(userType);
-			userCredentialRepository.save(user1);
-			return "userType="+userType+"session Id" +sessionId;
-			
-			
-		}
-		else 
+		@Override
+		public String autoLogin(UserProfile userProfile) 
 		{
-			return "invalid password";
+			
+			com.spring.entity.UserProfileEntity user1=userProfileRepository.findById(userProfile.getUserId()).get();
+			if(user1!=null) {
+				if(user1.getPassword().equals((userProfile.getPassword()))) {
+		
+					String sessionId = new java.rmi.server.UID().toString().substring(0, 10);
+					user1.setSessionId(sessionId);
+					userProfileRepository.save(user1);
+					String userType = new java.rmi.server.UID().toString().substring(0, 10);
+					user1.setUserType(userType);
+					userProfileRepository.save(user1);
+					return "userType="+userType+"session Id" +sessionId;
+					
+					
+				}
+				else 
+				{
+					return "invalid password";
+				}
+		
+			}
+			 
+		
+			else {
+				return "invalid username";
+			}	
+			
 		}
 
-	}
-	 
 
-	else {
-		return "invalid username";
-	}	
-	*/
-	return null;
+
+			@Override
+			public UserProfile save(UserProfile userProfile) 
+			{
+				UserProfileEntity userProfileEntity = userProfileRepository.save(UserProfileUtils.convertUserProfileToUserProfileEntity(userProfile));
+				return UserProfileUtils.convertUserProfileEntityToUserProfile(userProfileEntity);
+			}
+
+
+			@Override
+			public UserProfile autoLogout(String apiKey) 
+			{
+				com.spring.entity.UserProfileEntity user1=userProfileRepository.findBySessionId(apiKey).get(0);
+				user1.setSessionId(null);
+			
+				com.spring.entity.UserProfileEntity userCredentialsEntity=userProfileRepository.save(user1);	
+				return UserProfileUtils.convertUserProfileEntityToUserProfile(userCredentialsEntity);
+			
+			}
+
 }
-
-
-
-@Override
-public UserProfile save(UserProfile userProfile) 
-{
-	UserProfileEntity userProfileEntity = userProfileRepository.save(UserProfileUtils.convertUserProfileToUserProfileEntity(userProfile));
-	return UserProfileUtils.convertUserProfileEntityToUserProfile(userProfileEntity);
-}
-
-
-@Override
-public UserProfile autoLogout(String apiKey) 
-{/*
-	com.spring.entity.UserProfileEntity user1=userProfileRepository.findBySessionId(apiKey).get(0);
-	user1.setSessionId(null);
-
-	com.spring.entity.UserProfileEntity userCredentialsEntity=userProfileRepository.save(user1);	
-	return UserCredentialsUtils.convertUserCredentialsEntityToUserCredentials(userCredentialsEntity);
-*/
-	return null;
-}
-
-
-
-
-
-	
-	
-	}
 
 
 
