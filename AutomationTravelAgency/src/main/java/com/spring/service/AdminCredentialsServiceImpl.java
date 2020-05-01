@@ -2,23 +2,28 @@
 package com.spring.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.entity.DriverEntity;
+import com.spring.entity.ReservationEntity;
 import com.spring.entity.RouteEntity;
 import com.spring.entity.UserProfileEntity;
 import com.spring.entity.VehicleEntity;
 import com.spring.json.Driver;
 import com.spring.json.Route;
+import com.spring.json.UserProfile;
 import com.spring.json.Vehicle;
 import com.spring.rest.repository.DriverRepository;
+import com.spring.rest.repository.ReservationRepository;
 import com.spring.rest.repository.RouteRepository;
 import com.spring.rest.repository.UserProfileRepository;
 import com.spring.rest.repository.VehicleRepository;
 import com.spring.utils.DriverUtils;
 import com.spring.utils.RouteUtils;
+import com.spring.utils.UserProfileUtils;
 import com.spring.utils.VehicleUtils;
 
 @Service
@@ -33,6 +38,9 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 	private DriverRepository driverRepository;
 	@Autowired
 	private UserProfileRepository userProfileRepository;
+	
+	@Autowired
+	private ReservationRepository reservationRepository;
 
 	@Override
 	public void saveVehicleDetails(String authtoken,Vehicle vehicle) {
@@ -253,6 +261,21 @@ if(checklogin!=null ) {
 		else
 		{
 			return userprofileentity;
+		}
+	}
+
+	@Override
+	public List<UserProfile> getUserProfilesByRoute(long routeId) {
+		RouteEntity routeEntity = routeRepository.getByRouteId(routeId);
+		if(routeEntity!=null) {
+			List<ReservationEntity> reservationEntityList= reservationRepository.findByRouteEntity(routeEntity);
+			List<UserProfileEntity> userProfileEntityList= reservationEntityList.stream().map((ele)->ele.getUserProfileEntity()).collect(Collectors.toList());
+			List<UserProfile> userProfileList=UserProfileUtils.convertUserProfileEntityListToUserProfileList(userProfileEntityList);
+			return userProfileList;
+			
+		}
+		else {
+			return null;
 		}
 	}
 }

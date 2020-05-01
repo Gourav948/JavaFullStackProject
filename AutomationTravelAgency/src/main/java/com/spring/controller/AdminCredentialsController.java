@@ -28,22 +28,20 @@ import com.spring.service.AdminCredentialsService;
 import com.spring.utils.UserProfileUtils;
 
 @RestController
-@RequestMapping("/app/admin/")
+@RequestMapping("/app")
 public class AdminCredentialsController {
 	
 	@Autowired
 	private AdminCredentialsService admincredentialsservice;
 	private UserProfileRepository userProfileRepository;
-	private RouteRepository routeRepository;
-	private ReservationEntity reservationEntity; 
-	private ReservationRepository reservationRepository;
+	
 
 	
 	public UserProfile updateUserProfile(UserProfile userProfile, String id) {
 		UserProfileEntity userProfileEntity = userProfileRepository.findById(Long.valueOf(id)).get();
 		if(userProfileEntity != null) {
 			userProfileEntity.setCity(userProfile.getCity());
-		//	userProfileEntity.setCreditCards(userProfile.getCreditCardList());
+		    //userProfileEntity.setCreditCardList(userProfile.getCreditCardList());
 			userProfileEntity.setDateOfBirth(userProfile.getDateOfBirth());
 			userProfileEntity.setEmailId(userProfile.getEmailId());
 			userProfileEntity.setFirstName(userProfile.getFirstName());
@@ -54,7 +52,7 @@ public class AdminCredentialsController {
 			userProfileEntity.setPincode(userProfile.getPincode());
 			userProfileEntity.setStreet(userProfile.getStreet());
 			userProfileEntity.setState(userProfile.getState());
-	//userProfileEntity.setReservationList(userProfile.getReservationList());
+			//userProfileEntity.setReservationList(userProfile.getReservationList());
 
 	}
 		return UserProfileUtils.convertUserProfileEntityToUserProfile(userProfileEntity);
@@ -64,20 +62,10 @@ public class AdminCredentialsController {
 //		List<UserProfileEntity> userEntityList = userProfileRepository.getById(route);
 //		return UserProfileUtils.convertUserProfileEntityListToUserProfileList(userEntityList);
 //	}
-
-	public List<Long> getUserProfilesByRoute(Long routeId) {
-		RouteEntity routeEntity = routeRepository.getByRouteId(routeId);
-		if(routeEntity!=null) {
-			List<ReservationEntity> reservationEntityList= reservationRepository.findByRouteEntity(routeEntity);
-			List<UserProfileEntity> userCredentialEntity= reservationEntityList.stream().map((ele)->ele.getUserProfileEntity()).collect(Collectors.toList());
-			List<Long> userList = userCredentialEntity.stream().map(user->user.getUserId()).collect(Collectors.toList());
-			//Lists<UserProfile> = userProfileRepository.findAll().stream().filter((user)->user.get
-			return userList;
-			
-		}
-		else {
-			return null;
-		}
+	@GetMapping(value="/user/route/{routeId}", produces=MediaType.APPLICATION_JSON_VALUE)
+	public List<UserProfile> getUserProfilesByRoute(String routeId) 
+	{
+		return admincredentialsservice.getUserProfilesByRoute(Long.parseLong(routeId));
 		
 	}
 
@@ -96,37 +84,37 @@ public class AdminCredentialsController {
 	}
 
 
-	@RequestMapping(value="/vehicle/{vehicleid}",method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public Vehicle updateVehicleDetails(@RequestHeader String authtoken,@RequestBody Vehicle vehicle ,@PathVariable(name ="vehicleid") long vehicleId) {
-		return admincredentialsservice.updateByVehicleId(authtoken,vehicle, vehicleId);
+	@RequestMapping(value="/vehicle/{vehicleId}",method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
+	public Vehicle updateVehicleDetails(@RequestHeader String authtoken,@RequestBody Vehicle vehicle ,@PathVariable(name ="vehicleId") String vehicleId) {
+		return admincredentialsservice.updateByVehicleId(authtoken,vehicle, Long.parseLong(vehicleId));
 		
 	}
-	@RequestMapping(value="/route/{routeid}",method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public Route updateRouteDetails(@RequestHeader String authtoken,@RequestBody Route route,@PathVariable(name ="routeid") long routeId) {
-		return admincredentialsservice.updateByRouteId(authtoken,route, routeId);
+	@RequestMapping(value="/route/{routeId}",method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
+	public Route updateRouteDetails(@RequestHeader String authtoken,@RequestBody Route route,@PathVariable(name ="routeId") String routeId) {
+		return admincredentialsservice.updateByRouteId(authtoken,route, Long.parseLong(routeId));
 		
 	}
-	@RequestMapping(value="/driver/{driverid}",method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public Driver updateDriverDetails(@RequestHeader String authtoken,@RequestBody Driver driver,@PathVariable(name ="driverId") long driverId) {
-		return admincredentialsservice.updateByDriverId(authtoken,driver,driverId);
+	@RequestMapping(value="/driver/{driverId}",method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
+	public Driver updateDriverDetails(@RequestHeader String authtoken,@RequestBody Driver driver,@PathVariable(name ="driverId") String driverId) {
+		return admincredentialsservice.updateByDriverId(authtoken,driver,Long.parseLong(driverId));
 		
 	}
 
 
-@RequestMapping(value="vehicle/{vehicleid}",method=RequestMethod.DELETE, produces=MediaType.APPLICATION_JSON_VALUE)
-public String DeleteByVehicleid(@RequestHeader String authtoken,@PathVariable(name ="vehicleid") long vehicleid) {
-	 return admincredentialsservice.deleteByVehicleid(authtoken, vehicleid);
+@RequestMapping(value="vehicle/{vehicleId}",method=RequestMethod.DELETE, produces=MediaType.APPLICATION_JSON_VALUE)
+public String DeleteByVehicleid(@RequestHeader String authtoken,@PathVariable(name ="vehicleId") String vehicleid) {
+	 return admincredentialsservice.deleteByVehicleid(authtoken, Long.parseLong(vehicleid));
 }
 
 
-	@RequestMapping(value="route/{routeid}",method=RequestMethod.DELETE, produces=MediaType.APPLICATION_JSON_VALUE)
-	public String DeleteByRouteid(@RequestHeader String authtoken,@PathVariable(name ="routeid") long routeid) {
-	 return admincredentialsservice.deleteByRouteid(authtoken,routeid);
+	@RequestMapping(value="route/{routeId}",method=RequestMethod.DELETE, produces=MediaType.APPLICATION_JSON_VALUE)
+	public String DeleteByRouteid(@RequestHeader String authtoken,@PathVariable(name ="routeId") String routeid) {
+	 return admincredentialsservice.deleteByRouteid(authtoken,Long.parseLong(routeid));
 	}
 	
 	@RequestMapping(value="driver/{driverId}",method=RequestMethod.DELETE, produces=MediaType.APPLICATION_JSON_VALUE)
-	public String DeleteByDriverid(@RequestHeader String authtoken,@PathVariable(name ="driverId") long driverId) {
-	 return admincredentialsservice.deleteByDriverid(authtoken,driverId);
+	public String DeleteByDriverid(@RequestHeader String authtoken,@PathVariable(name ="driverId") String driverId) {
+	 return admincredentialsservice.deleteByDriverid(authtoken,Long.parseLong(driverId));
 	}
 	
 	
@@ -136,14 +124,14 @@ public String DeleteByVehicleid(@RequestHeader String authtoken,@PathVariable(na
 	
 	
 	
-	@RequestMapping(value="vehicle/{vehicleid}",method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-	public Vehicle getVehicleByVechicleId(@PathVariable(value = "vehicleid") long vehicleId) {
-		return admincredentialsservice.getVehicleByVechicleid(vehicleId);
+	@RequestMapping(value="vehicle/{vehicleId}",method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	public Vehicle getVehicleByVechicleId(@PathVariable(value = "vehicleid") String vehicleId) {
+		return admincredentialsservice.getVehicleByVechicleid(Long.parseLong(vehicleId));
 	}
 
-	@RequestMapping(value="/route/{routeid}",method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-	public Route getRouteByRouteId(@PathVariable(value = "routeId") long routeId) {
-		return admincredentialsservice.getRouteByRouteid(routeId);
+	@RequestMapping(value="/route/{routeId}",method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	public Route getRouteByRouteId(@PathVariable(value = "routeId") String routeId) {
+		return admincredentialsservice.getRouteByRouteid(Long.parseLong(routeId));
 	}
 
 	@RequestMapping(value="/vehicle",method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)

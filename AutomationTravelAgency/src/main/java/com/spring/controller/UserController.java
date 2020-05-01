@@ -20,14 +20,14 @@ import com.spring.json.Route;
 import com.spring.json.Vehicle;
 
 @RestController
-@RequestMapping("/app")
+@RequestMapping("/app/user")
 public class UserController 
 {
 	@Autowired
 	UserService userService;
 	 		
 	@GetMapping(value="/vehicle/{vehicleId}",produces=MediaType.APPLICATION_JSON_VALUE)
-	public Object getVehicleById(@PathVariable(name ="vehicleid") String vehicleid){
+	public Object getVehicleById(@PathVariable(name ="vehicleId") String vehicleid){
 		return userService.getVehicleById(Long.valueOf(vehicleid));
 	}	
 	@GetMapping(value="/route/{routeId}",produces=MediaType.APPLICATION_JSON_VALUE)

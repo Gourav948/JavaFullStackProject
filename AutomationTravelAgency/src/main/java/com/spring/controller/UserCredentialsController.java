@@ -16,7 +16,7 @@ import com.spring.service.UserCredentialsService;
 
 
 @RestController
-@RequestMapping("/app")
+@RequestMapping("/app/admin")
 public class UserCredentialsController {
 	
 	@Autowired

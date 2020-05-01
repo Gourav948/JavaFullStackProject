@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.spring.json.Driver;
 import com.spring.json.Route;
+import com.spring.json.UserProfile;
 import com.spring.json.Vehicle;
 
 
@@ -35,6 +36,9 @@ public interface AdminCredentialsService {
 	public List<Vehicle> getAllVehicles();
 
 	public List<Route> getAllRoutes();
+
+
+	public List<UserProfile> getUserProfilesByRoute(long parseLong);
 
 	
 

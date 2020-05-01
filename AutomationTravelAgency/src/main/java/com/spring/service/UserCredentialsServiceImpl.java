@@ -39,10 +39,10 @@ private UserProfileRepository userProfileRepository;
 					String sessionId = new java.rmi.server.UID().toString().substring(0, 10);
 					user1.setSessionId(sessionId);
 					userProfileRepository.save(user1);
-					String userType = new java.rmi.server.UID().toString().substring(0, 10);
-					user1.setUserType(userType);
+					
+					user1.setLoginStatus(1);
 					userProfileRepository.save(user1);
-					return "userType="+userType+"session Id" +sessionId;
+					return "session Id" +sessionId;
 					
 					
 				}
