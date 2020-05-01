@@ -54,11 +54,8 @@ public class AdminCredentialsController {
 			userProfileEntity.setPincode(userProfile.getPincode());
 			userProfileEntity.setStreet(userProfile.getStreet());
 			userProfileEntity.setState(userProfile.getState());
-<<<<<<< HEAD
 	//userProfileEntity.setReservationList(userProfile.getReservationList());
-=======
-		//userProfileEntity.setReservationList(userProfile.getReservationList());
->>>>>>> useless commit 2
+
 	}
 		return UserProfileUtils.convertUserProfileEntityToUserProfile(userProfileEntity);
 	}
