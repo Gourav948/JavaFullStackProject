@@ -96,7 +96,7 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 
 		if (checkLogin != null) {
 
-			RouteEntity routeToDelete = routeRepository.findByRouteid(routeid).get(0);
+			RouteEntity routeToDelete = routeRepository.findByRouteId(routeid);
 
 			if (routeToDelete != null) {
 				routeRepository.deleteByRouteId(routeid);
