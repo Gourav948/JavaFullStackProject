@@ -1,9 +1,4 @@
-﻿# Host: localhost  (Version: 5.5.34)
-# Date: 2020-04-29 22:29:19
-# Generator: MySQL-Front 5.3  (Build 3.22)
-
-/*!40101 SET NAMES utf8 */;
-
+﻿
 DROP DATABASE IF EXISTS `ata_tbl`;
 CREATE DATABASE `ata_tbl` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `ata_tbl`;
@@ -51,45 +46,6 @@ CREATE TABLE `atl_tbl_route` (
 
 
 #
-# Source for table "atl_tbl_user_credentials"
-#
-
-DROP TABLE IF EXISTS `atl_tbl_user_credentials`;
-CREATE TABLE `atl_tbl_user_credentials` (
-  `USERID` varchar(6) NOT NULL DEFAULT '',
-  `PASSWORD` varchar(20) DEFAULT NULL,
-  `USERTYPE` varchar(1) DEFAULT NULL,
-  `LOGINSTATUS` int(1) DEFAULT NULL,
-  PRIMARY KEY (`USERID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-#
-# Data for table "atl_tbl_user_credentials"
-#
-
-
-#
-# Source for table "atl_tbl_creditcard"
-#
-
-DROP TABLE IF EXISTS `atl_tbl_creditcard`;
-CREATE TABLE `atl_tbl_creditcard` (
-  `CREDITCARDNUMBER` varchar(10) NOT NULL DEFAULT '',
-  `VALIDFROM` varchar(7) DEFAULT NULL,
-  `VALIDTO` varchar(7) DEFAULT NULL,
-  `CREDITBALANCE` int(25) DEFAULT NULL,
-  `USERID` varchar(6) DEFAULT NULL,
-  PRIMARY KEY (`CREDITCARDNUMBER`),
-  KEY `creditcard_ibfk_1` (`USERID`),
-  CONSTRAINT `creditcard_ibfk_1` FOREIGN KEY (`USERID`) REFERENCES `atl_tbl_user_credentials` (`USERID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-#
-# Data for table "atl_tbl_creditcard"
-#
-
-
-#
 # Source for table "atl_tbl_userprofile"
 #
 
@@ -107,12 +63,35 @@ CREATE TABLE `atl_tbl_userprofile` (
   `PINCODE` varchar(10) DEFAULT NULL,
   `MOBILENO` varchar(10) DEFAULT NULL,
   `EMAILID` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`USERID`),
-  CONSTRAINT `user_profile_ibfk_1` FOREIGN KEY (`USERID`) REFERENCES `atl_tbl_user_credentials` (`USERID`)
+  `PASSWORD` varchar(20) DEFAULT NULL,
+  `USERTYPE` varchar(1) DEFAULT NULL,
+  `LOGINSTATUS` int(1) DEFAULT NULL,
+  PRIMARY KEY (`USERID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 #
 # Data for table "atl_tbl_userprofile"
+#
+
+
+#
+# Source for table "atl_tbl_creditcard"
+#
+
+DROP TABLE IF EXISTS `atl_tbl_creditcard`;
+CREATE TABLE `atl_tbl_creditcard` (
+  `CREDITCARDNUMBER` varchar(10) NOT NULL DEFAULT '',
+  `VALIDFROM` varchar(7) DEFAULT NULL,
+  `VALIDTO` varchar(7) DEFAULT NULL,
+  `CREDITBALANCE` int(25) DEFAULT NULL,
+  `USERID` varchar(6) DEFAULT NULL,
+  PRIMARY KEY (`CREDITCARDNUMBER`),
+  KEY `creditcard_ibfk_1` (`USERID`),
+  CONSTRAINT `creditcard_ibfk_1` FOREIGN KEY (`USERID`) REFERENCES `atl_tbl_userprofile` (`USERID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+#
+# Data for table "atl_tbl_creditcard"
 #
 
 
@@ -160,7 +139,7 @@ CREATE TABLE `atl_tbl_reservation` (
   KEY `reservation_ibfk_4` (`ROUTEID`),
   CONSTRAINT `reservation_ibfk_4` FOREIGN KEY (`ROUTEID`) REFERENCES `atl_tbl_route` (`ROUTEID`),
   CONSTRAINT `reservatiom_ibfk_3` FOREIGN KEY (`VEHICLEID`) REFERENCES `atl_tbl_vehicle` (`VEHICLEID`),
-  CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`USERID`) REFERENCES `atl_tbl_user_credentials` (`USERID`),
+  CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`USERID`) REFERENCES `atl_tbl_userprofile` (`USERID`),
   CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`DRIVERID`) REFERENCES `atl_tbl_driver` (`DRIVERID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
