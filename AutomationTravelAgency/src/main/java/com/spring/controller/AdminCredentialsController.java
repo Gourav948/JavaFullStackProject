@@ -137,22 +137,22 @@ public String DeleteByVehicleid(@RequestHeader String authtoken,@PathVariable(na
 	
 	
 	
-	@GetMapping("/app/vehicle/{vehicleId}")
+	@RequestMapping(value="vehicle/{vehicleid}",method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public Vehicle getVehicleByVechicleId(@PathVariable(value = "vehicleid") long vehicleId) {
 		return admincredentialsservice.getVehicleByVechicleid(vehicleId);
 	}
 
-	@GetMapping("/app/route/{routeId}")
+	@RequestMapping(value="/route/{routeid}",method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public Route getRouteByRouteId(@PathVariable(value = "routeId") long routeId) {
 		return admincredentialsservice.getRouteByRouteid(routeId);
 	}
 
-	@GetMapping("/app/vehicle/{vehicleId}")
+	@RequestMapping(value="vehicle/{vehicleid}",method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<Vehicle> getVehiclesByVechicleid(@PathVariable(value = "vehicleId") long vehicleId) {
 		return admincredentialsservice.getAllVehiclesByVechicleid(vehicleId);
 	}
 
-	@GetMapping("/app/route/{routeId}")
+	@RequestMapping(value="/route/{routeid}",method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<Route> getRoutesByRouteid(@PathVariable(value = "routeId") long routeId) {
 		return admincredentialsservice.getAllRoutesByRouteid(routeId);
 	}
