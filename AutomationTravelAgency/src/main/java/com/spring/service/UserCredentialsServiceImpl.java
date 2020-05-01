@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import com.spring.json.UserCredentials;
 import com.spring.rest.repository.UserCredentialsRepository;
 import com.spring.utils.UserCredentialsUtils;
-
+import com.spring.entity.UserCredentialsEntity;
 import com.spring.entity.UserProfileEntity;
 import com.spring.json.UserProfile;
 import com.spring.rest.repository.UserProfileRepository;
@@ -31,12 +31,8 @@ private UserCredentialsRepository userCredentialRepository;
 
 
 
-@Override
-public UserCredentials save(UserCredentials usercredentials) {
-	com.spring.entity.UserCredentialsEntity userCredentialsEntity = 
-			userCredentialRepository.save(UserCredentialsUtils.convertUserCredentialsToUserCredentialsEntity(usercredentials));
-	return UserCredentialsUtils.convertUserCredentialsEntityToUserCredentials(userCredentialsEntity);
-}
+
+
 
 
 @Override
@@ -90,11 +86,46 @@ public UserCredentials autoLogout(String apiKey) {
 }
 
 
+
+
+
+@Override
+public UserCredentials save(UserCredentials usercredentials) {
+	UserCredentialsEntity userCredentialsEntity = userCredentialRepository.save(UserCredentialsUtils.convertUserCredentialsToUserCredentialsEntity(usercredentials));
+	return UserCredentialsUtils.convertUserCredentialsEntityToUserCredentials(userCredentialsEntity);
+}
+
+
+
+/*
+@Override
+public String requestPasswordReset(UserCredentials usercredentials) {
+	
+	com.spring.entity.UserCredentialsEntity usernew=userCredentialRepository.findById(usercredentials.getUserId()).get(0);
+	if(usernew==null) {
+		if(usernew.getPassword().equals((usercredentials.getPassword()))) 
+		{
+		String newpassword=usernew.getPassword();
+		return newpassword;
+				
+		}
+		else 
+		{
+			return "invalid password";
+		}
+	
+	}
+	else 
+		return "invalid id";
+}*/
+
+
+
+
 @Override
 public boolean requestPasswordReset(String password) {
-
-return false;
-
+	// TODO Auto-generated method stub
+	return false;
 }
 
 

@@ -14,11 +14,12 @@ import com.spring.json.UserCredentials;
 
 @Component
 public interface UserCredentialsRepository extends JpaRepository<UserCredentialsEntity, Long> 
-{
 
+{
 	List<UserCredentialsEntity> findById(long userId);
 
-	
+
+
 	List<UserCredentialsEntity> findBySessionId(String sessionId);
 
 }
