@@ -91,13 +91,13 @@ public UserCredentials autoLogout(String apiKey) {
 
 @Override
 public UserCredentials save(UserCredentials usercredentials) {
-	UserCredentialsEntity userCredentialsEntity = userRepository.save(UserCredentialsUtils.convertUserCredentialsToUserCredentialsEntity(usercredentials));
+	UserCredentialsEntity userCredentialsEntity = userCredentialRepository.save(UserCredentialsUtils.convertUserCredentialsToUserCredentialsEntity(usercredentials));
 	return UserCredentialsUtils.convertUserCredentialsEntityToUserCredentials(userCredentialsEntity);
 }
 
 
 
-
+/*
 @Override
 public String requestPasswordReset(UserCredentials usercredentials) {
 	
@@ -117,7 +117,18 @@ public String requestPasswordReset(UserCredentials usercredentials) {
 	}
 	else 
 		return "invalid id";
-}
+}*/
+
+
+
+
+
+
+
+
+
+
+
 
 
 

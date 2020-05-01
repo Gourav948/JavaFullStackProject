@@ -32,15 +32,13 @@ public class UserCredentialsEntity
 	@Column(name="LOGINSTATUS")
 	private int loginStatus;
 	
-	@Column(name="Session_ID")
-	private String sessionId;
 	
 	
 
 	public UserCredentialsEntity() {
 		super();
 		
-			this.sessionId="";
+			
 		}
 	 
 	
@@ -58,7 +56,7 @@ public class UserCredentialsEntity
 		this.password = password;
 		this.userType = userType;
 		this.loginStatus = loginStatus;
-		this.sessionId="";
+	
 	}
 	 
 	public long getUserId() {
@@ -82,13 +80,7 @@ public class UserCredentialsEntity
 	public void setLoginStatus(int loginStatus) {
 		this.loginStatus = loginStatus;
 	}
-	public String getSessionId() {
-		return sessionId;
-	}
-
-	public void setSessionId(String sessionId) {
-		this.sessionId = sessionId;
-	}
+	
 	
 	 
 	@Override

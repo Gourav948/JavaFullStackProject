@@ -27,12 +27,12 @@ public class UserController
 	UserService userService;
 	 		
 	@GetMapping(value="/vehicle/{vehicleId}",produces=MediaType.APPLICATION_JSON_VALUE)
-	public Object getVehicleById(@PathVariable(name ="vehicleid") Long vehicleid){
-		return userService.getVehicleById(vehicleid);
+	public Object getVehicleById(@PathVariable(name ="vehicleid") String vehicleid){
+		return userService.getVehicleById(Long.valueOf(vehicleid));
 	}	
 	@GetMapping(value="/route/{routeId}",produces=MediaType.APPLICATION_JSON_VALUE)
-	public Object getRouteById(@PathVariable(name ="routeId") Long routeId){
-		return userService.getRouteById(routeId);
+	public Object getRouteById(@PathVariable(name ="routeId") String routeId){
+		return userService.getRouteById(Long.valueOf(routeId));
 	}
 	@PostMapping(value="/reservation",consumes=MediaType.APPLICATION_JSON_VALUE,produces=MediaType.APPLICATION_JSON_VALUE)
 	public Object bookReservation(@RequestBody Reservation reservation)
@@ -40,14 +40,14 @@ public class UserController
 		return userService.bookReservation(reservation);
 	}
 	@GetMapping(value="/reservation/{reservationId}",produces=MediaType.APPLICATION_JSON_VALUE)
-	public Object getBookingStatus(@PathVariable(name="reservationId") Long reservationId)
+	public Object getBookingStatus(@PathVariable(name="reservationId") String reservationId)
 	{
-		return userService.getBookingStatus(reservationId);
+		return userService.getBookingStatus(Long.valueOf(reservationId));
 	}
 	@DeleteMapping("reservation/{reservationId}")
-	public Object cancelBooking(@PathVariable(name="reservationId") Long reservationId)
+	public Object cancelBooking(@PathVariable(name="reservationId") String reservationId)
 	{
-		return userService.cancelBooking(reservationId);
+		return userService.cancelBooking(Long.valueOf(reservationId));
 	}
 	
 	

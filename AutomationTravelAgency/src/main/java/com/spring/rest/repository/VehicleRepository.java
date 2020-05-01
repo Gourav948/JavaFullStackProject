@@ -18,7 +18,7 @@ public interface VehicleRepository extends JpaRepository<VehicleEntity, Long>
 
 	void deleteById(Long vehicleid);
 
-	VehicleEntity getById(Long vehicleid);
+	VehicleEntity getByVehicleId(Long vehicleid);
  
 
 }

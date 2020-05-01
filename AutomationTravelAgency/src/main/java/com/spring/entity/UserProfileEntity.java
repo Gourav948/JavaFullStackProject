@@ -54,6 +54,27 @@ public class UserProfileEntity
 	
 	@Column(name="EMAILID")
 	private String emailId;
+	
+	@Id
+	@GeneratedValue
+	@JoinColumn(name = "ID")
+	private Long id;
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public UserCredentialsEntity getUserCredentialsEntity() {
+		return userCredentialsEntity;
+	}
+
+	public void setUserCredentialsEntity(UserCredentialsEntity userCredentialsEntity) {
+		this.userCredentialsEntity = userCredentialsEntity;
+	}
 
 	@OneToOne(cascade={CascadeType.PERSIST}, fetch=FetchType.LAZY)
 	@JoinColumn(name="USERID")

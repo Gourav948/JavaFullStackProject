@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService
 	@Override
 	public Object getVehicleById(Long vehicleid) 
 	{
-		VehicleEntity vehicleEntity=vehicleRepository.getById(vehicleid);
+		VehicleEntity vehicleEntity=vehicleRepository.getByVehicleId(vehicleid);
 		if(vehicleEntity!=null)
 			return VehicleUtils.convertVehicleEntityToVehicle(vehicleEntity);
 		else
@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService
 	@Override
 	public Object getRouteById(Long routeId)
 	{
-		RouteEntity routeEntity=routeRepository.getById(routeId);
+		RouteEntity routeEntity=routeRepository.getByRouteId(routeId);
 		if (routeEntity!=null)
 		
 		return RouteUtils.convertRouteEntityToRoute(routeEntity);

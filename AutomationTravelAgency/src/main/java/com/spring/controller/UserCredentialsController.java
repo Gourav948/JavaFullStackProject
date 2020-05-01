@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.service.UserCredentialsService;
-import com.spring.entity.PasswordResetEntity;
+//import com.spring.entity.PasswordResetEntity;
 import com.spring.entity.UserCredentialsEntity;
+import com.spring.json.PasswordResetReuest;
 import com.spring.json.UserCredentials;
+import com.spring.response.OperationStatus;
 
 @RestController
 @RequestMapping("/app/customer/")
@@ -35,11 +37,16 @@ public class UserCredentialsController {
 		
 	}
 		
-		
+
 		@PostMapping(value="/changePassword",consumes=MediaType.APPLICATION_JSON_VALUE,produces=MediaType.APPLICATION_JSON_VALUE)
-		public UserCredentials changePassword(@RequestBody String password,UserCredentialsEntity usercredentialsentity){
-			UserCredentials value=new UserCredentials();
-			String result=usercredentialsservice.requestPasswordReset(usercredentialsentity.getPassword());
+		public OperationStatus changePassword(@RequestBody PasswordResetReuest passwordresetrequest){
+			OperationStatus value=new OperationStatus();
+			boolean result=usercredentialsservice.requestPasswordReset(passwordresetrequest.getUserId());
+					value.setOperationName(RequestOperationName.REQUEST_PASSWORD_RESET.name());
+					value.setOperationResult(RequestOperationStatus.ERROR.name());
+					if(result) {
+							value.setResult(RequestOperationStatus.SUCCESS.name());
+					}
 			return value;
 		}
 		
