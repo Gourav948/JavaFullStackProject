@@ -7,11 +7,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import com.spring.json.ChangePassword;
 import com.spring.service.UserCredentialsService;
 import com.spring.service.UserService;
 import com.spring.json.Reservation;
@@ -48,6 +49,14 @@ public class UserController
 	{
 		return userService.cancelBooking(Long.valueOf(reservationId));
 	}
+	
+	
+	@PutMapping(value="/user/changePassword",produces=MediaType.APPLICATION_JSON_VALUE,consumes=MediaType.APPLICATION_JSON_VALUE)
+	public Object changePassword(@RequestBody ChangePassword requestedPassword)
+	{
+		return userService.changePassword(requestedPassword);
+	}
+	
 	
 	
 }

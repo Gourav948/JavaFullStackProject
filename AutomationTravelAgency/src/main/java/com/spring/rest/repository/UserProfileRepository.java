@@ -10,5 +10,7 @@ import com.spring.entity.UserProfileEntity;
 public interface UserProfileRepository extends JpaRepository<UserProfileEntity, Long>  
 {
 
+	UserProfileEntity findByPassword(String oldPassword);
+
 }
 
