@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-import com.spring.entity.UserCredentialsEntity;
 import com.spring.entity.UserProfileEntity;
 import com.spring.json.UserProfile;
  
