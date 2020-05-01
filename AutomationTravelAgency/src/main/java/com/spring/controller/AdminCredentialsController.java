@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -12,12 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.spring.entity.VehicleEntity;
 import com.spring.entity.ReservationEntity;
 import com.spring.entity.RouteEntity;
 import com.spring.entity.UserProfileEntity;
-import com.spring.entity.UserProfileEntity;
 import com.spring.json.Driver;
+import com.spring.json.Reservation;
 import com.spring.json.Route;
 import com.spring.json.UserProfile;
 import com.spring.json.Vehicle;
@@ -140,6 +140,47 @@ public String DeleteByVehicleid(@RequestHeader String authtoken,@PathVariable(na
 	public String DeleteByDriverid(@RequestHeader String authtoken,@PathVariable(name ="driverId") long driverId) {
 	 return admincredentialsservice.deleteByDriverid(authtoken,driverId);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	@GetMapping("/app/vehicle/{vehicleId}")
+	public Vehicle getVehicleByVechicleId(@PathVariable(value = "vehicleid") long vehicleId) {
+		return admincredentialsservice.getVehicleByVechicleid(vehicleId);
+	}
+
+	@GetMapping("/app/route/{routeId}")
+	public Route getRouteByRouteId(@PathVariable(value = "routeId") long routeId) {
+		return admincredentialsservice.getRouteByRouteid(routeId);
+	}
+
+	@GetMapping("/app/vehicle/{vehicleId}")
+	public List<Vehicle> getVehiclesByVechicleid(@PathVariable(value = "vehicleId") long vehicleId) {
+		return admincredentialsservice.getAllVehiclesByVechicleid(vehicleId);
+	}
+
+	@GetMapping("/app/route/{routeId}")
+	public List<Route> getRoutesByRouteid(@PathVariable(value = "routeId") long routeId) {
+		return admincredentialsservice.getAllRoutesByRouteid(routeId);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 
 

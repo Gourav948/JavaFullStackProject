@@ -1,14 +1,12 @@
 
 package com.spring.service;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.spring.entity.DriverEntity;
 import com.spring.entity.RouteEntity;
-import com.spring.entity.UserProfileEntity;
 import com.spring.entity.VehicleEntity;
 import com.spring.json.Driver;
 import com.spring.json.Route;
@@ -16,7 +14,6 @@ import com.spring.json.Vehicle;
 import com.spring.rest.repository.DriverRepository;
 import com.spring.rest.repository.RouteRepository;
 import com.spring.rest.repository.UserProfileRepository;
-
 import com.spring.rest.repository.VehicleRepository;
 import com.spring.utils.RouteUtils;
 import com.spring.utils.VehicleUtils;
@@ -156,6 +153,29 @@ UserProfileEntity checklogin=userProfileRepository.findBySessionId(authtoken).ge
 	public void saveDriverDetails(Driver driver) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	
+	
+	@Override
+	public Vehicle getVehicleByVechicleid(long vehicleId) {
+		return VehicleUtils.convertVehicleEntityToVehicle(
+				vehicleRepository.findByVehicleid(vehicleId));
+	}
+	@Override
+	public Route getRouteByRouteid(long routeId) {
+		return RouteUtils.convertRouteEntityToRoute(
+				routeRepository.findByRouteId(routeId));
+	}
+	@Override
+	public List<Vehicle> getAllVehiclesByVechicleid(long vehicleId) {
+		return VehicleUtils.convertVehicleEntityListToVehicleList(
+				vehicleRepository.findByVehicleId(vehicleId));
+	}
+	@Override
+	public List<Route> getAllRoutesByRouteid(long routeId) {
+		return RouteUtils.convertRouteEntityListToRouteList(
+				routeRepository.findByRouteid(routeId));
 	}
 }
 

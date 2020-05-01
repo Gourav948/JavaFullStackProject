@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.spring.entity.DriverEntity;
 import com.spring.entity.VehicleEntity;
+import com.spring.json.Vehicle;
  
 
 @Component
@@ -19,9 +20,14 @@ public interface VehicleRepository extends JpaRepository<VehicleEntity, Long>
 
 	VehicleEntity getByVehicleId(long vehicleid);
 
-	List<VehicleEntity> findByVehicleId(long vehicleid);
+	List<VehicleEntity> findByVehicleId(long vehicleId);
 
 	void deleteByVehicleId(long vehicleid);
- 
+
+	VehicleEntity findByVehicleid(long vehicleId);
+
+
+	
+	
 
 }

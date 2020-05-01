@@ -1,14 +1,11 @@
 
 package com.spring.service;
-import com.spring.json.Driver;
+import java.util.List;
 
-import com.spring.entity.VehicleEntity;
-import com.spring.json.Route;
-import com.spring.json.Vehicle;
-import com.spring.entity.VehicleEntity;
 import com.spring.json.Driver;
 import com.spring.json.Route;
 import com.spring.json.Vehicle;
+
 
 public interface AdminCredentialsService {
 	
@@ -31,7 +28,13 @@ public interface AdminCredentialsService {
 
 	public Driver updateByDriverId(String authtoken, long driverId);
 
-	
+	public Vehicle getVehicleByVechicleid(long vehicleId);
+
+	public Route getRouteByRouteid(long routeId);
+
+	public List<Vehicle> getAllVehiclesByVechicleid(long vehicleId);
+
+	public List<Route> getAllRoutesByRouteid(long routeId);
 
 	
 
