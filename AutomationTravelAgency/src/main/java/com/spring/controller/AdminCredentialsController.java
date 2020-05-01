@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.spring.entity.VehicleEntity;
 import com.spring.entity.ReservationEntity;
 import com.spring.entity.RouteEntity;
 import com.spring.entity.UserProfileEntity;
@@ -92,12 +93,17 @@ public class AdminCredentialsController {
 	}
 
 	@RequestMapping(value="/vehicle",method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public void addVehicleDetails(@RequestBody Vehicle vehicle) {
+	public void addNewVehicleDetails(@RequestBody Vehicle vehicle) {
 		admincredentialsservice.saveVehicleDetails(vehicle);
 	}
 	@RequestMapping(value="/route",method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public void addRouteDetails(@RequestBody Route route) {
+	public void addNewRouteDetails(@RequestBody Route route) {
 		admincredentialsservice.saveRouteDetails(route);
+	}
+
+	@RequestMapping(value="/driver",method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
+	public void addNewDriverDetails(@RequestBody Driver driver) {
+		admincredentialsservice.saveDriverDetails(driver);
 	}
 
 	@RequestMapping(value="/vehicle/{vehicleid}",method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
@@ -115,7 +121,6 @@ public class AdminCredentialsController {
 		return admincredentialsservice.updateByDriverId(authtoken,driverId);
 		
 	}
-
 
 
 

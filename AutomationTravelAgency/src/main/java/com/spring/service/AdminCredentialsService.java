@@ -1,12 +1,19 @@
 
 package com.spring.service;
+import com.spring.json.Driver;
 
+import com.spring.entity.VehicleEntity;
+import com.spring.json.Route;
+import com.spring.json.Vehicle;
 import com.spring.entity.VehicleEntity;
 import com.spring.json.Driver;
 import com.spring.json.Route;
 import com.spring.json.Vehicle;
 
 public interface AdminCredentialsService {
+	
+	public void saveDriverDetails(Driver driver);
+
 
 	public	void saveVehicleDetails(Vehicle vehicle);
 

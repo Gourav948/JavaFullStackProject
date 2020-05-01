@@ -152,5 +152,11 @@ UserProfileEntity checklogin=userProfileRepository.findBySessionId(authtoken).ge
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public void saveDriverDetails(Driver driver) {
+		// TODO Auto-generated method stub
+		
+	}
 }
- 
+
+
