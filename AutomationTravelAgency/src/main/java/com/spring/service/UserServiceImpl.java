@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.json.ChangePassword;
 import com.spring.json.Reservation;
 import com.spring.json.Route; 
 import com.spring.rest.repository.ReservationRepository;
@@ -36,6 +37,9 @@ public class UserServiceImpl implements UserService
 	
 	@Autowired
 	ReservationRepository reservationRepository;
+	
+	@Autowired
+	UserProfileRepository userProfileRepository;
 	
 	@Override
 	public Object getVehicleById(Long vehicleid) 
@@ -125,6 +129,23 @@ public class UserServiceImpl implements UserService
 		else
 			return "Invalid BookingId";
 	}
+
+	@Override
+	public Object changePassword(ChangePassword requestedPassword) 
+	{
+		UserProfileEntity userProfileEntity = userProfileRepository.findByPassword(requestedPassword.getOldPassword());
+		if (userProfileEntity!=null)
+		{
+			userProfileEntity.setPassword(requestedPassword.getNewPassword());
+			userProfileRepository.save(userProfileEntity);
+			return "Password Changed Sucessfully";
+		}
+		else
+		{
+			return "Incorrect Password... Try again";
+		}
+	}
+	
 	
 }
 

@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.json.UserProfile;
 import com.spring.service.UserCredentialsService;
-//import com.spring.entity.PasswordResetEntity;
- 
+
 
 @RestController
 @RequestMapping("/app/customer/")
@@ -35,6 +35,15 @@ public class UserCredentialsController {
 		
 	}
 		
+		private UserCredentialsService userCredentialsService;
+
+		@PostMapping(value="/app/customer", produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
+		public @ResponseBody UserProfile registerUserProfile(@RequestBody UserProfile userProfile) {
+			return userCredentialsService.save(userProfile);
+		}
+		
+		
+		
 	/*	
 		@PostMapping(value="/changePassword",consumes=MediaType.APPLICATION_JSON_VALUE,produces=MediaType.APPLICATION_JSON_VALUE)
 		public UserCredentials changePassword(@RequestBody PasswordResetEntity passwordresetentity){
@@ -46,7 +55,11 @@ public class UserCredentialsController {
 			
 			return value;
 		}
-		*/
+*/
+		}
+
+
+
 		
 		
 		
@@ -58,9 +71,5 @@ public class UserCredentialsController {
 		
 		
 		
-		
-		
-		
-		
-}
+	
 

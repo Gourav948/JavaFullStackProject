@@ -37,19 +37,7 @@ public class AdminCredentialsController {
 	private RouteRepository routeRepository;
 	private ReservationEntity reservationEntity; 
 	private ReservationRepository reservationRepository;
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	public UserProfile updateUserProfile(UserProfile userProfile, String id) {
 		UserProfileEntity userProfileEntity = userProfileRepository.findById(Long.valueOf(id)).get();
@@ -67,6 +55,7 @@ public class AdminCredentialsController {
 			userProfileEntity.setStreet(userProfile.getStreet());
 			userProfileEntity.setState(userProfile.getState());
 	//userProfileEntity.setReservationList(userProfile.getReservationList());
+
 	}
 		return UserProfileUtils.convertUserProfileEntityToUserProfile(userProfileEntity);
 	}

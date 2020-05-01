@@ -253,6 +253,32 @@ public class UserProfile
 		this.creditCardList = creditCardList;
 		this.reservationList = reservationList;
 	}
+	
+
+	public UserProfile(String firstName, String lastName, LocalDate dateOfBirth, String gender, String street,
+			String location, String city, String state, String pincode, String mobileNo, String emailId, long userId,
+			String password, String userType, int loginStatus, String sessionId, List<CreditCard> creditCardList,
+			List<Reservation> reservationList) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+		this.gender = gender;
+		this.street = street;
+		this.location = location;
+		this.city = city;
+		this.state = state;
+		this.pincode = pincode;
+		this.mobileNo = mobileNo;
+		this.emailId = emailId;
+		this.userId = userId;
+		this.password = password;
+		this.userType = userType;
+		this.loginStatus = loginStatus;
+		this.sessionId = sessionId;
+		this.creditCardList = creditCardList;
+		this.reservationList = reservationList;
+	}
 
 	@Override
 	public String toString() {

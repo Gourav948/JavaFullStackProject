@@ -69,6 +69,9 @@ public class UserProfileEntity
 	@Column(name="LOGINSTATUS")
 	private int loginStatus;
 	
+	@Column(name="SESSIONID")
+	private String sessionId;
+	
   
 	@OneToMany(cascade={CascadeType.PERSIST}, 
 			fetch=FetchType.EAGER, mappedBy = "userCredentialsEntity")
@@ -216,6 +219,15 @@ public class UserProfileEntity
 	public void setLoginStatus(int loginStatus) {
 		this.loginStatus = loginStatus;
 	}
+	
+
+	public String getSessionId() {
+		return sessionId;
+	}
+
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
+	}
 
 	public UserProfileEntity(String firstName, String lastName, LocalDate dateOfBirth, String gender, String street,
 			String location, String city, String state, String pincode, String mobileNo, String emailId) {
@@ -271,6 +283,32 @@ public class UserProfileEntity
 		this.password = password;
 		this.userType = userType;
 		this.loginStatus = loginStatus;
+		this.creditCards = creditCards;
+		this.reservationList = reservationList;
+	}
+	
+
+	public UserProfileEntity( String firstName, String lastName, LocalDate dateOfBirth, String gender,
+			String street, String location, String city, String state, String pincode, String mobileNo, String emailId,
+			String password, String userType, int loginStatus, String sessionId, List<CreditCardEntity> creditCards,
+			List<ReservationEntity> reservationList) {
+		super();
+		
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+		this.gender = gender;
+		this.street = street;
+		this.location = location;
+		this.city = city;
+		this.state = state;
+		this.pincode = pincode;
+		this.mobileNo = mobileNo;
+		this.emailId = emailId;
+		this.password = password;
+		this.userType = userType;
+		this.loginStatus = loginStatus;
+		this.sessionId = sessionId;
 		this.creditCards = creditCards;
 		this.reservationList = reservationList;
 	}
