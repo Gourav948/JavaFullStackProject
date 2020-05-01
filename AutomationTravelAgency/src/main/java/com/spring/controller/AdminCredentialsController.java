@@ -75,7 +75,7 @@ public class AdminCredentialsController {
 //	}
 
 	public List<Long> getUserProfilesByRoute(Long routeId) {
-		RouteEntity routeEntity = routeRepository.getById(routeId);
+		RouteEntity routeEntity = routeRepository.getByRouteId(routeId);
 		if(routeEntity!=null) {
 			List<ReservationEntity> reservationEntityList= reservationRepository.findByRouteEntity(routeEntity);
 			List<UserCredentialsEntity> userCredentialEntity= reservationEntityList.stream().map((ele)->ele.getUserCredentialsEntity()).collect(Collectors.toList());

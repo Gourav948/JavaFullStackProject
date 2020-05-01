@@ -6,6 +6,6 @@ import com.spring.entity.RouteEntity;
 
 public interface RouteRepository extends JpaRepository<RouteEntity, Long> {
 
-	RouteEntity getById(Long routeId);
+	RouteEntity getByRouteId(Long routeId);
 
 }

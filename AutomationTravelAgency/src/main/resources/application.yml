@@ -2,7 +2,7 @@
 spring:
     datasource:
         driverClassName: com.mysql.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/
+        url: jdbc:mysql://localhost:3306/ata_tbl
         username: root
         password: mysql
 
@@ -11,7 +11,7 @@ spring:
         show-sql: true
         
         hibernate:
-            ddl-auto: create
+            ddl-auto: update
         properties:
             hibernate: 
             dialect: org.hibernate.dialect.MySQL5Dialect
