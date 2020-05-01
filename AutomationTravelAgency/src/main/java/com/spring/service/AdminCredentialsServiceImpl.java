@@ -1,6 +1,7 @@
 
 package com.spring.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -277,5 +278,34 @@ if(checklogin!=null ) {
 		else {
 			return null;
 		}
+	}
+
+	@Override
+	public List<UserProfile> getUserProfileOnDate(LocalDate date) 
+	{
+		List<ReservationEntity> reservationEntityList	= reservationRepository.findByBookingDate(date);
+		List<UserProfileEntity> userProfileEntityList =reservationEntityList.stream().map((reservation)->reservation.getUserProfileEntity()).collect(Collectors.toList());
+		List<UserProfile> userProfileList=UserProfileUtils.convertUserProfileEntityListToUserProfileList(userProfileEntityList);
+		
+		return userProfileList;
+		
+	}
+
+	@Override
+	public List<UserProfile> getUserProfileAfterDate(LocalDate date) {
+		List<ReservationEntity> reservationEntityList	= reservationRepository.findByBookingDateGreaterThan(date);
+		List<UserProfileEntity> userProfileEntityList =reservationEntityList.stream().map((reservation)->reservation.getUserProfileEntity()).collect(Collectors.toList());
+		List<UserProfile> userProfileList=UserProfileUtils.convertUserProfileEntityListToUserProfileList(userProfileEntityList);
+		
+		return userProfileList;
+	}
+
+	@Override
+	public List<UserProfile> getUserProfileBeforeDate(LocalDate date) {
+		List<ReservationEntity> reservationEntityList	= reservationRepository.findByBookingDateLessThan(date);
+		List<UserProfileEntity> userProfileEntityList =reservationEntityList.stream().map((reservation)->reservation.getUserProfileEntity()).collect(Collectors.toList());
+		List<UserProfile> userProfileList=UserProfileUtils.convertUserProfileEntityListToUserProfileList(userProfileEntityList);
+		
+		return userProfileList;
 	}
 }

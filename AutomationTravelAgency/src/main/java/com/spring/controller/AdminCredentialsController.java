@@ -1,9 +1,12 @@
 package com.spring.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -62,6 +65,26 @@ public class AdminCredentialsController {
 //		List<UserProfileEntity> userEntityList = userProfileRepository.getById(route);
 //		return UserProfileUtils.convertUserProfileEntityListToUserProfileList(userEntityList);
 //	}
+	@GetMapping(value="/user/onDate/{date}",produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<UserProfile> getUserProfilesOnDate(@PathVariable (value="date") @DateTimeFormat(iso=ISO.DATE) LocalDate date)
+	{
+		return admincredentialsservice.getUserProfileOnDate(date);
+		
+	}
+	@GetMapping(value="/user/afterDate/{date}",produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<UserProfile> getUserProfilesAfterDate(@PathVariable (value="date") @DateTimeFormat(iso=ISO.DATE) LocalDate date)
+	{
+		return admincredentialsservice.getUserProfileAfterDate(date);
+		
+	}
+	@GetMapping(value="/user/beforeDate/{date}",produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<UserProfile> getUserProfilesBeforeDate(@PathVariable (value="date") @DateTimeFormat(iso=ISO.DATE) LocalDate date)
+	{
+		return admincredentialsservice.getUserProfileBeforeDate(date);
+		
+	}
+	
+	
 	@GetMapping(value="/user/route/{routeId}", produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<UserProfile> getUserProfilesByRoute(String routeId) 
 	{

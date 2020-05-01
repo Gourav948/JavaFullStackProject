@@ -1,5 +1,6 @@
 
 package com.spring.service;
+import java.time.LocalDate;
 import java.util.List;
 
 import com.spring.json.Driver;
@@ -39,6 +40,15 @@ public interface AdminCredentialsService {
 
 
 	public List<UserProfile> getUserProfilesByRoute(long parseLong);
+
+
+	public List<UserProfile> getUserProfileOnDate(LocalDate date);
+
+
+	public List<UserProfile> getUserProfileAfterDate(LocalDate date);
+
+
+	public List<UserProfile> getUserProfileBeforeDate(LocalDate date);
 
 	
 
