@@ -97,21 +97,20 @@ public class AdminCredentialsController {
 
 
 	@RequestMapping(value="/vehicle/{vehicleid}",method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public Vehicle updateVehicleDetails(@RequestHeader String authtoken,@PathVariable(name ="vehicleid") long vehicleId) {
-		return admincredentialsservice.updateByVehicleId(authtoken, vehicleId);
+	public Vehicle updateVehicleDetails(@RequestHeader String authtoken,@RequestBody Vehicle vehicle ,@PathVariable(name ="vehicleid") long vehicleId) {
+		return admincredentialsservice.updateByVehicleId(authtoken,vehicle, vehicleId);
 		
 	}
 	@RequestMapping(value="/route/{routeid}",method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public Route updateRouteDetails(@RequestHeader String authtoken,@PathVariable(name ="routeid") long routeId) {
-		return admincredentialsservice.updateByRouteId(authtoken, routeId);
+	public Route updateRouteDetails(@RequestHeader String authtoken,@RequestBody Route route,@PathVariable(name ="routeid") long routeId) {
+		return admincredentialsservice.updateByRouteId(authtoken,route, routeId);
 		
 	}
 	@RequestMapping(value="/driver/{driverid}",method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public Driver updateDriverDetails(@RequestHeader String authtoken,@PathVariable(name ="driverId") long driverId) {
-		return admincredentialsservice.updateByDriverId(authtoken,driverId);
+	public Driver updateDriverDetails(@RequestHeader String authtoken,@RequestBody Driver driver,@PathVariable(name ="driverId") long driverId) {
+		return admincredentialsservice.updateByDriverId(authtoken,driver,driverId);
 		
 	}
-
 
 
 @RequestMapping(value="vehicle/{vehicleid}",method=RequestMethod.DELETE, produces=MediaType.APPLICATION_JSON_VALUE)

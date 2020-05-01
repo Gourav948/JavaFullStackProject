@@ -22,11 +22,11 @@ public interface AdminCredentialsService {
 
 	public String deleteByDriverid(String authtoken, long driverId);
 
-	public Vehicle updateByVehicleId(String authtoken, long vehicleId);
+	public Vehicle updateByVehicleId(String authtoken,Vehicle vehicle, long vehicleId);
 
-	public Route updateByRouteId(String authtoken, long routeId);
+	public Route updateByRouteId(String authtoken,Route route, long routeId);
 
-	public Driver updateByDriverId(String authtoken, long driverId);
+	public Driver updateByDriverId(String authtoken,Driver driver, long driverId);
 
 	public Vehicle getVehicleByVechicleid(long vehicleId);
 

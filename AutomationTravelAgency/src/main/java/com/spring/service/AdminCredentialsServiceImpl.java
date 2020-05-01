@@ -138,22 +138,86 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 		}
 	}
 	@Override
-	public Vehicle updateByVehicleId(String authtoken, long vehicleId) {
-		// TODO Auto-generated method stub
+	public Vehicle updateByVehicleId(String authtoken,Vehicle vehicle, long vehicleId)
+	{
+		//UserProfileEntity checklogin=userProfileRepository.findBySessionId(authtoken).get(0);
+		UserProfileEntity checklogin=this.getUserUsingSessionId(authtoken);
+		if(checklogin!=null ) {	
+			
+			VehicleEntity vehicletoupdate=vehicleRepository.
+					findByVehicleId(vehicleId).get(0);
+			if(vehicletoupdate!=null)
+			{
+				vehicletoupdate.setName(vehicle.getName());
+				vehicletoupdate.setType(vehicle.getType());
+				vehicletoupdate.setRegistrationNumber(vehicle.getRegistrationNumber());
+				vehicletoupdate.setSeatingCapacity(vehicle.getSeatingCapacity());
+				vehicletoupdate.setFarePerKm(vehicle.getFarePerKm());
+				vehicletoupdate = vehicleRepository.save(vehicletoupdate);
+				return VehicleUtils.convertVehicleEntityToVehicle(vehicletoupdate);
+			}
+			else
+			{
+			return null;
+			}}
 		return null;
+			
+		}
+			
+	@Override
+	public Route updateByRouteId(String authtoken,Route route, long routeId)
+	{
+		//UserProfileEntity checklogin=userProfileRepository.findBySessionId(authtoken).get(0);
+		UserProfileEntity checklogin=this.getUserUsingSessionId(authtoken);
+		if(checklogin!=null ) {	
+			
+		
+			RouteEntity routetoupdate=routeRepository.
+					findByRouteId(routeId);
+			if(routetoupdate!=null)
+			{
+				routetoupdate.setSource(route.getSource());
+				routetoupdate.setDestination(route.getDestination());
+				routetoupdate.setDistance(route.getDistance());
+				routetoupdate.setTravelDuration(route.getTravelDuration());
+				routetoupdate = routeRepository.save(routetoupdate);
+				return RouteUtils.convertRouteEntityToRoute(routetoupdate);
+			}
+			return null;
+		}
+		else { 
+			return null;
+	}}
+	@Override
+	public Driver updateByDriverId(String authtoken,Driver driver, long driverId)
+	{
+//UserProfileEntity checklogin=userProfileRepository.findBySessionId(authtoken).get(0);
+UserProfileEntity checklogin=this.getUserUsingSessionId(authtoken);
+if(checklogin!=null ) {	
+		
+		
+			DriverEntity drivertoupdate=driverRepository.
+					findByDriverId(driverId).get(0);
+			if(drivertoupdate!=null)
+			{
+				drivertoupdate.setFirstName(driver.getName());
+				drivertoupdate.setStreet(driver.getStreet());
+				drivertoupdate.setLocation(driver.getLocation());
+				drivertoupdate.setCity(driver.getCity());
+				drivertoupdate.setState(driver.getState());
+				drivertoupdate.setPincode(driver.getPincode());
+				drivertoupdate.setMobileNo(driver.getMobileNo());
+				drivertoupdate.setLicenseNumber(driver.getLicenseNumber());
+				drivertoupdate = driverRepository.save(drivertoupdate);
+				return DriverUtils.convertDriverEntityToDriver(drivertoupdate);
+			}
+			else
+			{
+			return null;
+		}}
+		else { return null; }
 	}
 
-	@Override
-	public Route updateByRouteId(String authtoken, long routeId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Driver updateByDriverId(String authtoken, long driverId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
 	@Override
