@@ -1,7 +1,7 @@
 package com.spring.json;
 
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -28,17 +28,27 @@ public class UserProfile
 	private String pincode; 
 	private String mobileNo; 
 	private String emailId;
+	private long userId;
+	private String  password;
+	private String userType;	 
+	private int loginStatus;
+	private String sessionId;
 
-	@OneToOne(cascade={CascadeType.PERSIST}, fetch=FetchType.LAZY)
-	private UserCredentials userCredentials;
+	public String getSessionId() {
+		return sessionId;
+	}
+
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
+	}
+
+	@OneToMany(cascade={CascadeType.PERSIST}, 
+			fetch=FetchType.EAGER, mappedBy = "userCredentialsEntity")
+	private List<CreditCard> creditCardList;
 	
 	@OneToMany(cascade={CascadeType.PERSIST}, 
 			fetch=FetchType.EAGER, mappedBy = "userCredentialsEntity")
-	private Set<CreditCard> creditCardList;
-	
-	@OneToMany(cascade={CascadeType.PERSIST}, 
-			fetch=FetchType.EAGER, mappedBy = "userCredentialsEntity")
-	private Set<Reservation> reservationList;
+	private List<Reservation> reservationList;
 	
 	public UserProfile() {
 		super();
@@ -133,47 +143,57 @@ public class UserProfile
 		this.emailId = emailId;
 	}
 
-	public UserCredentials getUserCredentials() {
-		return userCredentials;
+ 
+
+	public long getUserId() {
+		return userId;
 	}
 
-	public void setUserCredentials(UserCredentials userCredentials) {
-		this.userCredentials = userCredentials;
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
 
-	public Set<CreditCard> getCreditCardList() {
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
+
+	public int getLoginStatus() {
+		return loginStatus;
+	}
+
+	public void setLoginStatus(int loginStatus) {
+		this.loginStatus = loginStatus;
+	}
+
+	public List<CreditCard> getCreditCardList() {
 		return creditCardList;
 	}
 
-	public void setCreditCardList(Set<CreditCard> creditCardList) {
+	public void setCreditCardList(List<CreditCard> creditCardList) {
 		this.creditCardList = creditCardList;
 	}
 
-	public Set<Reservation> getReservationList() {
+	public List<Reservation> getReservationList() {
 		return reservationList;
 	}
 
-	public void setReservationList(Set<Reservation> reservationList) {
+	public void setReservationList(List<Reservation> reservationList) {
 		this.reservationList = reservationList;
 	}
 
-	public UserProfile(String firstName, String lastName, LocalDate dateOfBirth, String gender, String street,
-			String location, String city, String state, String pincode, String mobileNo, String emailId,
-			UserCredentials userCredentialsEntity) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.dateOfBirth = dateOfBirth;
-		this.gender = gender;
-		this.street = street;
-		this.location = location;
-		this.city = city;
-		this.state = state;
-		this.pincode = pincode;
-		this.mobileNo = mobileNo;
-		this.emailId = emailId;
-		this.userCredentials = userCredentialsEntity;
-	}
+ 
 
 	public UserProfile(String firstName, String lastName, LocalDate dateOfBirth, String gender, String street,
 			String location, String city, String state, String pincode, String mobileNo, String emailId) {
@@ -193,7 +213,7 @@ public class UserProfile
 
 	public UserProfile(String firstName, String lastName, LocalDate dateOfBirth, String gender, String street,
 			String location, String city, String state, String pincode, String mobileNo, String emailId,
-			UserCredentials userCredentials, Set<CreditCard> creditCardList, Set<Reservation> reservationList) {
+			 List<CreditCard> creditCardList, List<Reservation> reservationList) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -206,7 +226,56 @@ public class UserProfile
 		this.pincode = pincode;
 		this.mobileNo = mobileNo;
 		this.emailId = emailId;
-		this.userCredentials = userCredentials;
+		this.creditCardList = creditCardList;
+		this.reservationList = reservationList;
+	}
+
+	public UserProfile(String firstName, String lastName, LocalDate dateOfBirth, String gender, String street,
+			String location, String city, String state, String pincode, String mobileNo, String emailId, long userId,
+			String password, String userType, int loginStatus, List<CreditCard> creditCardList,
+			List<Reservation> reservationList) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+		this.gender = gender;
+		this.street = street;
+		this.location = location;
+		this.city = city;
+		this.state = state;
+		this.pincode = pincode;
+		this.mobileNo = mobileNo;
+		this.emailId = emailId;
+		this.userId = userId;
+		this.password = password;
+		this.userType = userType;
+		this.loginStatus = loginStatus;
+		this.creditCardList = creditCardList;
+		this.reservationList = reservationList;
+	}
+	
+
+	public UserProfile(String firstName, String lastName, LocalDate dateOfBirth, String gender, String street,
+			String location, String city, String state, String pincode, String mobileNo, String emailId, long userId,
+			String password, String userType, int loginStatus, String sessionId, List<CreditCard> creditCardList,
+			List<Reservation> reservationList) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+		this.gender = gender;
+		this.street = street;
+		this.location = location;
+		this.city = city;
+		this.state = state;
+		this.pincode = pincode;
+		this.mobileNo = mobileNo;
+		this.emailId = emailId;
+		this.userId = userId;
+		this.password = password;
+		this.userType = userType;
+		this.loginStatus = loginStatus;
+		this.sessionId = sessionId;
 		this.creditCardList = creditCardList;
 		this.reservationList = reservationList;
 	}
@@ -215,9 +284,9 @@ public class UserProfile
 	public String toString() {
 		return "UserProfile [firstName=" + firstName + ", lastName=" + lastName + ", dateOfBirth=" + dateOfBirth
 				+ ", gender=" + gender + ", street=" + street + ", location=" + location + ", city=" + city + ", state="
-				+ state + ", pincode=" + pincode + ", mobileNo=" + mobileNo + ", emailId=" + emailId
-				+ ", userCredentials=" + userCredentials + ", creditCardList=" + creditCardList + ", reservationList="
-				+ reservationList + "]";
+				+ state + ", pincode=" + pincode + ", mobileNo=" + mobileNo + ", emailId=" + emailId + ", userId="
+				+ userId + ", password=" + password + ", userType=" + userType + ", loginStatus=" + loginStatus
+				+ ", creditCardList=" + creditCardList + ", reservationList=" + reservationList + "]";
 	}
 	
 	

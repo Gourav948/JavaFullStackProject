@@ -26,7 +26,7 @@ public class ReservationEntity
 	
 	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name = "USERID")
-	private UserCredentialsEntity userCredentialsEntity;
+	private UserProfileEntity userProfileEntity;
 	
 	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name = "VEHICLEID")
@@ -64,12 +64,12 @@ public class ReservationEntity
 	}
 	
 
-	public ReservationEntity(UserCredentialsEntity userCredentialsEntity, VehicleEntity vehicleEntity,
+	public ReservationEntity(UserProfileEntity userProfileEntity, VehicleEntity vehicleEntity,
 			RouteEntity routeEntity, LocalDate bookingDate, LocalDate journeyDate,
 			DriverEntity driverEntity, String bookingStatus, int totalFare, String boardingPoint,
 			String dropPoint) {
 		super();
-		this.userCredentialsEntity = userCredentialsEntity;
+		this.userProfileEntity = userProfileEntity;
 		this.vehicleEntity = vehicleEntity;
 		this.routeEntity = routeEntity;
 		this.bookingDate = bookingDate;
@@ -90,12 +90,12 @@ public class ReservationEntity
 		this.reservationId = reservationId;
 	}
 
-	public UserCredentialsEntity getUserCredentialsEntity() {
-		return userCredentialsEntity;
+	public UserProfileEntity getUserProfileEntity() {
+		return userProfileEntity;
 	}
 
-	public void setUserCredentialsEntity(UserCredentialsEntity userCredentialsEntity) {
-		this.userCredentialsEntity = userCredentialsEntity;
+	public void setUserProfileEntity(UserProfileEntity userProfileEntity) {
+		this.userProfileEntity = userProfileEntity;
 	}
 
 	public VehicleEntity getVehicleEntity() {
@@ -173,7 +173,7 @@ public class ReservationEntity
 
 	@Override
 	public String toString() {
-		return "ReservationEntity [reservationId=" + reservationId + ", userCredentialsEntity=" + userCredentialsEntity
+		return "ReservationEntity [reservationId=" + reservationId + ", userProfileEntity=" + userProfileEntity
 				+ ", vehicleEntity=" + vehicleEntity + ", routeEntity=" + routeEntity + ", bookingDate=" + bookingDate
 				+ ", journeyDate=" + journeyDate + ", driverEntity=" + driverEntity + ", bookingStatus=" + bookingStatus
 				+ ", totalFare=" + totalFare + ", boardingPoint=" + boardingPoint + ", dropPoint=" + dropPoint + "]";

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
 
+>>>>>>> branch 'master' of https://github.com/Gourav948/JavaFullStackProject.git
 spring:
     datasource:
         driverClassName: com.mysql.jdbc.Driver
@@ -13,5 +17,27 @@ spring:
         hibernate:
             ddl-auto: update
         properties:
+<<<<<<< HEAD
+            hibernate: 
+=======
+spring:
+    datasource:
+        driverClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/ata_tbl
+        username: root
+        password: S@ismaran98
+
+    jpa:
+        generate-ddl: true
+        show-sql: true
+        
+        hibernate:
+            ddl-auto: create
+        properties:
+            hibernate: 
+>>>>>>> branch 'master' of https://github.com/Gourav948/JavaFullStackProject.git
+                dialect: org.hibernate.dialect.MySQL5Dialect
+=======
             hibernate: 
             dialect: org.hibernate.dialect.MySQL5Dialect
+>>>>>>> branch 'master' of https://github.com/Gourav948/JavaFullStackProject.git

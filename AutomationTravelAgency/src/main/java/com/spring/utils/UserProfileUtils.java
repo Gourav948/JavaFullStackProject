@@ -21,11 +21,13 @@ public class UserProfileUtils
 	
 	public static UserProfile convertUserProfileEntityToUserProfile(UserProfileEntity userProfileEntity) {
 		return new UserProfile(userProfileEntity.getFirstName(),userProfileEntity.getLastName(),userProfileEntity.getDateOfBirth(),userProfileEntity.getGender(),userProfileEntity.getStreet(),userProfileEntity.getLocation()
-					,userProfileEntity.getCity(),userProfileEntity.getState(),userProfileEntity.getPincode(),userProfileEntity.getMobileNo(),userProfileEntity.getEmailId());
+					,userProfileEntity.getCity(),userProfileEntity.getState(),userProfileEntity.getPincode(),userProfileEntity.getMobileNo(),userProfileEntity.getEmailId(),userProfileEntity.getUserId(),userProfileEntity.getPassword(),userProfileEntity.getUserType(),
+					userProfileEntity.getLoginStatus(),userProfileEntity.getSessionId(),CreditCardUtils.convertCreditCardEntityListToCreditCardList(userProfileEntity.getCreditCards()),ReservationUtils.convertReservationEntityListToReservationList(userProfileEntity.getReservationList()));
 	}
 
 	public static UserProfileEntity convertUserProfileToUserProfileEntity(UserProfile userProfile) {
 		return new UserProfileEntity(userProfile.getFirstName(),userProfile.getLastName(),userProfile.getDateOfBirth(),userProfile.getGender(),userProfile.getStreet(),userProfile.getLocation()
+<<<<<<< HEAD
 				,userProfile.getCity(),userProfile.getState(),userProfile.getPincode(),userProfile.getMobileNo(),userProfile.getEmailId());
 }
 
@@ -34,4 +36,8 @@ public class UserProfileUtils
 		// TODO Auto-generated method stub
 		return null;
 	}
+=======
+				,userProfile.getCity(),userProfile.getState(),userProfile.getPincode(),userProfile.getMobileNo(),userProfile.getEmailId(),userProfile.getPassword(),userProfile.getUserType(),
+				userProfile.getLoginStatus(),userProfile.getSessionId(),CreditCardUtils.convertCreditCardListToCreditCardEntityList(userProfile.getCreditCardList()),ReservationUtils.convertReservationListToReservationEntityList(userProfile.getReservationList()));}
+>>>>>>> 19a8530d51832b69a554dc34690192b4438c2931
 }
