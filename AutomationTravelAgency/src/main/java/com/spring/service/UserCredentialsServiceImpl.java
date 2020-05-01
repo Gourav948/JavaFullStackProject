@@ -42,7 +42,7 @@ private UserProfileRepository userProfileRepository;
 					
 					user1.setLoginStatus(1);
 					userProfileRepository.save(user1);
-					return "session Id" +sessionId;
+					return "LoginStatus"+user1.getLoginStatus()+"session Id" +sessionId;
 					
 					
 				}
