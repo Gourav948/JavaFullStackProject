@@ -32,9 +32,9 @@ public interface AdminCredentialsService {
 
 	public Route getRouteByRouteid(long routeId);
 
-	public List<Vehicle> getAllVehiclesByVechicleid(long vehicleId);
+	public List<Vehicle> getAllVehicles();
 
-	public List<Route> getAllRoutesByRouteid(long routeId);
+	public List<Route> getAllRoutes();
 
 	
 

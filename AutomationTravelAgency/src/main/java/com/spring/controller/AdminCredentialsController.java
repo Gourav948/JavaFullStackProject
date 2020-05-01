@@ -147,14 +147,14 @@ public String DeleteByVehicleid(@RequestHeader String authtoken,@PathVariable(na
 		return admincredentialsservice.getRouteByRouteid(routeId);
 	}
 
-	@RequestMapping(value="vehicle/{vehicleid}",method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-	public List<Vehicle> getVehiclesByVechicleid(@PathVariable(value = "vehicleId") long vehicleId) {
-		return admincredentialsservice.getAllVehiclesByVechicleid(vehicleId);
+	@RequestMapping(value="/vehicle",method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	public List<Vehicle> getVehiclesByVechicleid() {
+		return admincredentialsservice.getAllVehicles();
 	}
 
-	@RequestMapping(value="/route/{routeid}",method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-	public List<Route> getRoutesByRouteid(@PathVariable(value = "routeId") long routeId) {
-		return admincredentialsservice.getAllRoutesByRouteid(routeId);
+	@RequestMapping(value="/route",method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	public List<Route> getAllRoutesByRoutei() {
+		return admincredentialsservice.getAllRoutes();
 	}
 	
 	

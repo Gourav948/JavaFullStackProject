@@ -167,13 +167,13 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 	}
 
 	@Override
-	public List<Vehicle> getAllVehiclesByVechicleid(long vehicleId) {
-		return VehicleUtils.convertVehicleEntityListToVehicleList(vehicleRepository.findByVehicleId(vehicleId));
+	public List<Vehicle> getAllVehicles() {
+		return VehicleUtils.convertVehicleEntityListToVehicleList(vehicleRepository.findAll());
 	}
 
 	@Override
-	public List<Route> getAllRoutesByRouteid(long routeId) {
-		return RouteUtils.convertRouteEntityListToRouteList(routeRepository.findByRouteid(routeId));
+	public List<Route> getAllRoutes() {
+		return RouteUtils.convertRouteEntityListToRouteList(routeRepository.findAll());
 	}
 	public  UserProfileEntity getUserUsingSessionId(String authtoken)
 	{
