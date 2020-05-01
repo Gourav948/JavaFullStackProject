@@ -18,10 +18,17 @@ public interface UserCredentialsService
 	public UserCredentials autoLogout(String apiKey);
 
 
+
+	
+	public boolean requestPasswordReset(String password);
+
 	public UserProfile save(UserProfile userProfile);
 
 	 
 
-	 
+
+
+
+	public UserCredentials save(UserCredentials userProfile);
 
 }
