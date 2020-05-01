@@ -16,7 +16,6 @@ import com.spring.service.UserCredentialsService;
 import com.spring.service.UserService;
 import com.spring.json.Reservation;
 import com.spring.json.Route;
-import com.spring.json.UserCredentials;
 import com.spring.json.Vehicle;
 
 @RestController

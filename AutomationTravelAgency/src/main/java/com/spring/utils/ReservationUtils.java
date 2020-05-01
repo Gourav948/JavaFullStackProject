@@ -18,12 +18,21 @@ public class ReservationUtils
 	}
 	
 	public static Reservation convertReservationEntityToReservation(ReservationEntity reservationEntity) {
-		return new Reservation(reservationEntity.getReservationId(), UserCredentialsUtils.convertUserCredentialsEntityToUserCredentials(reservationEntity.getUserCredentialsEntity()),VehicleUtils.convertVehicleEntityToVehicle(reservationEntity.getVehicleEntity()),RouteUtils.convertRouteEntityToRoute(reservationEntity.getRouteEntity()),
+		return new Reservation(reservationEntity.getReservationId(), UserProfileUtils.convertUserProfileEntityToUserProfile(reservationEntity.getUserProfileEntity()),VehicleUtils.convertVehicleEntityToVehicle(reservationEntity.getVehicleEntity()),RouteUtils.convertRouteEntityToRoute(reservationEntity.getRouteEntity()),
 				reservationEntity.getBookingDate(),reservationEntity.getJourneyDate(),DriverUtils.convertDriverEntityToDriver(reservationEntity.getDriverEntity()),reservationEntity.getBookingStatus(),reservationEntity.getTotalFare(),reservationEntity.getBoardingPoint(),reservationEntity.getDropPoint());
 	}
 
 	public static ReservationEntity convertReservationToReservationEntity(Reservation reservation) {
-		return new ReservationEntity( UserCredentialsUtils.convertUserCredentialsToUserCredentialsEntity(reservation.getUserCredentialsEntity()),VehicleUtils.convertVehicleToVehicleEntity(reservation.getVehicleEntity()),RouteUtils.convertRouteToRouteEntity(reservation.getRouteEntity()),
+		return new ReservationEntity( UserProfileUtils.convertUserProfileToUserProfileEntity(reservation.getUserProfileEntity()),VehicleUtils.convertVehicleToVehicleEntity(reservation.getVehicleEntity()),RouteUtils.convertRouteToRouteEntity(reservation.getRouteEntity()),
 				reservation.getBookingDate(),reservation.getJourneyDate(),DriverUtils.convertDriverToDriverEntity(reservation.getDriverEntity()),reservation.getBookingStatus(),reservation.getTotalFare(),reservation.getBoardingPoint(),reservation.getDropPoint());
 		}
+
+	public static List<ReservationEntity> convertReservationListToReservationEntityList(
+			List<Reservation> reservationList) {
+		List<ReservationEntity> reservationEntityList = new ArrayList<ReservationEntity>();
+		Consumer<Reservation> consumer = (Reservation reservation)->reservationEntityList.add(convertReservationToReservationEntity(reservation));
+		reservationList.stream().forEach(consumer);
+		
+		return reservationEntityList;
+	}
 }

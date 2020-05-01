@@ -8,4 +8,7 @@ public interface RouteRepository extends JpaRepository<RouteEntity, Long> {
 
 	RouteEntity getByRouteId(Long routeId);
 
+	void deleteByRouteId(long routeid);
+	RouteEntity findByRouteId(long routeid);
+
 }

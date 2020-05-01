@@ -8,14 +8,16 @@ import org.springframework.stereotype.Service;
 
 import com.spring.entity.DriverEntity;
 import com.spring.entity.RouteEntity;
-import com.spring.entity.UserCredentialsEntity;
+import com.spring.entity.UserProfileEntity;
 import com.spring.entity.VehicleEntity;
+import com.spring.json.Driver;
 import com.spring.json.Route;
 import com.spring.json.Vehicle;
 import com.spring.rest.repository.DriverRepository;
-import com.spring.rest.repository.RouteEntityRepository;
-import com.spring.rest.repository.UserCredentialsRepository;
-import com.spring.rest.repository.VehicleEntityRepository;
+import com.spring.rest.repository.RouteRepository;
+import com.spring.rest.repository.UserProfileRepository;
+
+import com.spring.rest.repository.VehicleRepository;
 import com.spring.utils.RouteUtils;
 import com.spring.utils.VehicleUtils;
 
@@ -25,40 +27,41 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 
 	
 	@Autowired
-	private VehicleEntityRepository vehicleentityrepository;
+	private VehicleRepository vehicleRepository;
 	@Autowired
-	private RouteEntityRepository routeentityrepository;
+	private RouteRepository routeRepository;
 	
 	@Autowired
 	private  DriverRepository driverRepository;
 	@Autowired
-	private UserCredentialsRepository usercredentialsRepository;
+	private UserProfileRepository userProfileRepository;
 	
 	
 	
 	@Override
 	public void saveVehicleDetails(Vehicle vehicle){
 	VehicleEntity vehicletopersist=VehicleUtils.convertVehicleToVehicleEntity(vehicle);
-	vehicleentityrepository.save(vehicletopersist);
+	vehicleRepository.save(vehicletopersist);
 	}
 	public void saveRouteDetails(Route route) {
 	RouteEntity routeetopersist=RouteUtils.convertRouteToRouteEntity(route);
-	routeentityrepository.save(routeetopersist);
+	routeRepository.save(routeetopersist);
 	}
 	
 	
 	@Override
-	public String deleteByVehicleid(String authtoken,long vehicleid) {
-		UserCredentialsEntity checklogin=usercredentialsRepository.findBySessionId(authtoken).get(0);
+	public String deleteByVehicleid(String authtoken,long vehicleid) 
+	{
+		/*
+		UserProfileEntity checklogin=userProfileRepository.findBySessionId(authtoken).get(0);
 		
 	if(checklogin!=null  || authtoken!=null ) {	
 		
-		VehicleEntity vehicletodelete=vehicleentityrepository.
-				findByVehicleId(vehicleid).get(0);
+		VehicleEntity vehicletodelete=vehicleRepository.findByVehicleId(vehicleid).get(0);
 		if (vehicletodelete!=null)
 			
 		{
-			vehicleentityrepository.deleteByVehicleId(vehicleid);
+			vehicleRepository.deleteByVehicleId(vehicleid);
 			return "Vehicle Deleted";
 		}
 		else 
@@ -71,21 +74,22 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 	
 	else {
 		return "invalid authtoken / login to perform the function";
-	}
+	}*/
+		return null;
 	}
 	
 	
 	@Override
 	public String deleteByRouteid(String authtoken,long routeid) {
-		
-		UserCredentialsEntity checklogin=usercredentialsRepository.findBySessionId(authtoken).get(0);
+		/*
+		UserProfileEntity checklogin=userProfileRepository.findBySessionId(authtoken).get(0);
 		
 		if(checklogin!=null || authtoken!=null ) {	
 		
-		RouteEntity routetodelete=routeentityrepository.findByRouteId(routeid).get(0);
+		RouteEntity routetodelete=routeRepository.findByRouteId(routeid);
 		if(routetodelete!=null)
 		{
-			routeentityrepository.deleteByRouteId(routeid);
+			routeRepository.deleteByRouteId(routeid);
 			return "Route delete successfully";
 		}
 		
@@ -97,15 +101,16 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 
 		else {
 			return "invalid authtoken / login to perform the function";
-		}
-		
+		}*/
+		return null;
 	}
 	
 	
 	@Override
 	public String deleteByDriverid(String authtoken,long driverId) {
+		/*
 		
-UserCredentialsEntity checklogin=usercredentialsRepository.findBySessionId(authtoken).get(0);
+UserProfileEntity checklogin=userProfileRepository.findBySessionId(authtoken).get(0);
 		
 		if(checklogin!=null || authtoken!=null) {
 		
@@ -128,8 +133,24 @@ UserCredentialsEntity checklogin=usercredentialsRepository.findBySessionId(autht
 		
 		
 
-	}	
+	}	*/
+		return null;
 
 }
-
+	@Override
+	public Vehicle updateByVehicleId(String authtoken, long vehicleId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public Route updateByRouteId(String authtoken, long routeId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public Driver updateByDriverId(String authtoken, long driverId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}
  

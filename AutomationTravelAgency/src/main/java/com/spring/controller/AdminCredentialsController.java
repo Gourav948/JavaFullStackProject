@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.entity.ReservationEntity;
 import com.spring.entity.RouteEntity;
-import com.spring.entity.UserCredentialsEntity;
+import com.spring.entity.UserProfileEntity;
 import com.spring.entity.UserProfileEntity;
 import com.spring.json.Driver;
 import com.spring.json.Route;
@@ -79,7 +79,7 @@ public class AdminCredentialsController {
 		RouteEntity routeEntity = routeRepository.getByRouteId(routeId);
 		if(routeEntity!=null) {
 			List<ReservationEntity> reservationEntityList= reservationRepository.findByRouteEntity(routeEntity);
-			List<UserCredentialsEntity> userCredentialEntity= reservationEntityList.stream().map((ele)->ele.getUserCredentialsEntity()).collect(Collectors.toList());
+			List<UserProfileEntity> userCredentialEntity= reservationEntityList.stream().map((ele)->ele.getUserProfileEntity()).collect(Collectors.toList());
 			List<Long> userList = userCredentialEntity.stream().map(user->user.getUserId()).collect(Collectors.toList());
 			//Lists<UserProfile> = userProfileRepository.findAll().stream().filter((user)->user.get
 			return userList;

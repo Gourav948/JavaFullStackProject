@@ -33,7 +33,7 @@ public class CreditCardEntity
 	
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "USERID")
-	private UserCredentialsEntity userCredentialsEntity;
+	private UserProfileEntity userProfileEntity;
 
 	public CreditCardEntity() {
 		super();
@@ -41,12 +41,12 @@ public class CreditCardEntity
 	}
 
 	public CreditCardEntity(  String validFrom, String validTo, int creditBalance,
-			UserCredentialsEntity userCredentialsEntity) {
+			UserProfileEntity userProfileEntity) {
 		super(); 
 		this.validFrom = validFrom;
 		this.validTo = validTo;
 		this.creditBalance = creditBalance;
-		this.userCredentialsEntity = userCredentialsEntity;
+		this.userProfileEntity = userProfileEntity;
 	}
 
 	public long getCreditCardNumber() {
@@ -78,18 +78,18 @@ public class CreditCardEntity
 		this.creditBalance = creditBalance;
 	}
 
-	public UserCredentialsEntity getUserCredentialsEntity() {
-		return userCredentialsEntity;
+	public UserProfileEntity getUserProfileEntity() {
+		return userProfileEntity;
 	}
 
-	public void setUserCredentialsEntity(UserCredentialsEntity userCredentialsEntity) {
-		this.userCredentialsEntity = userCredentialsEntity;
+	public void setUserProfileEntity(UserProfileEntity userProfileEntity) {
+		this.userProfileEntity = userProfileEntity;
 	}
 
 	@Override
 	public String toString() {
 		return "CreditCardEntity [creditCardNumber=" + creditCardNumber + ", validFrom=" + validFrom + ", validTo="
-				+ validTo + ", creditBalance=" + creditBalance + ", userCredentialsEntity=" + userCredentialsEntity
+				+ validTo + ", creditBalance=" + creditBalance + ", userProfileEntity=" + userProfileEntity
 				+ "]";
 	}
 	 

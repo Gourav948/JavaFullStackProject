@@ -19,7 +19,7 @@ public class Reservation
 	private long reservationId;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
-	private UserCredentials  userCredentialsEntity;
+	private UserProfile  userProfileEntity;
 	
 	@ManyToOne(cascade=CascadeType.ALL) 
 	private Vehicle  vehicleEntity;
@@ -51,12 +51,12 @@ public class Reservation
 
 	
 
-	public Reservation(long reservationId, UserCredentials userCredentialsEntity, Vehicle vehicleEntity,
+	public Reservation(long reservationId, UserProfile userProfileEntity, Vehicle vehicleEntity,
 			Route routeEntity, LocalDate bookingDate, LocalDate journeyDate, Driver driverEntity,
 			String bookingStatus, int totalFare, String boardingPoint, String dropPoint) {
 		super();
 		this.reservationId = reservationId;
-		this.userCredentialsEntity = userCredentialsEntity;
+		this.userProfileEntity = userProfileEntity;
 		this.vehicleEntity = vehicleEntity;
 		this.routeEntity = routeEntity;
 		this.bookingDate = bookingDate;
@@ -82,14 +82,14 @@ public class Reservation
 
 
 
-	public UserCredentials getUserCredentialsEntity() {
-		return userCredentialsEntity;
+	public UserProfile getUserProfileEntity() {
+		return userProfileEntity;
 	}
 
 
 
-	public void setUserCredentialsEntity(UserCredentials userCredentialsEntity) {
-		this.userCredentialsEntity = userCredentialsEntity;
+	public void setUserProfileEntity(UserProfile userProfileEntity) {
+		this.userProfileEntity = userProfileEntity;
 	}
 
 
@@ -204,7 +204,7 @@ public class Reservation
 
 	@Override
 	public String toString() {
-		return "Reservation [reservationId=" + reservationId + ", userCredentialsEntity=" + userCredentialsEntity
+		return "Reservation [reservationId=" + reservationId + ", userProfileEntity=" + userProfileEntity
 				+ ", vehicleEntity=" + vehicleEntity + ", routeEntity=" + routeEntity + ", bookingDate=" + bookingDate
 				+ ", journeyDate=" + journeyDate + ", driverEntity=" + driverEntity + ", bookingStatus=" + bookingStatus
 				+ ", totalFare=" + totalFare + ", boardingPoint=" + boardingPoint + ", dropPoint=" + dropPoint + "]";

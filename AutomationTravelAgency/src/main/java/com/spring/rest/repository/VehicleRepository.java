@@ -7,18 +7,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
-import com.spring.entity.UserCredentialsEntity;
+import com.spring.entity.DriverEntity;
 import com.spring.entity.VehicleEntity;
-import com.spring.json.UserCredentials;
  
 
 @Component
 public interface VehicleRepository extends JpaRepository<VehicleEntity, Long> 
 {
 
-	void deleteById(Long vehicleid);
+	void deleteById(long vehicleid);
 
-	VehicleEntity getByVehicleId(Long vehicleid);
+	VehicleEntity getByVehicleId(long vehicleid);
+
+	List<VehicleEntity> findByVehicleId(long vehicleid);
+
+	void deleteByVehicleId(long vehicleid);
  
 
 }

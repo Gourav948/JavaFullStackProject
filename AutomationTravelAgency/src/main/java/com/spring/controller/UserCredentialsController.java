@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.spring.json.UserProfile;
 import com.spring.service.UserCredentialsService;
 //import com.spring.entity.PasswordResetEntity;
-import com.spring.entity.UserCredentialsEntity;
-import com.spring.json.UserCredentials;
+ 
 
 @RestController
 @RequestMapping("/app/customer/")
@@ -24,12 +24,12 @@ public class UserCredentialsController {
 
 		
 		@PostMapping(value="/login",consumes=MediaType.APPLICATION_JSON_VALUE,produces=MediaType.APPLICATION_JSON_VALUE)
-		public String loginUser(@RequestBody UserCredentials usercredentials){
+		public String loginUser(@RequestBody UserProfile usercredentials){
 			return usercredentialsservice.autoLogin(usercredentials);
 		}
 		
 		@DeleteMapping(value="/logout",produces=MediaType.APPLICATION_JSON_VALUE)
-		public UserCredentials logoutUser(@RequestHeader(name="auth-token") String authToken) {
+		public UserProfile logoutUser(@RequestHeader(name="auth-token") String authToken) {
 			return usercredentialsservice.autoLogout(authToken);
 		
 		

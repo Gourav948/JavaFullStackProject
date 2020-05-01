@@ -17,7 +17,7 @@ public class CreditCard
 	private String validTo; 
 	private int creditBalance;
 	@OneToOne(cascade=CascadeType.ALL) 
-	private UserCredentials  userCredentials ;
+	private UserProfile  userProfile ;
 
 	 
 	public CreditCard() {
@@ -27,13 +27,13 @@ public class CreditCard
 
 
 	public CreditCard(long creditCardNumber, String validFrom, String validTo, int creditBalance,
-			UserCredentials userCredentials) {
+			UserProfile userProfile) {
 		super();
 		this.creditCardNumber = creditCardNumber;
 		this.validFrom = validFrom;
 		this.validTo = validTo;
 		this.creditBalance = creditBalance;
-		this.userCredentials = userCredentials;
+		this.userProfile = userProfile;
 	}
 	
 
@@ -78,20 +78,20 @@ public class CreditCard
 	}
 
 
-	public UserCredentials getUserCredentials() {
-		return userCredentials;
+	public UserProfile getUserProfile() {
+		return userProfile;
 	}
 
 
-	public void setUserCredentials(UserCredentials userCredentials) {
-		this.userCredentials = userCredentials;
+	public void setUserProfile(UserProfile userProfile) {
+		this.userProfile = userProfile;
 	}
 
 
 	@Override
 	public String toString() {
 		return "CreditCard [creditCardNumber=" + creditCardNumber + ", validFrom=" + validFrom + ", validTo=" + validTo
-				+ ", creditBalance=" + creditBalance + ", userCredentials=" + userCredentials + "]";
+				+ ", creditBalance=" + creditBalance + ", userProfile=" + userProfile + "]";
 	}
 
 	 
