@@ -9,12 +9,12 @@ import com.spring.json.Vehicle;
 
 public interface AdminCredentialsService {
 	
-	public void saveDriverDetails(Driver driver);
+	public void saveDriverDetails(String authtoken,Driver driver);
 
 
-	public	void saveVehicleDetails(Vehicle vehicle);
+	public	void saveVehicleDetails(String authtoken,Vehicle vehicle);
 
-	public void saveRouteDetails(Route route);
+	public void saveRouteDetails(String authtoken,Route route);
 
 	public String deleteByVehicleid(String authtoken, long vehicleid);
 
