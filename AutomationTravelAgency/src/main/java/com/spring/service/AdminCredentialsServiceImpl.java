@@ -17,6 +17,7 @@ import com.spring.rest.repository.DriverRepository;
 import com.spring.rest.repository.RouteRepository;
 import com.spring.rest.repository.UserProfileRepository;
 import com.spring.rest.repository.VehicleRepository;
+import com.spring.utils.DriverUtils;
 import com.spring.utils.RouteUtils;
 import com.spring.utils.VehicleUtils;
 
@@ -34,14 +35,30 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 	private UserProfileRepository userProfileRepository;
 
 	@Override
-	public void saveVehicleDetails(Vehicle vehicle) {
+	public void saveVehicleDetails(String authtoken,Vehicle vehicle) {
+		UserProfileEntity userEntity=this.getUserUsingSessionId(authtoken);
+		if(userEntity!=null)
+		{
 		VehicleEntity vehicletopersist = VehicleUtils.convertVehicleToVehicleEntity(vehicle);
 		vehicleRepository.save(vehicletopersist);
+		}
 	}
 
-	public void saveRouteDetails(Route route) {
+	public void saveRouteDetails(String authtoken,Route route) {
+		UserProfileEntity userEntity=this.getUserUsingSessionId(authtoken);
+		if(userEntity!=null)
+		{
+	}
 		RouteEntity routeetopersist = RouteUtils.convertRouteToRouteEntity(route);
 		routeRepository.save(routeetopersist);
+	}
+	public void saveDriverDetails(String authtoken,Driver driver) {
+		UserProfileEntity userEntity=this.getUserUsingSessionId(authtoken);
+		if(userEntity!=null)
+		{
+	}
+		DriverEntity drivertopersist=DriverUtils.convertDriverToDriverEntity(driver);
+		driverRepository.save(drivertopersist);
 	}
 
 	@Override
@@ -139,11 +156,6 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 		return null;
 	}
 
-	@Override
-	public void saveDriverDetails(Driver driver) {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public Vehicle getVehicleByVechicleid(long vehicleId) {
@@ -163,5 +175,21 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 	@Override
 	public List<Route> getAllRoutesByRouteid(long routeId) {
 		return RouteUtils.convertRouteEntityListToRouteList(routeRepository.findByRouteid(routeId));
+	}
+	public  UserProfileEntity getUserUsingSessionId(String authtoken)
+	{
+		if(authtoken==null||authtoken.equals(""))
+		{
+			return null;
+		}
+		UserProfileEntity userprofileentity=userProfileRepository.findBySessionId(authtoken).get(0);
+		if(userprofileentity==null)
+		{
+			return null;
+		}
+		else
+		{
+			return userprofileentity;
+		}
 	}
 }

@@ -82,18 +82,19 @@ public class AdminCredentialsController {
 	}
 
 	@RequestMapping(value="/vehicle",method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public void addNewVehicleDetails(@RequestBody Vehicle vehicle) {
-		admincredentialsservice.saveVehicleDetails(vehicle);
+	public void addNewVehicleDetails(@RequestHeader String authtoken,@RequestBody Vehicle vehicle) {
+		admincredentialsservice.saveVehicleDetails(authtoken,vehicle);
 	}
 	@RequestMapping(value="/route",method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public void addNewRouteDetails(@RequestBody Route route) {
-		admincredentialsservice.saveRouteDetails(route);
+	public void addNewRouteDetails(@RequestHeader String authtoken,@RequestBody Route route) {
+		admincredentialsservice.saveRouteDetails(authtoken,route);
 	}
 
 	@RequestMapping(value="/driver",method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public void addNewDriverDetails(@RequestBody Driver driver) {
-		admincredentialsservice.saveDriverDetails(driver);
+	public void addNewDriverDetails(@RequestHeader String authtoken,@RequestBody Driver driver) {
+		admincredentialsservice.saveDriverDetails(authtoken,driver);
 	}
+
 
 	@RequestMapping(value="/vehicle/{vehicleid}",method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public Vehicle updateVehicleDetails(@RequestHeader String authtoken,@PathVariable(name ="vehicleid") long vehicleId) {
