@@ -11,24 +11,24 @@ import com.spring.json.Vehicle;
 
 public interface AdminCredentialsService {
 	
-	public void saveDriverDetails(String authtoken,Driver driver);
+	public Object saveDriverDetails(String authtoken,Driver driver);
 
 
-	public	void saveVehicleDetails(String authtoken,Vehicle vehicle);
+	public	Object saveVehicleDetails(String authtoken,Vehicle vehicle);
 
-	public void saveRouteDetails(String authtoken,Route route);
+	public Object saveRouteDetails(String authtoken,Route route);
 
-	public String deleteByVehicleid(String authtoken, long vehicleid);
+	public Object deleteByVehicleid(String authtoken, long vehicleid);
 
-	public String deleteByRouteid(String authtoken, long routeid);
+	public Object deleteByRouteid(String authtoken, long routeid);
 
-	public String deleteByDriverid(String authtoken, long driverId);
+	public Object deleteByDriverid(String authtoken, long driverId);
 
-	public Vehicle updateByVehicleId(String authtoken,Vehicle vehicle, long vehicleId);
+	public Object updateByVehicleId(String authtoken,Vehicle vehicle, long vehicleId);
 
-	public Route updateByRouteId(String authtoken,Route route, long routeId);
+	public Object updateByRouteId(String authtoken,Route route, long routeId);
 
-	public Driver updateByDriverId(String authtoken,Driver driver, long driverId);
+	public Object updateByDriverId(String authtoken,Driver driver, long driverId);
 
 	public Vehicle getVehicleByVechicleid(long vehicleId);
 

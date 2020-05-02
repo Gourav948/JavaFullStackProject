@@ -45,30 +45,66 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 	private ReservationRepository reservationRepository;
 
 	@Override
-	public void saveVehicleDetails(String authtoken,Vehicle vehicle) {
+	public Object saveVehicleDetails(String authtoken,Vehicle vehicle) {
 		UserProfileEntity userEntity=this.getUserUsingSessionId(authtoken);
 		if(userEntity!=null)
 		{
-		VehicleEntity vehicletopersist = VehicleUtils.convertVehicleToVehicleEntity(vehicle);
-		vehicleRepository.save(vehicletopersist);
+			if(userEntity.getUserType().equals("A"))
+			{
+				 
+				VehicleEntity vehicleEntity=vehicleRepository.save(VehicleUtils.convertVehicleToVehicleEntity(vehicle));
+				return vehicleEntity;
+			}
+			else
+			{
+				return "Not a Admin";
+			}
+		}
+		else
+		{
+			return "Error : Wrong sessionId";
 		}
 	}
 
-	public void saveRouteDetails(String authtoken,Route route) {
+	public Object saveRouteDetails(String authtoken,Route route) {
 		UserProfileEntity userEntity=this.getUserUsingSessionId(authtoken);
 		if(userEntity!=null)
 		{
-	}
-		RouteEntity routeetopersist = RouteUtils.convertRouteToRouteEntity(route);
-		routeRepository.save(routeetopersist);
-	}
-	public void saveDriverDetails(String authtoken,Driver driver) {
-		UserProfileEntity userEntity=this.getUserUsingSessionId(authtoken);
-		if(userEntity!=null )
-		{
+			if(userEntity.getUserType().equals("A"))
+			{
+				 
+				RouteEntity routeEntity=routeRepository.save(RouteUtils.convertRouteToRouteEntity(route));
+				return routeEntity;
+			}
+			else
+			{
+				return "Not a Admin";
+			}
 		}
-		DriverEntity drivertopersist=DriverUtils.convertDriverToDriverEntity(driver);
-		driverRepository.save(drivertopersist);
+		else
+		{
+			return "Error : Wrong sessionId";
+		}
+	}
+	public Object saveDriverDetails(String authtoken,Driver driver) {
+		UserProfileEntity userEntity=this.getUserUsingSessionId(authtoken);
+		if(userEntity!=null)
+		{
+			if(userEntity.getUserType().equals("A"))
+			{
+				 
+				DriverEntity driverEntity=driverRepository.save(DriverUtils.convertDriverToDriverEntity(driver));
+				return driverEntity;
+			}
+			else
+			{
+				return "Not a Admin";
+			}
+		}
+		else
+		{
+			return "Error : Wrong sessionId";
+		}
 	}
 
 	@Override
@@ -77,26 +113,32 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 		
 		UserProfileEntity checklogin=userProfileRepository.findBySessionId(authtoken).get(0);
 		
-	if(checklogin!=null  || authtoken!=null ) {	
-		
-		VehicleEntity vehicletodelete=vehicleRepository.findByVehicleId(vehicleid).get(0);
-		if (vehicletodelete!=null)
-			
-		{
-			vehicleRepository.deleteByVehicleId(vehicleid);
-			return "Vehicle Deleted";
+	if(checklogin!=null  || authtoken!=null )
+		{	
+			if(checklogin.getUserType().equals("A"))
+			{
+			VehicleEntity vehicletodelete=vehicleRepository.findByVehicleId(vehicleid).get(0);
+				if (vehicletodelete!=null)
+						
+					{
+						vehicleRepository.deleteByVehicleId(vehicleid);
+						return "Vehicle Deleted";
+					}
+				else 
+					
+					{
+						return "Vehicleid is invalid";
+					}
+				}
+			else
+			{
+				return "You are Not a Admin";
+			}
 		}
-		else 
-			
-		{
-			return "Vehicleid is invalid";
-		}
-		
-	}
 	
 	else {
-		return "invalid authtoken / login to perform the function";
-	}
+			return "invalid authtoken / login to perform the function";
+		}
 	}
 	
 
@@ -104,7 +146,10 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 
 		UserProfileEntity checkLogin = userProfileRepository.findBySessionId(authtoken).get(0);
 
-		if (checkLogin != null) {
+		if (checkLogin != null) 
+		{
+			if(checkLogin.getUserType().equals("A"))
+			{
 
 			RouteEntity routeToDelete = routeRepository.findByRouteId(routeid);
 
@@ -115,6 +160,11 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 
 			else {
 				return " Invalid routeid";
+			}
+			}
+			else
+			{
+				return "You are Not a Admin";
 			}
 
 		}
@@ -130,7 +180,10 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 
 		UserProfileEntity checkLogin = userProfileRepository.findBySessionId(authtoken).get(0);
 
-		if (checkLogin != null || authtoken != null) {
+		if (checkLogin != null || authtoken != null)
+		{
+			if(checkLogin.getUserType().equals("A"))
+			{
 
 			DriverEntity driverToDelete = driverRepository.findByDriverId(driverId).get(0);
 			if (driverToDelete != null) {
@@ -138,9 +191,17 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 				return "Driver details delete successfully";
 			}
 
-			else {
+			else 
+			{
 				return "driverId is invalid";
 			}
+			}
+			else
+			{
+				return "You are Not a Admin";
+			}
+			
+			
 		}
 
 		else {
@@ -148,14 +209,14 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 		}
 	}
 	@Override
-	public Vehicle updateByVehicleId(String authtoken,Vehicle vehicle, long vehicleId)
+	public Object updateByVehicleId(String authtoken,Vehicle vehicle, long vehicleId)
 	{
 		//UserProfileEntity checklogin=userProfileRepository.findBySessionId(authtoken).get(0);
 		UserProfileEntity checklogin=this.getUserUsingSessionId(authtoken);
-		if(checklogin!=null ) {	
+		if(checklogin!=null ) 
+		{	
 			
-			VehicleEntity vehicletoupdate=vehicleRepository.
-					findByVehicleId(vehicleId).get(0);
+			VehicleEntity vehicletoupdate=vehicleRepository.findByVehicleId(vehicleId).get(0);
 			if(vehicletoupdate!=null)
 			{
 				vehicletoupdate.setName(vehicle.getName());

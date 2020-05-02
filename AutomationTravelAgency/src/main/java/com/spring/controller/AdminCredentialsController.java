@@ -81,50 +81,50 @@ public class AdminCredentialsController {
 	}
 
 	@RequestMapping(value="/vehicle",method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public void addNewVehicleDetails(@RequestHeader String authtoken,@RequestBody Vehicle vehicle) {
-		admincredentialsservice.saveVehicleDetails(authtoken,vehicle);
+	public Object addNewVehicleDetails(@RequestHeader String authtoken,@RequestBody Vehicle vehicle) {
+		return admincredentialsservice.saveVehicleDetails(authtoken,vehicle);
 	}
 	@RequestMapping(value="/route",method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public void addNewRouteDetails(@RequestHeader String authtoken,@RequestBody Route route) {
-		admincredentialsservice.saveRouteDetails(authtoken,route);
+	public Object addNewRouteDetails(@RequestHeader String authtoken,@RequestBody Route route) {
+		return admincredentialsservice.saveRouteDetails(authtoken,route);
 	}
 
 	@RequestMapping(value="/driver",method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public void addNewDriverDetails(@RequestHeader String authtoken,@RequestBody Driver driver) {
-		admincredentialsservice.saveDriverDetails(authtoken,driver);
+	public Object addNewDriverDetails(@RequestHeader String authtoken,@RequestBody Driver driver) {
+		return admincredentialsservice.saveDriverDetails(authtoken,driver);
 	}
 
 
 	@RequestMapping(value="/vehicle/{vehicleId}",method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public Vehicle updateVehicleDetails(@RequestHeader String authtoken,@RequestBody Vehicle vehicle ,@PathVariable(name ="vehicleId") String vehicleId) {
+	public Object updateVehicleDetails(@RequestHeader String authtoken,@RequestBody Vehicle vehicle ,@PathVariable(name ="vehicleId") String vehicleId) {
 		return admincredentialsservice.updateByVehicleId(authtoken,vehicle, Long.parseLong(vehicleId));
 		
 	}
 	@RequestMapping(value="/route/{routeId}",method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public Route updateRouteDetails(@RequestHeader String authtoken,@RequestBody Route route,@PathVariable(name ="routeId") String routeId) {
+	public Object updateRouteDetails(@RequestHeader String authtoken,@RequestBody Route route,@PathVariable(name ="routeId") String routeId) {
 		return admincredentialsservice.updateByRouteId(authtoken,route, Long.parseLong(routeId));
 		
 	}
 	@RequestMapping(value="/driver/{driverId}",method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public Driver updateDriverDetails(@RequestHeader String authtoken,@RequestBody Driver driver,@PathVariable(name ="driverId") String driverId) {
+	public Object updateDriverDetails(@RequestHeader String authtoken,@RequestBody Driver driver,@PathVariable(name ="driverId") String driverId) {
 		return admincredentialsservice.updateByDriverId(authtoken,driver,Long.parseLong(driverId));
 		
 	}
 
 
 @RequestMapping(value="vehicle/{vehicleId}",method=RequestMethod.DELETE, produces=MediaType.APPLICATION_JSON_VALUE)
-public String DeleteByVehicleid(@RequestHeader String authtoken,@PathVariable(name ="vehicleId") String vehicleid) {
+public Object DeleteByVehicleid(@RequestHeader String authtoken,@PathVariable(name ="vehicleId") String vehicleid) {
 	 return admincredentialsservice.deleteByVehicleid(authtoken, Long.parseLong(vehicleid));
 }
 
 
 	@RequestMapping(value="route/{routeId}",method=RequestMethod.DELETE, produces=MediaType.APPLICATION_JSON_VALUE)
-	public String DeleteByRouteid(@RequestHeader String authtoken,@PathVariable(name ="routeId") String routeid) {
+	public Object DeleteByRouteid(@RequestHeader String authtoken,@PathVariable(name ="routeId") String routeid) {
 	 return admincredentialsservice.deleteByRouteid(authtoken,Long.parseLong(routeid));
 	}
 	
 	@RequestMapping(value="driver/{driverId}",method=RequestMethod.DELETE, produces=MediaType.APPLICATION_JSON_VALUE)
-	public String DeleteByDriverid(@RequestHeader String authtoken,@PathVariable(name ="driverId") String driverId) {
+	public Object DeleteByDriverid(@RequestHeader String authtoken,@PathVariable(name ="driverId") String driverId) {
 	 return admincredentialsservice.deleteByDriverid(authtoken,Long.parseLong(driverId));
 	}
 	
