@@ -15,7 +15,7 @@ public class AutomationTravelApp
         SpringApplication.run(AutomationTravelApp.class, args);
     }
     public void saiTest() {
-    	System.out.println("hello");
+    	System.out.println("hello world");
     }
 }
 
