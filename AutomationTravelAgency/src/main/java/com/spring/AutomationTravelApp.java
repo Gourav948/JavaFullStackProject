@@ -14,11 +14,5 @@ public class AutomationTravelApp
     {
         SpringApplication.run(AutomationTravelApp.class, args);
     }
-    public void test()
-    {
-    	System.out.println("testing testing");
-    	System.out.println("testing testing");
-    	System.out.println("testing testing");
-    }
 }
 
