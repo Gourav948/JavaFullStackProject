@@ -43,7 +43,7 @@ public class ReservationEntity
 	private LocalDate journeyDate;
 	
 	@OneToOne(cascade={CascadeType.PERSIST}, fetch=FetchType.LAZY)
-	@JoinColumn(name="profile_id")
+	@JoinColumn(name="DRIVERID")
 	private DriverEntity driverEntity;
 	
 	@Column(name="BOOKINGSTATUS")

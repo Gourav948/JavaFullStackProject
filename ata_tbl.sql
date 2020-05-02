@@ -9,12 +9,12 @@ CREATE DATABASE `ata_tbl` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `ata_tbl`;
 
 #
-# Source for table "atl_tbl_driver"
+# Source for table "ata_tbl_driver"
 #
 
-DROP TABLE IF EXISTS `atl_tbl_driver`;
-CREATE TABLE `atl_tbl_driver` (
-  `DRIVERID` varchar(6) NOT NULL DEFAULT '',
+DROP TABLE IF EXISTS `ata_tbl_driver`;
+CREATE TABLE `ata_tbl_driver` (
+  `DRIVERID` bigint(6) NOT NULL DEFAULT 0,
   `NAME` varchar(25) DEFAULT NULL,
   `STREET` varchar(30) DEFAULT NULL,
   `LOCATION` varchar(25) DEFAULT NULL,
@@ -27,17 +27,17 @@ CREATE TABLE `atl_tbl_driver` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 #
-# Data for table "atl_tbl_driver"
+# Data for table "ata_tbl_driver"
 #
 
 
 #
-# Source for table "atl_tbl_route"
+# Source for table "ata_tbl_route"
 #
 
-DROP TABLE IF EXISTS `atl_tbl_route`;
-CREATE TABLE `atl_tbl_route` (
-  `ROUTEID` varchar(8) NOT NULL DEFAULT '',
+DROP TABLE IF EXISTS `ata_tbl_route`;
+CREATE TABLE `ata_tbl_route` (
+  `ROUTEID` bigint(8) NOT NULL DEFAULT 0,
   `SOURCE` varchar(20) DEFAULT NULL,
   `DESTINATION` varchar(20) DEFAULT NULL,
   `DISTANCE` int(4) DEFAULT NULL,
@@ -46,17 +46,17 @@ CREATE TABLE `atl_tbl_route` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 #
-# Data for table "atl_tbl_route"
+# Data for table "ata_tbl_route"
 #
 
 
 #
-# Source for table "atl_tbl_userprofile"
+# Source for table "ata_tbl_userprofile"
 #
 
-DROP TABLE IF EXISTS `atl_tbl_userprofile`;
-CREATE TABLE `atl_tbl_userprofile` (
-  `USERID` varchar(6) NOT NULL DEFAULT '',
+DROP TABLE IF EXISTS `ata_tbl_userprofile`;
+CREATE TABLE `ata_tbl_userprofile` (
+  `USERID` bigint(6) NOT NULL DEFAULT 0,
   `FIRSTNAME` varchar(15) DEFAULT NULL,
   `LASTNAME` varchar(15) DEFAULT NULL,
   `DATEOFBIRTH` date DEFAULT NULL,
@@ -76,39 +76,39 @@ CREATE TABLE `atl_tbl_userprofile` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 #
-# Data for table "atl_tbl_userprofile"
+# Data for table "ata_tbl_userprofile"
 #
 
 
 #
-# Source for table "atl_tbl_creditcard"
+# Source for table "ata_tbl_creditcard"
 #
 
-DROP TABLE IF EXISTS `atl_tbl_creditcard`;
-CREATE TABLE `atl_tbl_creditcard` (
-  `CREDITCARDID` varchar(10) NOT NULL DEFAULT '',
+DROP TABLE IF EXISTS `ata_tbl_credit_card`;
+CREATE TABLE `ata_tbl_credit_card` (
+  `CREDITCARDID` bigint(10) NOT NULL DEFAULT 0,
   `CREDITCARDNUMBER` varchar(20) DEFAULT NULL,
   `VALIDFROM` varchar(7) DEFAULT NULL,
   `VALIDTO` varchar(7) DEFAULT NULL,
   `CREDITBALANCE` int(25) DEFAULT NULL,
-  `USERID` varchar(6) DEFAULT NULL,
+  `USERID` bigint(6) DEFAULT NULL,
   PRIMARY KEY (`CREDITCARDID`),
   KEY `creditcard_ibfk_1` (`USERID`),
-  CONSTRAINT `creditcard_ibfk_1` FOREIGN KEY (`USERID`) REFERENCES `atl_tbl_userprofile` (`USERID`)
+  CONSTRAINT `creditcard_ibfk_1` FOREIGN KEY (`USERID`) REFERENCES `ata_tbl_userprofile` (`USERID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 #
-# Data for table "atl_tbl_creditcard"
+# Data for table "ata_tbl_creditcard"
 #
 
 
 #
-# Source for table "atl_tbl_vehicle"
+# Source for table "ata_tbl_vehicle"
 #
 
-DROP TABLE IF EXISTS `atl_tbl_vehicle`;
-CREATE TABLE `atl_tbl_vehicle` (
-  `VEHICLEID` varchar(8) NOT NULL DEFAULT '',
+DROP TABLE IF EXISTS `ata_tbl_vehicle`;
+CREATE TABLE `ata_tbl_vehicle` (
+  `VEHICLEID` bigint(8) NOT NULL DEFAULT 0,
   `NAME` varchar(20) DEFAULT NULL,
   `TYPE` varchar(8) DEFAULT NULL,
   `REGISTRATIONNUMBER` varchar(20) DEFAULT NULL,
@@ -118,23 +118,23 @@ CREATE TABLE `atl_tbl_vehicle` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 #
-# Data for table "atl_tbl_vehicle"
+# Data for table "ata_tbl_vehicle"
 #
 
 
 #
-# Source for table "atl_tbl_reservation"
+# Source for table "ata_tbl_reservation"
 #
 
-DROP TABLE IF EXISTS `atl_tbl_reservation`;
-CREATE TABLE `atl_tbl_reservation` (
-  `RESERVATIONID` varchar(6) NOT NULL DEFAULT '',
-  `USERID` varchar(6) DEFAULT NULL,
-  `VEHICLEID` varchar(6) DEFAULT NULL,
-  `ROUTEID` varchar(8) DEFAULT NULL,
+DROP TABLE IF EXISTS `ata_tbl_reservation`;
+CREATE TABLE `ata_tbl_reservation` (
+  `RESERVATIONID` bigint(6) NOT NULL DEFAULT 00,
+  `USERID` bigint(6) DEFAULT NULL,
+  `VEHICLEID` bigint(6) DEFAULT NULL,
+  `ROUTEID` bigint(8) DEFAULT NULL,
   `BOOKINGDATE` date DEFAULT NULL,
   `JOURNEYDATE` date DEFAULT NULL,
-  `DRIVERID` varchar(6) DEFAULT NULL,
+  `DRIVERID` bigint(6) DEFAULT NULL,
   `BOOKINGSTATUS` varchar(20) DEFAULT NULL,
   `TOTALFARE` int(10) DEFAULT NULL,
   `BOARDINGPOINT` varchar(30) DEFAULT NULL,
@@ -144,13 +144,13 @@ CREATE TABLE `atl_tbl_reservation` (
   KEY `reservation_ibfk_2` (`DRIVERID`),
   KEY `reservatiom_ibfk_3` (`VEHICLEID`),
   KEY `reservation_ibfk_4` (`ROUTEID`),
-  CONSTRAINT `reservation_ibfk_4` FOREIGN KEY (`ROUTEID`) REFERENCES `atl_tbl_route` (`ROUTEID`),
-  CONSTRAINT `reservatiom_ibfk_3` FOREIGN KEY (`VEHICLEID`) REFERENCES `atl_tbl_vehicle` (`VEHICLEID`),
-  CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`USERID`) REFERENCES `atl_tbl_userprofile` (`USERID`),
-  CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`DRIVERID`) REFERENCES `atl_tbl_driver` (`DRIVERID`)
+  CONSTRAINT `reservation_ibfk_4` FOREIGN KEY (`ROUTEID`) REFERENCES `ata_tbl_route` (`ROUTEID`),
+  CONSTRAINT `reservatiom_ibfk_3` FOREIGN KEY (`VEHICLEID`) REFERENCES `ata_tbl_vehicle` (`VEHICLEID`),
+  CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`USERID`) REFERENCES `ata_tbl_userprofile` (`USERID`),
+  CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`DRIVERID`) REFERENCES `ata_tbl_driver` (`DRIVERID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 #
-# Data for table "atl_tbl_reservation"
+# Data for table "ata_tbl_reservation"
 #
 

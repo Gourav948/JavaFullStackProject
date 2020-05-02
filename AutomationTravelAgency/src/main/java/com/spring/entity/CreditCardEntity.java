@@ -14,13 +14,13 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ATA_TBL_CreditCard")
+@Table(name = "ata_tbl_credit_card")
 public class CreditCardEntity 
 {
 	@Id
 	@GeneratedValue
 	@Column(name="CREDITCARDNUMBER")
-	private long creditCardNumber;
+	private String creditCardNumber;
 	
 	@Column(name="VALIDFROM")
 	private String  validFrom;
@@ -49,7 +49,7 @@ public class CreditCardEntity
 		this.userProfileEntity = userProfileEntity;
 	}
 
-	public long getCreditCardNumber() {
+	public String getCreditCardNumber() {
 		return creditCardNumber;
 	}
 

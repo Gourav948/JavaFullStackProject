@@ -35,11 +35,9 @@ public class UserCredentialsController {
 		
 	}
 
-		private UserCredentialsService userCredentialsService;
-
 		@PostMapping(value="/user", produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
 		public @ResponseBody UserProfile registerUserProfile(@RequestBody UserProfile userProfile) {
-			return userCredentialsService.save(userProfile);
+			return usercredentialsservice.save(userProfile);
 		}
 		
 		

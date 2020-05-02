@@ -12,7 +12,7 @@ import javax.persistence.OneToOne;
 
 public class CreditCard 
 { 
-	private long creditCardNumber; 
+	private String creditCardNumber; 
 	private String  validFrom; 
 	private String validTo; 
 	private int creditBalance;
@@ -26,7 +26,7 @@ public class CreditCard
 	}
 
 
-	public CreditCard(long creditCardNumber, String validFrom, String validTo, int creditBalance,
+	public CreditCard(String creditCardNumber, String validFrom, String validTo, int creditBalance,
 			UserProfile userProfile) {
 		super();
 		this.creditCardNumber = creditCardNumber;
@@ -38,12 +38,12 @@ public class CreditCard
 	
 
 
-	public long getCreditCardNumber() {
+	public String getCreditCardNumber() {
 		return creditCardNumber;
 	}
 
 
-	public void setCreditCardNumber(long creditCardNumber) {
+	public void setCreditCardNumber(String creditCardNumber) {
 		this.creditCardNumber = creditCardNumber;
 	}
 

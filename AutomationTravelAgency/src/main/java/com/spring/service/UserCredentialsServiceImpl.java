@@ -36,7 +36,7 @@ private UserProfileRepository userProfileRepository;
 			if(user1!=null) {
 				if(user1.getPassword().equals((userProfile.getPassword()))) {
 		
-					String sessionId = new java.rmi.server.UID().toString().substring(0, 10);
+					String sessionId = new java.rmi.server.UID().toString().substring(0,5);
 					user1.setSessionId(sessionId);
 					userProfileRepository.save(user1);
 					

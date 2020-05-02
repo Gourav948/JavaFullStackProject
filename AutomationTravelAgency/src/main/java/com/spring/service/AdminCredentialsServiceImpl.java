@@ -64,9 +64,9 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 	}
 	public void saveDriverDetails(String authtoken,Driver driver) {
 		UserProfileEntity userEntity=this.getUserUsingSessionId(authtoken);
-		if(userEntity!=null)
+		if(userEntity!=null )
 		{
-	}
+		}
 		DriverEntity drivertopersist=DriverUtils.convertDriverToDriverEntity(driver);
 		driverRepository.save(drivertopersist);
 	}
