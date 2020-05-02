@@ -14,6 +14,4 @@ public interface RouteRepository extends JpaRepository<RouteEntity, Long> {
 	void deleteByRouteId(long routeid);
 	RouteEntity findByRouteId(long routeid);
 
-	List<RouteEntity> findByRouteid(long routeid);
-
 }

@@ -20,7 +20,7 @@ import com.spring.json.Route;
 import com.spring.json.Vehicle;
 
 @RestController
-@RequestMapping("/app/user")
+@RequestMapping("/app/userController")
 public class UserController 
 {
 	@Autowired

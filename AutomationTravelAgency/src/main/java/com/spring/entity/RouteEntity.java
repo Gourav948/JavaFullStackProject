@@ -35,7 +35,7 @@ public class RouteEntity
 	private int travelDuration;
 	
 	@OneToMany(cascade={CascadeType.PERSIST}, 
-			fetch=FetchType.EAGER, mappedBy = "userCredentialsEntity")
+			fetch=FetchType.LAZY, mappedBy = "routeEntity")
 	private Set<ReservationEntity> reservationList;
 	
 	public RouteEntity() {

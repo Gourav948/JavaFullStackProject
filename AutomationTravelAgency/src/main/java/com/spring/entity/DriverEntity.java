@@ -3,6 +3,7 @@ package com.spring.entity;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -49,6 +50,11 @@ public class DriverEntity
 	@Column(name="LICENSENUMBER")
 	private String licenseNumber; 
 	
+	@OneToMany(cascade={CascadeType.PERSIST}, 
+			fetch=FetchType.LAZY, mappedBy = "driverEntity")
+	private Set<ReservationEntity> reservationList;
+	
+	
 	public DriverEntity() {
 		super();
 	 
@@ -60,7 +66,7 @@ public class DriverEntity
 		return name;
 	}
 
-	public void setFirstName(String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
@@ -121,7 +127,14 @@ public class DriverEntity
 	public void setLicenseNumber(String licenseNumber) {
 		this.licenseNumber = licenseNumber;
 	}
+	
 
+	public Set<ReservationEntity> getReservationList() {
+		return reservationList;
+	}
+	public void setReservationList(Set<ReservationEntity> reservationList) {
+		this.reservationList = reservationList;
+	}
 	public DriverEntity(String name, String street,String location, String city, String state, 
 			String pincode, String mobileNo, String licenseNumber) {
 		super();

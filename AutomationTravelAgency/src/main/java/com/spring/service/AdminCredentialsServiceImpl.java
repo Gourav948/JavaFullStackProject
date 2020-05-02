@@ -32,6 +32,7 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 
 	@Autowired
 	private VehicleRepository vehicleRepository;
+	
 	@Autowired
 	private RouteRepository routeRepository;
 
@@ -209,7 +210,7 @@ if(checklogin!=null ) {
 					findByDriverId(driverId).get(0);
 			if(drivertoupdate!=null)
 			{
-				drivertoupdate.setFirstName(driver.getName());
+				drivertoupdate.setName(driver.getName());
 				drivertoupdate.setStreet(driver.getStreet());
 				drivertoupdate.setLocation(driver.getLocation());
 				drivertoupdate.setCity(driver.getCity());
@@ -231,7 +232,7 @@ if(checklogin!=null ) {
 
 	@Override
 	public Vehicle getVehicleByVechicleid(long vehicleId) {
-		return VehicleUtils.convertVehicleEntityToVehicle(vehicleRepository.findByVehicleid(vehicleId));
+		return VehicleUtils.convertVehicleEntityToVehicle(vehicleRepository.findByVehicleId(vehicleId).get(0));
 	}
 
 	@Override

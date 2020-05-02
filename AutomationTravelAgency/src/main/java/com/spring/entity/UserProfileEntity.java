@@ -74,11 +74,11 @@ public class UserProfileEntity
 	
   
 	@OneToMany(cascade={CascadeType.PERSIST}, 
-			fetch=FetchType.EAGER, mappedBy = "userCredentialsEntity")
+			fetch=FetchType.LAZY, mappedBy = "userProfileEntity")
 	private List<CreditCardEntity> creditCards;
 	
 	@OneToMany(cascade={CascadeType.PERSIST}, 
-			fetch=FetchType.EAGER, mappedBy = "userCredentialsEntity")
+			fetch=FetchType.LAZY, mappedBy = "userProfileEntity")
 	private List<ReservationEntity> reservationList;
 	
 	public UserProfileEntity() {

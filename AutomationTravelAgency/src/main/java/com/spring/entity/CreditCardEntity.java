@@ -31,7 +31,7 @@ public class CreditCardEntity
 	@Column(name="CREDITBALANCE")
 	private int creditBalance;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name = "USERID")
 	private UserProfileEntity userProfileEntity;
 
