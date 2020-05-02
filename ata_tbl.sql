@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version: 5.5.34)
-# Date: 2020-05-01 16:50:15
+# Date: 2020-05-02 10:44:05
 # Generator: MySQL-Front 5.3  (Build 3.22)
 
 /*!40101 SET NAMES utf8 */;
@@ -86,12 +86,13 @@ CREATE TABLE `atl_tbl_userprofile` (
 
 DROP TABLE IF EXISTS `atl_tbl_creditcard`;
 CREATE TABLE `atl_tbl_creditcard` (
-  `CREDITCARDNUMBER` varchar(10) NOT NULL DEFAULT '',
+  `CREDITCARDID` varchar(10) NOT NULL DEFAULT '',
+  `CREDITCARDNUMBER` varchar(20) DEFAULT NULL,
   `VALIDFROM` varchar(7) DEFAULT NULL,
   `VALIDTO` varchar(7) DEFAULT NULL,
   `CREDITBALANCE` int(25) DEFAULT NULL,
   `USERID` varchar(6) DEFAULT NULL,
-  PRIMARY KEY (`CREDITCARDNUMBER`),
+  PRIMARY KEY (`CREDITCARDID`),
   KEY `creditcard_ibfk_1` (`USERID`),
   CONSTRAINT `creditcard_ibfk_1` FOREIGN KEY (`USERID`) REFERENCES `atl_tbl_userprofile` (`USERID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
