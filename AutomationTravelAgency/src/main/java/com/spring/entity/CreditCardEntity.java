@@ -19,6 +19,9 @@ public class CreditCardEntity
 {
 	@Id
 	@GeneratedValue
+	@Column(name="CREDITCARDID")
+	private long creditCardId;
+	
 	@Column(name="CREDITCARDNUMBER")
 	private String creditCardNumber;
 	
@@ -40,6 +43,16 @@ public class CreditCardEntity
 	 
 	}
 
+	public CreditCardEntity(String creditCardNumber, String validFrom, String validTo, int creditBalance,
+			UserProfileEntity userProfileEntity) {
+		super();
+		this.creditCardNumber = creditCardNumber;
+		this.validFrom = validFrom;
+		this.validTo = validTo;
+		this.creditBalance = creditBalance;
+		this.userProfileEntity = userProfileEntity;
+	}
+
 	public CreditCardEntity(  String validFrom, String validTo, int creditBalance,
 			UserProfileEntity userProfileEntity) {
 		super(); 
@@ -47,6 +60,13 @@ public class CreditCardEntity
 		this.validTo = validTo;
 		this.creditBalance = creditBalance;
 		this.userProfileEntity = userProfileEntity;
+	}
+
+	public long getCreditCardId() {
+		return creditCardId;
+	}
+	public void setCreditCardNumber(String creditCardNumber) {
+		this.creditCardNumber = creditCardNumber;
 	}
 
 	public String getCreditCardNumber() {
@@ -88,9 +108,9 @@ public class CreditCardEntity
 
 	@Override
 	public String toString() {
-		return "CreditCardEntity [creditCardNumber=" + creditCardNumber + ", validFrom=" + validFrom + ", validTo="
-				+ validTo + ", creditBalance=" + creditBalance + ", userProfileEntity=" + userProfileEntity
-				+ "]";
+		return "CreditCardEntity [creditCardId=" + creditCardId + ", creditCardNumber=" + creditCardNumber
+				+ ", validFrom=" + validFrom + ", validTo=" + validTo + ", creditBalance=" + creditBalance
+				+ ", userProfileEntity=" + userProfileEntity + "]";
 	}
 	 
 	

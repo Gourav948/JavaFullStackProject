@@ -136,7 +136,7 @@ public Object DeleteByVehicleid(@RequestHeader String authtoken,@PathVariable(na
 	
 	
 	@RequestMapping(value="vehicle/{vehicleId}",method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-	public Vehicle getVehicleByVechicleId(@PathVariable(value = "vehicleid") String vehicleId) {
+	public Vehicle getVehicleByVechicleId(@PathVariable(value = "vehicleId") String vehicleId) {
 		return admincredentialsservice.getVehicleByVechicleid(Long.parseLong(vehicleId));
 	}
 

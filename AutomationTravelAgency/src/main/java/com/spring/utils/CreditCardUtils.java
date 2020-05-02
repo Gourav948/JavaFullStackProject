@@ -18,12 +18,12 @@ public class CreditCardUtils
 	}
 	
 	public static CreditCard convertCreditCardEntityToCreditCard(CreditCardEntity creditCardEntity) {
-		return new CreditCard(creditCardEntity.getCreditCardNumber(), creditCardEntity.getValidFrom(),creditCardEntity.getValidTo(),creditCardEntity.getCreditBalance(),
+		return new CreditCard(creditCardEntity.getCreditCardId(),creditCardEntity.getCreditCardNumber(), creditCardEntity.getValidFrom(),creditCardEntity.getValidTo(),creditCardEntity.getCreditBalance(),
 				UserProfileUtils.convertUserProfileEntityToUserProfile(creditCardEntity.getUserProfileEntity()));
 	}
 
 	public static CreditCardEntity convertCreditCardToCreditCardEntity(CreditCard creditCard) {
-		return new CreditCardEntity( creditCard.getValidFrom(),creditCard.getValidTo(),creditCard.getCreditBalance(),
+		return new CreditCardEntity(creditCard.getCreditCardNumber() ,creditCard.getValidFrom(),creditCard.getValidTo(),creditCard.getCreditBalance(),
 			UserProfileUtils.convertUserProfileToUserProfileEntity(creditCard.getUserProfile()));
 		}
 

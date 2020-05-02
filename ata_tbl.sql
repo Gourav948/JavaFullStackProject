@@ -54,8 +54,8 @@ CREATE TABLE `ata_tbl_route` (
 # Source for table "ata_tbl_userprofile"
 #
 
-DROP TABLE IF EXISTS `ata_tbl_userprofile`;
-CREATE TABLE `ata_tbl_userprofile` (
+DROP TABLE IF EXISTS `ata_tbl_user_profile`;
+CREATE TABLE `ata_tbl_user_profile` (
   `USERID` bigint(6) NOT NULL DEFAULT 0,
   `FIRSTNAME` varchar(15) DEFAULT NULL,
   `LASTNAME` varchar(15) DEFAULT NULL,

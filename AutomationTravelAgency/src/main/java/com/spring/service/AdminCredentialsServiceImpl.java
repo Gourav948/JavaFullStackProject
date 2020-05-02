@@ -117,11 +117,11 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 		{	
 			if(checklogin.getUserType().equals("A"))
 			{
-			VehicleEntity vehicletodelete=vehicleRepository.findByVehicleId(vehicleid).get(0);
+			VehicleEntity vehicletodelete=vehicleRepository.findById(vehicleid).get();
 				if (vehicletodelete!=null)
 						
 					{
-						vehicleRepository.deleteByVehicleId(vehicleid);
+						vehicleRepository.deleteById(vehicleid);
 						return "Vehicle Deleted";
 					}
 				else 
@@ -151,10 +151,10 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 			if(checkLogin.getUserType().equals("A"))
 			{
 
-			RouteEntity routeToDelete = routeRepository.findByRouteId(routeid);
+			RouteEntity routeToDelete = routeRepository.findById(routeid).get();
 
 			if (routeToDelete != null) {
-				routeRepository.deleteByRouteId(routeid);
+				routeRepository.deleteById(routeid);
 				return "Route delete successfully";
 			}
 
@@ -185,9 +185,9 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 			if(checkLogin.getUserType().equals("A"))
 			{
 
-			DriverEntity driverToDelete = driverRepository.findByDriverId(driverId).get(0);
+			DriverEntity driverToDelete = driverRepository.findById(driverId).get();
 			if (driverToDelete != null) {
-				driverRepository.deleteByDriverId(driverId);
+				driverRepository.deleteById(driverId);
 				return "Driver details delete successfully";
 			}
 
@@ -215,78 +215,109 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 		UserProfileEntity checklogin=this.getUserUsingSessionId(authtoken);
 		if(checklogin!=null ) 
 		{	
-			
-			VehicleEntity vehicletoupdate=vehicleRepository.findByVehicleId(vehicleId).get(0);
-			if(vehicletoupdate!=null)
+			if(checklogin.getUserType().equals("A"))
 			{
-				vehicletoupdate.setName(vehicle.getName());
-				vehicletoupdate.setType(vehicle.getType());
-				vehicletoupdate.setRegistrationNumber(vehicle.getRegistrationNumber());
-				vehicletoupdate.setSeatingCapacity(vehicle.getSeatingCapacity());
-				vehicletoupdate.setFarePerKm(vehicle.getFarePerKm());
-				vehicletoupdate = vehicleRepository.save(vehicletoupdate);
-				return VehicleUtils.convertVehicleEntityToVehicle(vehicletoupdate);
+
+			VehicleEntity vehicletoupdate=vehicleRepository.findByVehicleId(vehicleId).get(0);
+				if(vehicletoupdate!=null)
+				{
+					vehicletoupdate.setName(vehicle.getName()!=null?(vehicle.getName()):(vehicletoupdate.getName()));
+					vehicletoupdate.setType(vehicle.getType()!=null?(vehicle.getType()):(vehicletoupdate.getType()));
+					vehicletoupdate.setRegistrationNumber(vehicle.getRegistrationNumber()!=null?(vehicle.getRegistrationNumber()):(vehicletoupdate.getRegistrationNumber()));
+					vehicletoupdate.setSeatingCapacity(vehicle.getSeatingCapacity()!=0?(vehicle.getSeatingCapacity()):(vehicletoupdate.getSeatingCapacity()));
+					vehicletoupdate.setFarePerKm(vehicle.getFarePerKm()!=0?(vehicle.getFarePerKm()):(vehicletoupdate.getFarePerKm()));
+					vehicletoupdate = vehicleRepository.save(vehicletoupdate);
+					return VehicleUtils.convertVehicleEntityToVehicle(vehicletoupdate);
+				}
+				else
+				{
+					return "Wrong Vehicle Id";
+				}
 			}
 			else
 			{
-			return null;
-			}}
-		return null;
+				return "You are Not a Admin";
+			}
+		}
+		return "Wrong Session -Id";
 			
 		}
 			
 	@Override
-	public Route updateByRouteId(String authtoken,Route route, long routeId)
+	public Object updateByRouteId(String authtoken,Route route, long routeId)
 	{
 		//UserProfileEntity checklogin=userProfileRepository.findBySessionId(authtoken).get(0);
 		UserProfileEntity checklogin=this.getUserUsingSessionId(authtoken);
-		if(checklogin!=null ) {	
-			
+		if(checklogin!=null ) 
+		{	
+			if(checklogin.getUserType().equals("A"))
+			{
+
 		
-			RouteEntity routetoupdate=routeRepository.
-					findByRouteId(routeId);
+			RouteEntity routetoupdate=routeRepository.findByRouteId(routeId);
 			if(routetoupdate!=null)
 			{
-				routetoupdate.setSource(route.getSource());
-				routetoupdate.setDestination(route.getDestination());
-				routetoupdate.setDistance(route.getDistance());
-				routetoupdate.setTravelDuration(route.getTravelDuration());
+				routetoupdate.setSource(route.getSource()!=null?(route.getSource()):(routetoupdate.getSource()));
+				routetoupdate.setDestination(route.getDestination()!=null?(route.getDestination()):(routetoupdate.getDestination()));
+				routetoupdate.setDistance(route.getDistance()!=0?(route.getDistance()):(routetoupdate.getDistance()));
+				routetoupdate.setTravelDuration(route.getTravelDuration()!=0?(route.getTravelDuration()):(routetoupdate.getTravelDuration()));
 				routetoupdate = routeRepository.save(routetoupdate);
 				return RouteUtils.convertRouteEntityToRoute(routetoupdate);
 			}
-			return null;
-		}
-		else { 
-			return null;
-	}}
-	@Override
-	public Driver updateByDriverId(String authtoken,Driver driver, long driverId)
-	{
-//UserProfileEntity checklogin=userProfileRepository.findBySessionId(authtoken).get(0);
-UserProfileEntity checklogin=this.getUserUsingSessionId(authtoken);
-if(checklogin!=null ) {	
-		
-		
-			DriverEntity drivertoupdate=driverRepository.
-					findByDriverId(driverId).get(0);
-			if(drivertoupdate!=null)
+			else
 			{
-				drivertoupdate.setName(driver.getName());
-				drivertoupdate.setStreet(driver.getStreet());
-				drivertoupdate.setLocation(driver.getLocation());
-				drivertoupdate.setCity(driver.getCity());
-				drivertoupdate.setState(driver.getState());
-				drivertoupdate.setPincode(driver.getPincode());
-				drivertoupdate.setMobileNo(driver.getMobileNo());
-				drivertoupdate.setLicenseNumber(driver.getLicenseNumber());
-				drivertoupdate = driverRepository.save(drivertoupdate);
-				return DriverUtils.convertDriverEntityToDriver(drivertoupdate);
+			return "Wrong Route Id";
+			}
 			}
 			else
 			{
-			return null;
-		}}
-		else { return null; }
+				return "You are Not a Admin";
+			}
+		}
+		else { 
+			return "Wrong Session-Id";
+			
+		}
+	}
+	@Override
+	public Object updateByDriverId(String authtoken,Driver driver, long driverId)
+	{
+			//UserProfileEntity checklogin=userProfileRepository.findBySessionId(authtoken).get(0);
+			UserProfileEntity checklogin=this.getUserUsingSessionId(authtoken);
+			if(checklogin!=null ) 
+			{	
+				if(checklogin.getUserType().equals("A"))
+				{
+		
+			DriverEntity drivertoupdate=driverRepository.
+					findByDriverId(driverId).get(0);
+					if(drivertoupdate!=null)
+					{
+						drivertoupdate.setName(driver.getName()!=null?(driver.getName()):(drivertoupdate.getName()));
+						drivertoupdate.setStreet(driver.getStreet()!=null?(driver.getStreet()):(drivertoupdate.getStreet()));
+						drivertoupdate.setLocation(driver.getLocation()!=null?(driver.getLocation()):(drivertoupdate.getLocation()));
+						drivertoupdate.setCity(driver.getCity()!=null?(driver.getCity()):(drivertoupdate.getCity()));
+						drivertoupdate.setState(driver.getState()!=null?(driver.getState()):(drivertoupdate.getState()));
+						drivertoupdate.setPincode(driver.getPincode()!=null?(driver.getPincode()):(drivertoupdate.getPincode()));
+						drivertoupdate.setMobileNo(driver.getMobileNo()!=null?(driver.getMobileNo()):(drivertoupdate.getMobileNo()));
+						drivertoupdate.setLicenseNumber(driver.getLicenseNumber()!=null?(driver.getLicenseNumber()):(drivertoupdate.getLicenseNumber()));
+						drivertoupdate = driverRepository.save(drivertoupdate);
+						return DriverUtils.convertDriverEntityToDriver(drivertoupdate);
+					}
+					else
+					{
+						return "DriverId Not Found";
+					}
+				}
+				else
+				{
+					return "You are Not a Admin";
+				}
+		}
+		else 
+		{ 
+			return "Invalid SessionID"; 
+		}
 	}
 
 
