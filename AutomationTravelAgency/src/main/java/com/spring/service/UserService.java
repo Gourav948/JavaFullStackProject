@@ -3,6 +3,7 @@
 package com.spring.service;
 
 import com.spring.entity.VehicleEntity;
+import com.spring.json.BookTicket;
 import com.spring.json.ChangePassword;
 import com.spring.json.Reservation;
 import com.spring.json.Route;
@@ -15,7 +16,7 @@ public interface UserService
 
 	Object getRouteById(Long routeId);
 
-	Object bookReservation(Reservation reservation);
+	Object bookReservation(BookTicket bookTicket,long userId);
 
 	Object getBookingStatus(Long reservationId);
 

@@ -27,6 +27,16 @@ public class CreditCard
 	}
 
 
+	public CreditCard(long creditCardId, String creditCardNumber, String validFrom, String validTo, int creditBalance) {
+		super();
+		this.creditCardId = creditCardId;
+		this.creditCardNumber = creditCardNumber;
+		this.validFrom = validFrom;
+		this.validTo = validTo;
+		this.creditBalance = creditBalance;
+	}
+
+
 	public CreditCard(long creditCardId, String creditCardNumber, String validFrom, String validTo, int creditBalance,
 			UserProfile userProfile) {
 		super();

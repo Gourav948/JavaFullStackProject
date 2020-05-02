@@ -1,15 +1,18 @@
 package com.spring.service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.json.BookTicket;
 import com.spring.json.ChangePassword;
 import com.spring.json.Reservation;
 import com.spring.json.Route; 
 import com.spring.rest.repository.ReservationRepository;
-import com.spring.rest.repository.RouteRepository; 
+import com.spring.rest.repository.RouteRepository;
+import com.spring.utils.CreditCardUtils;
 import com.spring.utils.ReservationUtils;
 import com.spring.utils.RouteUtils;
  
@@ -63,25 +66,53 @@ public class UserServiceImpl implements UserService
 	}
 
 	@Override
-	public Object bookReservation(Reservation reservation) 
+	public Object bookReservation(BookTicket bookTicket,long userId) 
 	{
-		ReservationEntity reservationEntity=ReservationUtils.convertReservationToReservationEntity(reservation);
-		if(reservationEntity.getUserProfileEntity().getUserId()!=0)
+		
+		UserProfileEntity userProfileEntity =userProfileRepository.findById(userId).get();
+		if(userProfileEntity!=null)
 		{
-			if (UserProfileUtils.convertUserProfileEntityToUserProfile(reservationEntity.getUserProfileEntity()).getSessionId()!=null)
+			if(userProfileEntity.getSessionId()!=null)
 			{
-				ReservationEntity reservationEntitiy= reservationRepository.save(reservationEntity);
-				return "Booked !! with BookingId "+reservationEntitiy.getReservationId();
+				userProfileEntity.getCreditCards().add(CreditCardUtils.convertCreditCardToCreditCardEntity(bookTicket.getCreditCard()));
+				userProfileEntity.getReservationList().add(ReservationUtils.convertReservationToReservationEntity(bookTicket.getReservation()));
+				
+				userProfileRepository.save(userProfileEntity);
+				List<ReservationEntity> reservationEntityList = reservationRepository.findAll();
+						
+				ReservationEntity reservationEntity =reservationEntityList.get(reservationEntityList.size()-1);
+				VehicleEntity vehicleEntity= vehicleRepository.findById(bookTicket.getVehicleId()).get();
+				RouteEntity routeEntity = routeRepository.findById(bookTicket.getRouteId()).get();
+				if(vehicleEntity !=null)
+				{
+					vehicleEntity.getReservationList().add(reservationEntity);
+					vehicleRepository.save(vehicleEntity);
+				}
+				else
+				{
+					return "Invalid VehicleId";
+				}
+				if(routeEntity!=null)
+				{
+					routeEntity.getReservationList().add(reservationEntity);
+					routeRepository.save(routeEntity);
+				}
+				else
+				{
+					return "Invalid RouteId";
+				}
+				return reservationEntity;
 			}
 			else
 			{
-				return "User Not Logged In: Please Login First";
+				return "Not LoggedIn -- Please Login";
 			}
 		}
 		else
 		{
-			return "User Not Registered";
+			return "Not Registered";
 		}
+		
 		
 		
 	}

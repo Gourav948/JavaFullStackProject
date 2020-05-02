@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.spring.json.BookTicket;
 import com.spring.json.ChangePassword;
 import com.spring.service.UserCredentialsService;
 import com.spring.service.UserService;
@@ -34,10 +36,10 @@ public class UserController
 	public Object getRouteById(@PathVariable(name ="routeId") String routeId){
 		return userService.getRouteById(Long.valueOf(routeId));
 	}
-	@PostMapping(value="/reservation",consumes=MediaType.APPLICATION_JSON_VALUE,produces=MediaType.APPLICATION_JSON_VALUE)
-	public Object bookReservation(@RequestBody Reservation reservation)
+	@PutMapping(value="/reservation/{userId}",consumes=MediaType.APPLICATION_JSON_VALUE,produces=MediaType.APPLICATION_JSON_VALUE)
+	public Object bookReservation(@RequestBody BookTicket bookTicket ,@PathVariable(name="userId") String userId)
 	{
-		return userService.bookReservation(reservation);
+		return userService.bookReservation(bookTicket,Long.parseLong(userId));
 	}
 	@GetMapping(value="/reservation/{reservationId}",produces=MediaType.APPLICATION_JSON_VALUE)
 	public Object getBookingStatus(@PathVariable(name="reservationId") String reservationId)

@@ -19,13 +19,11 @@ public class ReservationUtils
 	}
 	
 	public static Reservation convertReservationEntityToReservation(ReservationEntity reservationEntity) {
-		return new Reservation(reservationEntity.getReservationId(), UserProfileUtils.convertUserProfileEntityToUserProfile(reservationEntity.getUserProfileEntity()),VehicleUtils.convertVehicleEntityToVehicle(reservationEntity.getVehicleEntity()),RouteUtils.convertRouteEntityToRoute(reservationEntity.getRouteEntity()),
-				reservationEntity.getBookingDate(),reservationEntity.getJourneyDate(),DriverUtils.convertDriverEntityToDriver(reservationEntity.getDriverEntity()),reservationEntity.getBookingStatus(),reservationEntity.getTotalFare(),reservationEntity.getBoardingPoint(),reservationEntity.getDropPoint());
+		return new Reservation(reservationEntity.getReservationId(), reservationEntity.getBookingDate(),reservationEntity.getJourneyDate(),reservationEntity.getBookingStatus(),reservationEntity.getTotalFare(),reservationEntity.getBoardingPoint(),reservationEntity.getDropPoint());
 	}
 
 	public static ReservationEntity convertReservationToReservationEntity(Reservation reservation) {
-		return new ReservationEntity( UserProfileUtils.convertUserProfileToUserProfileEntity(reservation.getUserProfileEntity()),VehicleUtils.convertVehicleToVehicleEntity(reservation.getVehicleEntity()),RouteUtils.convertRouteToRouteEntity(reservation.getRouteEntity()),
-				reservation.getBookingDate(),reservation.getJourneyDate(),DriverUtils.convertDriverToDriverEntity(reservation.getDriverEntity()),reservation.getBookingStatus(),reservation.getTotalFare(),reservation.getBoardingPoint(),reservation.getDropPoint());
+		return new ReservationEntity( reservation.getBookingDate(),reservation.getJourneyDate(),reservation.getBookingStatus(),reservation.getTotalFare(),reservation.getBoardingPoint(),reservation.getDropPoint());
 		}
 
 	public static List<ReservationEntity> convertReservationListToReservationEntityList(

@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
  
 
 public class Reservation 
@@ -27,8 +29,10 @@ public class Reservation
 	@ManyToOne(cascade=CascadeType.ALL) 
 	private Route  routeEntity; 
 	
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
 	private LocalDate  bookingDate; 
 	
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
 	private LocalDate journeyDate;
 	
 	@OneToOne(cascade=CascadeType.ALL) 
@@ -50,6 +54,20 @@ public class Reservation
 	}
 
 	
+
+	public Reservation(long reservationId, LocalDate bookingDate, LocalDate journeyDate, String bookingStatus,
+			int totalFare, String boardingPoint, String dropPoint) {
+		super();
+		this.reservationId = reservationId;
+		this.bookingDate = bookingDate;
+		this.journeyDate = journeyDate;
+		this.bookingStatus = bookingStatus;
+		this.totalFare = totalFare;
+		this.boardingPoint = boardingPoint;
+		this.dropPoint = dropPoint;
+	}
+
+
 
 	public Reservation(long reservationId, UserProfile userProfileEntity, Vehicle vehicleEntity,
 			Route routeEntity, LocalDate bookingDate, LocalDate journeyDate, Driver driverEntity,

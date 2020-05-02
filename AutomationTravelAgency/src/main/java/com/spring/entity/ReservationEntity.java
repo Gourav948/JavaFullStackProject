@@ -64,6 +64,18 @@ public class ReservationEntity
 	}
 	
 
+	public ReservationEntity(LocalDate bookingDate, LocalDate journeyDate, String bookingStatus, int totalFare,
+			String boardingPoint, String dropPoint) {
+		super();
+		this.bookingDate = bookingDate;
+		this.journeyDate = journeyDate;
+		this.bookingStatus = bookingStatus;
+		this.totalFare = totalFare;
+		this.boardingPoint = boardingPoint;
+		this.dropPoint = dropPoint;
+	}
+
+
 	public ReservationEntity(UserProfileEntity userProfileEntity, VehicleEntity vehicleEntity,
 			RouteEntity routeEntity, LocalDate bookingDate, LocalDate journeyDate,
 			DriverEntity driverEntity, String bookingStatus, int totalFare, String boardingPoint,

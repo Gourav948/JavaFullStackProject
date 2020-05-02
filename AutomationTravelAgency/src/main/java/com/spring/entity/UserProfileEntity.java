@@ -341,7 +341,7 @@ public class UserProfileEntity
 				+ loginStatus + ", creditCards=" + creditCards + ", reservationList=" + reservationList + "]";
 	}
 
-	 
+
 	
 	 
 	

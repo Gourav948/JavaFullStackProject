@@ -403,19 +403,18 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 	}
 
 	@Override
-	public List<UserProfile> allotDriver(String reservationId) 
+	public Object allotDriver(String reservationId) 
 	{
 		ReservationEntity reservationEntity= reservationRepository.findById(Long.parseLong(reservationId)).get();
 		if(reservationEntity!=null)
 		{
-			/* Logic
-			reservationEntity.getUserProfileEntity().getCreditCards().get(0).getCreditCardNumber()
-			*/
-			return null;
+			reservationEntity.setBookingStatus("Booked");
+			reservationEntity.setBookingDate(LocalDate.now());
+			return "Driver Alotted";
 		}
 		else
 		{
-			return null;
+			return "Error..";
 		}
 	}
 }

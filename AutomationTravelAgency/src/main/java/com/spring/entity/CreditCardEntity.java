@@ -43,6 +43,14 @@ public class CreditCardEntity
 	 
 	}
 
+	public CreditCardEntity( String creditCardNumber, String validFrom, String validTo,	int creditBalance) {
+		super();
+		this.creditCardNumber = creditCardNumber;
+		this.validFrom = validFrom;
+		this.validTo = validTo;
+		this.creditBalance = creditBalance;
+	}
+
 	public CreditCardEntity(String creditCardNumber, String validFrom, String validTo, int creditBalance,
 			UserProfileEntity userProfileEntity) {
 		super();

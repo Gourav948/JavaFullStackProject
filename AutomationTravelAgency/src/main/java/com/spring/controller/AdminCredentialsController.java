@@ -42,7 +42,7 @@ public class AdminCredentialsController {
 
 	
 	@PutMapping(value="/reservation/{reservationId}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE )
-	public List<UserProfile> allotDriver(@PathVariable(name ="reservationId") String reservationId)
+	public Object allotDriver(@PathVariable(name ="reservationId") String reservationId)
 	{
 		return admincredentialsservice.allotDriver(reservationId);
 	}
