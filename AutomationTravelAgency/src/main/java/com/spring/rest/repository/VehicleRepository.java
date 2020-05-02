@@ -20,11 +20,11 @@ public interface VehicleRepository extends JpaRepository<VehicleEntity, Long>
 
 	VehicleEntity getByVehicleId(long vehicleid);
 
-	List<VehicleEntity> findByVehicleId(long vehicleId);
+	List<VehicleEntity> findByVehicleId(long vehicleid);
 
 	void deleteByVehicleId(long vehicleid);
 
-	VehicleEntity findByVehicleid(long vehicleId);
+	VehicleEntity findByVehicleid(long vehicleid);
 
 
 	
