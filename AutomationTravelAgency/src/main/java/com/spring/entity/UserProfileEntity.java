@@ -230,6 +230,25 @@ public class UserProfileEntity
 	}
 
 	public UserProfileEntity(String firstName, String lastName, LocalDate dateOfBirth, String gender, String street,
+			String location, String city, String state, String pincode, String mobileNo, String emailId,
+			String password, String userType) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+		this.gender = gender;
+		this.street = street;
+		this.location = location;
+		this.city = city;
+		this.state = state;
+		this.pincode = pincode;
+		this.mobileNo = mobileNo;
+		this.emailId = emailId;
+		this.password = password;
+		this.userType = userType;
+	}
+
+	public UserProfileEntity(String firstName, String lastName, LocalDate dateOfBirth, String gender, String street,
 			String location, String city, String state, String pincode, String mobileNo, String emailId) {
 		super();
 		this.firstName = firstName;

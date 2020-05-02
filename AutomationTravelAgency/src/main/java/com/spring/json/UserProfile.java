@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
  
  
 
@@ -19,7 +21,10 @@ public class UserProfile
 	  
 	private String  firstName; 
 	private String lastName; 
+	
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
 	private LocalDate dateOfBirth; 
+	
 	private String gender; 
 	private String street; 
 	private String location; 
@@ -194,6 +199,26 @@ public class UserProfile
 	}
 
  
+
+	public UserProfile(long userId,String firstName, String lastName, LocalDate dateOfBirth, String gender, String street,
+			String location, String city, String state, String pincode, String mobileNo, String emailId, 
+			String password, String userType) {
+		super();
+		this.userId=userId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+		this.gender = gender;
+		this.street = street;
+		this.location = location;
+		this.city = city;
+		this.state = state;
+		this.pincode = pincode;
+		this.mobileNo = mobileNo;
+		this.emailId = emailId;
+		this.password = password;
+		this.userType = userType;
+	}
 
 	public UserProfile(String firstName, String lastName, LocalDate dateOfBirth, String gender, String street,
 			String location, String city, String state, String pincode, String mobileNo, String emailId) {

@@ -17,16 +17,25 @@ public class UserProfileUtils
 		return userProfileList;
 	}
 	
-	public static UserProfile convertUserProfileEntityToUserProfile(UserProfileEntity userProfileEntity) {
+	/*public static UserProfile convertUserProfileEntityToUserProfile(UserProfileEntity userProfileEntity) {
 		return new UserProfile(userProfileEntity.getFirstName(),userProfileEntity.getLastName(),userProfileEntity.getDateOfBirth(),userProfileEntity.getGender(),userProfileEntity.getStreet(),userProfileEntity.getLocation()
 					,userProfileEntity.getCity(),userProfileEntity.getState(),userProfileEntity.getPincode(),userProfileEntity.getMobileNo(),userProfileEntity.getEmailId(),userProfileEntity.getUserId(),userProfileEntity.getPassword(),userProfileEntity.getUserType(),
 					userProfileEntity.getLoginStatus(),userProfileEntity.getSessionId(),CreditCardUtils.convertCreditCardEntityListToCreditCardList(userProfileEntity.getCreditCards()),ReservationUtils.convertReservationEntityListToReservationList(userProfileEntity.getReservationList()));
+	}*/
+	public static UserProfile convertUserProfileEntityToUserProfile(UserProfileEntity userProfileEntity) {
+		return new UserProfile(userProfileEntity.getUserId(),userProfileEntity.getFirstName(),userProfileEntity.getLastName(),userProfileEntity.getDateOfBirth(),userProfileEntity.getGender(),userProfileEntity.getStreet(),userProfileEntity.getLocation()
+					,userProfileEntity.getCity(),userProfileEntity.getState(),userProfileEntity.getPincode(),userProfileEntity.getMobileNo(),userProfileEntity.getEmailId(),userProfileEntity.getPassword(),userProfileEntity.getUserType());
 	}
-
+	
 	public static UserProfileEntity convertUserProfileToUserProfileEntity(UserProfile userProfile) {
+		return new UserProfileEntity(userProfile.getFirstName(),userProfile.getLastName(),userProfile.getDateOfBirth(),userProfile.getGender(),userProfile.getStreet(),userProfile.getLocation()
+				,userProfile.getCity(),userProfile.getState(),userProfile.getPincode(),userProfile.getMobileNo(),userProfile.getEmailId(),userProfile.getPassword(),userProfile.getUserType());
+}
+
+	/*public static UserProfileEntity convertUserProfileToUserProfileEntity(UserProfile userProfile) {
 		return new UserProfileEntity(userProfile.getFirstName(),userProfile.getLastName(),userProfile.getDateOfBirth(),userProfile.getGender(),userProfile.getStreet(),userProfile.getLocation()
 				,userProfile.getCity(),userProfile.getState(),userProfile.getPincode(),userProfile.getMobileNo(),userProfile.getEmailId());
 }
-
+*/
 	
 }
