@@ -20,7 +20,7 @@ public class AutomationTravelApp
     	if(i>5)
     	{
     	System.out.println("somethings");
-    	System.out.print("Changed Method Name");
+    	System.out.print("Changed Method Name1");
     	}
     }
 }
