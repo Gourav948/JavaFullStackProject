@@ -3,7 +3,7 @@ spring:
         driverClassName: com.mysql.jdbc.Driver
         url: jdbc:mysql://localhost:3306/ata_tbl
         username: root
-        password: mysql
+        password: S@ismaran98
 
     jpa:
         generate-ddl: true
