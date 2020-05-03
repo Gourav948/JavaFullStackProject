@@ -14,8 +14,14 @@ public class AutomationTravelApp
     {
         SpringApplication.run(AutomationTravelApp.class, args);
     }
-    public void test() {
+    public void testMyMethod() 
+    {
+    	int i=10;
+    	if(i>5)
+    	{
     	System.out.println("somethings");
+    	System.out.print("Changed Method Name");
+    	}
     }
 }
 
