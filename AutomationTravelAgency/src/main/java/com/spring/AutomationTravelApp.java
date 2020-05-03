@@ -16,13 +16,9 @@ public class AutomationTravelApp
     }
     public void testMyMethod() 
     {
-    	int i=10;
-    	if(i>5)
-    	{
-    	System.out.println("somethings");
-    	System.out.print("Changed Method Name1");
-    	}
-    	System.out.println("added login");
+    	System.out.println("testtesttesttesttest");
+    	System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@2");
+    	System.out.println("###################333");
     }
     public void testMyMethodagain() 
     {
