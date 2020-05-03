@@ -19,7 +19,6 @@ public class AutomationTravelApp
     	int i=10;
     	if(i>5)
     	{
-    	System.out.println("somethings");
     	System.out.print("Changed Method Name1");
     	}
     	System.out.println("added login");
