@@ -16,6 +16,7 @@ public class AutomationTravelApp
     }
     public void test() {
     	System.out.println("somethings");
+    	System.out.println("added login");
     }
 }
 
