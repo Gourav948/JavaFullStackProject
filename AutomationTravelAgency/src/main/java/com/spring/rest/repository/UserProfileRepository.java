@@ -18,5 +18,7 @@ public interface UserProfileRepository extends JpaRepository<UserProfileEntity, 
 
 	List<UserProfileEntity> findBySessionId(String authtoken);
 
+	UserProfileEntity findByUserId(long userId);
+
 }
 

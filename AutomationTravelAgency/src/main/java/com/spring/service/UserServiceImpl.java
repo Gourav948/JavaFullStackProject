@@ -1,6 +1,8 @@
 package com.spring.service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.json.BookTicket;
 import com.spring.json.ChangePassword;
+import com.spring.json.CreditCard;
 import com.spring.json.Reservation;
 import com.spring.json.Route; 
 import com.spring.rest.repository.ReservationRepository;
@@ -15,7 +18,7 @@ import com.spring.rest.repository.RouteRepository;
 import com.spring.utils.CreditCardUtils;
 import com.spring.utils.ReservationUtils;
 import com.spring.utils.RouteUtils;
- 
+import com.spring.entity.CreditCardEntity;
 import com.spring.entity.ReservationEntity;
 import com.spring.entity.RouteEntity;
 import com.spring.entity.UserProfileEntity;
@@ -66,42 +69,40 @@ public class UserServiceImpl implements UserService
 	}
 
 	@Override
-	public Object bookReservation(BookTicket bookTicket,long userId) 
+	public Object bookReservation(UserProfile userProfile,long userId) 
 	{
 		
 		UserProfileEntity userProfileEntity =userProfileRepository.findById(userId).get();
 		if(userProfileEntity!=null)
 		{
 			if(userProfileEntity.getSessionId()!=null)
-			{
-				userProfileEntity.getCreditCards().add(CreditCardUtils.convertCreditCardToCreditCardEntity(bookTicket.getCreditCard()));
-				userProfileEntity.getReservationList().add(ReservationUtils.convertReservationToReservationEntity(bookTicket.getReservation()));
 				
+			{
+				List<CreditCardEntity>creditCardEntityList=UserProfileUtils.convertUserToUserEntityForCreditCard(userProfile);
+				
+				//System.out.print("sdsd"+creditCardEntityList);
+				List<ReservationEntity>reservationEntityList=UserProfileUtils.convertUserToUserEntityForReservation(userProfile);
+				userProfileEntity.setCreditCards(creditCardEntityList);
+				//System.out.print("sdsf"+reservationEntityList);
+				userProfileEntity.setReservationList(reservationEntityList);
+				
+				creditCardEntityList=userProfileEntity.getCreditCards();
+				Iterator<CreditCardEntity> itr_2=creditCardEntityList.iterator();
+				while(itr_2.hasNext())
+				{
+					CreditCardEntity creditCardEntity =itr_2.next();
+					creditCardEntity.setUserProfileEntity(userProfileEntity);
+				}
+				reservationEntityList=userProfileEntity.getReservationList();
+				Iterator<ReservationEntity> itr_4 = reservationEntityList.iterator();
+				while (itr_4.hasNext())
+				{
+					ReservationEntity reservationEntity=itr_4.next();
+					reservationEntity.setUserProfileEntity(userProfileEntity);
+				}
 				userProfileRepository.save(userProfileEntity);
-				List<ReservationEntity> reservationEntityList = reservationRepository.findAll();
-						
-				ReservationEntity reservationEntity =reservationEntityList.get(reservationEntityList.size()-1);
-				VehicleEntity vehicleEntity= vehicleRepository.findById(bookTicket.getVehicleId()).get();
-				RouteEntity routeEntity = routeRepository.findById(bookTicket.getRouteId()).get();
-				if(vehicleEntity !=null)
-				{
-					vehicleEntity.getReservationList().add(reservationEntity);
-					vehicleRepository.save(vehicleEntity);
-				}
-				else
-				{
-					return "Invalid VehicleId";
-				}
-				if(routeEntity!=null)
-				{
-					routeEntity.getReservationList().add(reservationEntity);
-					routeRepository.save(routeEntity);
-				}
-				else
-				{
-					return "Invalid RouteId";
-				}
-				return reservationEntity;
+				return userProfileEntity;
+				
 			}
 			else
 			{

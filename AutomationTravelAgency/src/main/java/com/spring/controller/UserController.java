@@ -3,6 +3,7 @@ package com.spring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,8 +20,9 @@ import com.spring.service.UserCredentialsService;
 import com.spring.service.UserService;
 import com.spring.json.Reservation;
 import com.spring.json.Route;
+import com.spring.json.UserProfile;
 import com.spring.json.Vehicle;
-
+@CrossOrigin(origins="*")
 @RestController
 @RequestMapping("/app/userController")
 public class UserController 
@@ -37,9 +39,9 @@ public class UserController
 		return userService.getRouteById(Long.valueOf(routeId));
 	}
 	@PutMapping(value="/reservation/{userId}",consumes=MediaType.APPLICATION_JSON_VALUE,produces=MediaType.APPLICATION_JSON_VALUE)
-	public Object bookReservation(@RequestBody BookTicket bookTicket ,@PathVariable(name="userId") String userId)
+	public Object bookReservation(@RequestBody UserProfile userProfile ,@PathVariable(name="userId") String userId)
 	{
-		return userService.bookReservation(bookTicket,Long.parseLong(userId));
+		return userService.bookReservation(userProfile,Long.parseLong(userId));
 	}
 	@GetMapping(value="/reservation/{reservationId}",produces=MediaType.APPLICATION_JSON_VALUE)
 	public Object getBookingStatus(@PathVariable(name="reservationId") String reservationId)

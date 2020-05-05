@@ -22,7 +22,7 @@ public class Vehicle
 	private int seatingCapacity; 
 	private int farePerKm;
 	@OneToMany(cascade={CascadeType.PERSIST}, 
-			fetch=FetchType.EAGER, mappedBy = "userCredentialsEntity")
+			fetch=FetchType.LAZY, mappedBy = "userCredentialsEntity")
 	private Set<Reservation> reservationList;
 	
 	public Vehicle() {

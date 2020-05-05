@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -31,6 +32,7 @@ import com.spring.rest.repository.UserProfileRepository;
 import com.spring.service.AdminCredentialsService;
 import com.spring.utils.UserProfileUtils;
 
+@CrossOrigin(origins="*")
 @RestController
 @RequestMapping("/app")
 public class AdminCredentialsController {

@@ -22,7 +22,7 @@ public class UserProfile
 	private String  firstName; 
 	private String lastName; 
 	
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 	private LocalDate dateOfBirth; 
 	
 	private String gender; 
@@ -48,11 +48,11 @@ public class UserProfile
 	}
 
 	@OneToMany(cascade={CascadeType.PERSIST}, 
-			fetch=FetchType.EAGER, mappedBy = "userCredentialsEntity")
+			fetch=FetchType.LAZY, mappedBy = "userProfile")
 	private List<CreditCard> creditCardList;
 	
 	@OneToMany(cascade={CascadeType.PERSIST}, 
-			fetch=FetchType.EAGER, mappedBy = "userCredentialsEntity")
+			fetch=FetchType.LAZY, mappedBy = "userProfileEntity")
 	private List<Reservation> reservationList;
 	
 	public UserProfile() {

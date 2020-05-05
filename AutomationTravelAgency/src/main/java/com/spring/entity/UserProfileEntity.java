@@ -73,11 +73,11 @@ public class UserProfileEntity
 	private String sessionId;
 	
   
-	@OneToMany(cascade={CascadeType.PERSIST}, 
+	@OneToMany(cascade={CascadeType.ALL}, 
 			fetch=FetchType.LAZY, mappedBy = "userProfileEntity")
 	private List<CreditCardEntity> creditCards;
 	
-	@OneToMany(cascade={CascadeType.PERSIST}, 
+	@OneToMany(cascade={CascadeType.ALL}, 
 			fetch=FetchType.LAZY, mappedBy = "userProfileEntity")
 	private List<ReservationEntity> reservationList;
 	

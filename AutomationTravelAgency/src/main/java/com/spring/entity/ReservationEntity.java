@@ -24,7 +24,7 @@ public class ReservationEntity
 	@Column(name="RESERVATIONID")
 	private long reservationId;
 	
-	@ManyToOne(cascade=CascadeType.PERSIST)
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "USERID")
 	private UserProfileEntity userProfileEntity;
 	
@@ -63,6 +63,12 @@ public class ReservationEntity
 	 
 	}
 	
+
+	public ReservationEntity(LocalDate journeyDate) {
+		super();
+		this.journeyDate = journeyDate;
+	}
+
 
 	public ReservationEntity(LocalDate bookingDate, LocalDate journeyDate, String bookingStatus, int totalFare,
 			String boardingPoint, String dropPoint) {
