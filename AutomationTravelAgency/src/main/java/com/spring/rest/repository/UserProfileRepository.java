@@ -20,5 +20,7 @@ public interface UserProfileRepository extends JpaRepository<UserProfileEntity, 
 
 	UserProfileEntity findByUserId(long userId);
 
+	UserProfileEntity findByEmailId(String emailId);
+
 }
 

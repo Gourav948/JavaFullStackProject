@@ -1,5 +1,7 @@
 package com.spring.service;
 
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,31 +33,31 @@ private UserProfileRepository userProfileRepository;
 		@Override
 		public String autoLogin(UserProfile userProfile) 
 		{
-			
-			com.spring.entity.UserProfileEntity user1=userProfileRepository.findById(userProfile.getUserId()).get();
+			Random random =new Random();
+			com.spring.entity.UserProfileEntity user1=userProfileRepository.findByEmailId(userProfile.getEmailId());
 			if(user1!=null) {
 				if(user1.getPassword().equals((userProfile.getPassword()))) {
 		
-					String sessionId = new java.rmi.server.UID().toString().substring(0,5);
+					String sessionId = new java.rmi.server.UID().toString().substring(0,3)+random.nextInt(100);
 					user1.setSessionId(sessionId);
 					userProfileRepository.save(user1);
 					
 					user1.setLoginStatus(1);
 					userProfileRepository.save(user1);
-					return "LoginStatus"+user1.getLoginStatus()+"session Id" +sessionId;
+					return "{\"result\": \"success\",\"sessionId\":\""+sessionId+"\"}";
 					
 					
 				}
 				else 
 				{
-					return "invalid password";
+					return "{\"result\": \"invalid Password\"}";
 				}
 		
 			}
 			 
 		
 			else {
-				return "invalid username";
+				return "{\"result\": \"Invalid User\"}";
 			}	
 			
 		}
