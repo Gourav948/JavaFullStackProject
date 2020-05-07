@@ -25,6 +25,8 @@ public interface UserService
 
 	Object changePassword(ChangePassword requestedPassword);
 
+	Object confirmBooking(BookTicket bookTicket, long parseLong);
+
 	 
 
 }

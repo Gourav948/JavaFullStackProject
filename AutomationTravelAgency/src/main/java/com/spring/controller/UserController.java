@@ -43,6 +43,11 @@ public class UserController
 	{
 		return userService.bookReservation(userProfile,Long.parseLong(userId));
 	}
+	@PutMapping(value="/reservation/selectMeans/{userId}",consumes=MediaType.APPLICATION_JSON_VALUE,produces=MediaType.APPLICATION_JSON_VALUE)
+	public Object confirmBooking(@RequestBody BookTicket bookTicket ,@PathVariable(name="userId") String userId)
+	{
+		return userService.confirmBooking(bookTicket,Long.parseLong(userId));
+	}
 	@GetMapping(value="/reservation/{reservationId}",produces=MediaType.APPLICATION_JSON_VALUE)
 	public Object getBookingStatus(@PathVariable(name="reservationId") String reservationId)
 	{

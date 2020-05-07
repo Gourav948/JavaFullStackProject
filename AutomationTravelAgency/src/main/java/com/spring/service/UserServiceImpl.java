@@ -177,6 +177,12 @@ public class UserServiceImpl implements UserService
 			return "Incorrect Password... Try again";
 		}
 	}
+
+	@Override
+	public Object confirmBooking(BookTicket bookTicket, long parseLong) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }

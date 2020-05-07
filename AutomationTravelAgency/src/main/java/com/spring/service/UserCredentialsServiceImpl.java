@@ -19,17 +19,6 @@ public class UserCredentialsServiceImpl implements UserCredentialsService
 {
 @Autowired
 private UserProfileRepository userProfileRepository;
-
-
-
-
-
-
-
-
-
-
-
 		@Override
 		public String autoLogin(UserProfile userProfile) 
 		{

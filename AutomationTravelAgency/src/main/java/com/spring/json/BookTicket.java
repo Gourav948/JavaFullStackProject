@@ -5,30 +5,21 @@ public class BookTicket
 	
 	private long vehicleId;
 	private long routeId;
-	private CreditCard creditCard;
-	private Reservation reservation;
 	
 	
 
 	
 
 
-	public BookTicket(long vehicleId, long routeId, Reservation reservation) {
+	public BookTicket(long vehicleId, long routeId) {
 		super();
 		this.vehicleId = vehicleId;
 		this.routeId = routeId;
-		this.reservation = reservation;
+		
 	}
 
 
 
-	public BookTicket(long vehicleId, long routeid, CreditCard creditCard, Reservation reservation) {
-		super();
-		this.vehicleId = vehicleId;
-		this.routeId = routeId;
-		this.creditCard = creditCard;
-		this.reservation = reservation;
-	}
 
 
 
@@ -62,29 +53,5 @@ public class BookTicket
 	}
 
 
-
-	public CreditCard getCreditCard() {
-		return creditCard;
-	}
-
-
-
-	public void setCreditCard(CreditCard creditCard) {
-		this.creditCard = creditCard;
-	}
-
-
-
-	public Reservation getReservation() {
-		return reservation;
-	}
-
-
-
-	public void setReservation(Reservation reservation) {
-		this.reservation = reservation;
-	}
-	
-	
 	
 }
