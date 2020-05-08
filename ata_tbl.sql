@@ -94,7 +94,7 @@ CREATE TABLE `ata_tbl_credit_card` (
   `USERID` bigint(6) DEFAULT NULL,
   PRIMARY KEY (`CREDITCARDID`),
   KEY `creditcard_ibfk_1` (`USERID`),
-  CONSTRAINT `creditcard_ibfk_1` FOREIGN KEY (`USERID`) REFERENCES `ata_tbl_userprofile` (`USERID`)
+  CONSTRAINT `creditcard_ibfk_1` FOREIGN KEY (`USERID`) REFERENCES `ata_tbl_user_profile` (`USERID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 #
@@ -146,7 +146,7 @@ CREATE TABLE `ata_tbl_reservation` (
   KEY `reservation_ibfk_4` (`ROUTEID`),
   CONSTRAINT `reservation_ibfk_4` FOREIGN KEY (`ROUTEID`) REFERENCES `ata_tbl_route` (`ROUTEID`),
   CONSTRAINT `reservatiom_ibfk_3` FOREIGN KEY (`VEHICLEID`) REFERENCES `ata_tbl_vehicle` (`VEHICLEID`),
-  CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`USERID`) REFERENCES `ata_tbl_userprofile` (`USERID`),
+  CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`USERID`) REFERENCES `ata_tbl_user_profile` (`USERID`),
   CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`DRIVERID`) REFERENCES `ata_tbl_driver` (`DRIVERID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
