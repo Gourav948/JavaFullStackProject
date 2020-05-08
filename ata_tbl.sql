@@ -9,7 +9,7 @@ CREATE DATABASE `ata_tbl` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `ata_tbl`;
 
 #
-# Source for table "ata_tbl_driver"
+
 #
 
 DROP TABLE IF EXISTS `ata_tbl_driver`;
