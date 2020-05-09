@@ -32,7 +32,7 @@ import com.spring.rest.repository.UserProfileRepository;
 import com.spring.service.AdminCredentialsService;
 import com.spring.utils.UserProfileUtils;
 
-@CrossOrigin(origins="*")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/app")
 public class AdminCredentialsController {
@@ -88,6 +88,7 @@ public class AdminCredentialsController {
 	}
 	@RequestMapping(value="/route",method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public Object addNewRouteDetails(@RequestHeader String authtoken,@RequestBody Route route) {
+		System.out.println(authtoken);
 		return admincredentialsservice.saveRouteDetails(authtoken,route);
 	}
 

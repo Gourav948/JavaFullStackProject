@@ -142,7 +142,8 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 	}
 	
 
-	public String deleteByRouteid(String authtoken, long routeid) {
+	public Object deleteByRouteid(String authtoken, long routeid) {
+		RouteEntity routeToDelete;
 
 		UserProfileEntity checkLogin = userProfileRepository.findBySessionId(authtoken).get(0);
 
@@ -150,27 +151,30 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 		{
 			if(checkLogin.getUserType().equals("A"))
 			{
+				if(routeRepository.findById(routeid).isPresent())
+				routeToDelete = routeRepository.findById(routeid).get();
+				else
+				routeToDelete =null;
 
-			RouteEntity routeToDelete = routeRepository.findById(routeid).get();
 
 			if (routeToDelete != null) {
 				routeRepository.deleteById(routeid);
-				return "Route delete successfully";
+				return 1;
 			}
 
 			else {
-				return " Invalid routeid";
+				return 0;
 			}
 			}
 			else
 			{
-				return "You are Not a Admin";
+				return 0;
 			}
 
 		}
 
 		else {
-			return "invalid authtoken / login to perform the function";
+			return 0;
 
 		}
 	}
@@ -417,4 +421,5 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 			return "Error..";
 		}
 	}
+	
 }
