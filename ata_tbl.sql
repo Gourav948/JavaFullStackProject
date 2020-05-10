@@ -1,4 +1,4 @@
-﻿# Host: localhost  (Version: 5.5.34)
+# Host: localhost  (Version: 5.5.34)
 # Date: 2020-05-02 10:44:05
 # Generator: MySQL-Front 5.3  (Build 3.22)
 
@@ -71,7 +71,7 @@ CREATE TABLE `ata_tbl_user_profile` (
   `PASSWORD` varchar(20) DEFAULT NULL,
   `USERTYPE` varchar(1) DEFAULT NULL,
   `LOGINSTATUS` int(1) DEFAULT NULL,
-  `SESSIONID` varchar(6) DEFAULT NULL,
+  `SESSIONID` varchar(6) DEFAULT NULL UNIQUE,
   PRIMARY KEY (`USERID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

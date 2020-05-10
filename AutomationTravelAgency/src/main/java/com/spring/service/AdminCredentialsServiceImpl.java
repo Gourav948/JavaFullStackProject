@@ -108,7 +108,7 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 	}
 
 	@Override
-	public String deleteByVehicleid(String authtoken,long vehicleid) 
+	public Object deleteByVehicleid(String authtoken,long vehicleid) 
 	{
 		
 		UserProfileEntity checklogin=userProfileRepository.findBySessionId(authtoken).get(0);
@@ -122,22 +122,22 @@ public class AdminCredentialsServiceImpl implements AdminCredentialsService {
 						
 					{
 						vehicleRepository.deleteById(vehicleid);
-						return "Vehicle Deleted";
+						return 1;
 					}
 				else 
 					
 					{
-						return "Vehicleid is invalid";
+						return 0;
 					}
 				}
 			else
 			{
-				return "You are Not a Admin";
+				return 0;
 			}
 		}
 	
 	else {
-			return "invalid authtoken / login to perform the function";
+			return 0;
 		}
 	}
 	

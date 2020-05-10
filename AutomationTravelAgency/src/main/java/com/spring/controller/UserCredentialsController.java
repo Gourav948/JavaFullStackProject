@@ -30,8 +30,8 @@ public class UserCredentialsController {
 		}
 		
 		@DeleteMapping(value="/user/logout",produces=MediaType.APPLICATION_JSON_VALUE)
-		public UserProfile logoutUser(@RequestHeader(name="auth-token") String authToken) {
-			return usercredentialsservice.autoLogout(authToken);
+		public Object logoutUser(@RequestHeader String authtoken) {
+			return usercredentialsservice.autoLogout(authtoken);
 		
 		
 	}

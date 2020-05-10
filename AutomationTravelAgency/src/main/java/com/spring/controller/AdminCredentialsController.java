@@ -99,8 +99,8 @@ public class AdminCredentialsController {
 
 
 	@RequestMapping(value="/vehicle/{vehicleId}",method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public Object updateVehicleDetails(@RequestHeader String authtoken,@RequestBody Vehicle vehicle ,@PathVariable(name ="vehicleId") String vehicleId) {
-		return admincredentialsservice.updateByVehicleId(authtoken,vehicle, Long.parseLong(vehicleId));
+	public Object updateVehicleDetails(@RequestHeader String authtoken,@RequestBody Vehicle vehicle ,@PathVariable(name ="vehicleId") long vehicleId) {
+		return admincredentialsservice.updateByVehicleId(authtoken,vehicle,vehicleId);
 		
 	}
 	@RequestMapping(value="/route/{routeId}",method=RequestMethod.PUT, produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)

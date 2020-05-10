@@ -27,7 +27,7 @@ private UserProfileRepository userProfileRepository;
 			if(user1!=null) {
 				if(user1.getPassword().equals((userProfile.getPassword()))) {
 		
-					String sessionId = new java.rmi.server.UID().toString().substring(0,10);
+					String sessionId = new java.rmi.server.UID().toString().substring(0,6)+(int)(Math.random());
 					user1.setSessionId(sessionId);
 					userProfileRepository.save(user1);
 					
@@ -62,13 +62,14 @@ private UserProfileRepository userProfileRepository;
 
 
 			@Override
-			public UserProfile autoLogout(String apiKey) 
+			public Object autoLogout(String apiKey) 
 			{
+				com.spring.entity.UserProfileEntity userCredentialsEntity;
 				com.spring.entity.UserProfileEntity user1=userProfileRepository.findBySessionId(apiKey).get(0);
 				user1.setSessionId(null);
 			
-				com.spring.entity.UserProfileEntity userCredentialsEntity=userProfileRepository.save(user1);	
-				return UserProfileUtils.convertUserProfileEntityToUserProfile(userCredentialsEntity);
+				userCredentialsEntity=userProfileRepository.save(user1);	
+				return userCredentialsEntity.getSessionId() ;
 			
 			}
 
